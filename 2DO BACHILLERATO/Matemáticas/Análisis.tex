@@ -1,0 +1,148 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{multicol}
+\usepackage{physics}
+
+\theoremstyle{plain}
+
+\title{Análisis}
+\date{}
+\author{}
+
+\newtheorem*{bolzano*}{Teorema de Bolzano}
+\newtheorem*{rolle*}{Teorema de Rolle}
+
+\begin{document}
+\maketitle
+\section*{Tabla de derivadas}
+
+\begin{table}
+    \centering
+    \begin{tabular}{|c|c|}
+        \hline
+        y & y'\\
+        \hline
+        $[f]^n$  & $n\cdot f^{n-1}\cdot f'$\\
+        $e^{f}$ & $e^{f}\cdot f'$ \\
+        $a^f$ & $a^f\cdot \ln a \cdot f'$ \\
+        $\ln f$ & $\frac{f'}{f}$ \\
+        $\sin f$ & $\cos f \cdot f'$\\
+        $\cos f$ & $-\sin f\cdot f'$\\
+        $\tan f$ & $ \frac{f'}{1-\cos ^2 f}$\\
+        $\arcsin f$ & $ \frac{f'}{\sqrt{1-f^2}}$\\
+        $\arccos f$ & $ \frac{-f'}{\sqrt{1-f^2}}$\\
+        $\arctan f$ & $ \frac{f'}{1+f^2}$\\    
+        \hline
+    \end{tabular}
+\end{table}
+
+\pagebreak
+\section*{Elementos básicos}
+\begin{itemize}
+    \item \textbf{Dominio}: conjunto de valores de entrada que puede tomar la función y para los que está definida.
+    \item \textbf{Rango}: conjunto de valores que puede dar la función.
+    \item \textbf{Antiderivada}: función $F(x) \Rightarrow \dv {F(x)}{x}=f(x) \equiv \int f(x)dx = F(x)$
+    \item \textbf{Definición de derivada} $f'(x)= \lim_{h \to 0} \frac{f(x+h)-f(h)}{h}$ 
+\end{itemize}
+\pagebreak
+\section*{Continuidad}
+Una función $f(x)$ es continua en un punto $x=a$ si se cumplen las \textbf{siguientes condiciones}:
+\begin{enumerate}
+    \item \[
+        \exists f(a)
+    \]
+    \item \[
+        \exists \lim_{x \to a} f(x) \Rightarrow \lim_{x \to a^-} f(x) = \lim_{x \to a^+}f(x)
+    \]
+    \item \[
+        f(a)=\lim_{x \to a} f(x)
+    \]
+\end{enumerate}
+
+\section*{Derivabilidad}
+Una función $f(x)$ es \textbf{derivable} en un punto $x=a$ si se cumple:
+\[
+    \exists \lim_{x \to a} f'(x) \Rightarrow \lim_{x \to a^-} f'(x) = \lim_{x \to a^+} f'(x)
+\]
+
+\section*{Recta tangente en un punto}
+La recta tangente a un punto $x=a$ se define como:
+\[
+    y-f(a)=f'(a)(x-a)
+\]
+
+\section*{Recta normal en un punto}
+La recta normal a un punto $x=a$ se define como:
+\[
+    y-f(a)=- \frac{1}{f'(a)}(x-a)
+\] 
+\section*{Integrales}
+\subsection*{Integrales por partes}
+\[
+    \int u\cdot dv = u\cdot v-\int v\cdot du
+\]
+\pagebreak
+
+\section*{Teoremas}
+
+\begin{bolzano*}
+    Dada una función $f(x)$, continua en un intervalo $[a,b]$, si $f(a)\cdot f(b)<0$,
+    podemos afirmar que $\exists c \in [a,b] / f(c)=0$.\\
+    Esta fórmula se puede generalizar para afirmar que existe cualquier valor si este cumple
+    que $f(a)\leq f(c)\leq f(b)$. 
+\end{bolzano*}
+
+\begin{rolle*}
+    Dada una función $f(x)$, continua en un intervalo $[a,b]$, derivable en un intervalo
+    $(a,b)$, si $f(a)=f(b)$, entonces podemos afirmar que $\exists c \in (a,b)/f'(c)=0$ 
+\end{rolle*}
+
+\section*{Representación gráfica}
+Para representar gráficamente una función, se deben desarrollar los siguientes elementos:
+\begin{itemize}
+    \item Dominio de la función
+    \item Puntos de corte con los ejes
+    \item Asíntotas
+    \item Monotonía
+\end{itemize}
+\pagebreak
+
+\section*{Asíntotas}
+\subsection*{Verticales}
+Para indeterminaciones $ \frac{k}{0}/k \in \mathbb{R}$ 
+\[
+    \lim_{x \to a} f(x) \underset{\frac{k}{0}}{=} \left\{\begin{matrix}
+    \lim_{x \to a^+} f(x)=\pm \infty \\ 
+    \lim_{x \to a^-} f(x)=\mp \infty
+    \end{matrix}\right.
+\]
+
+\subsection*{Horizontales}
+Afirmamos que hay una asíntota horizontal en $\pm\infty$ si:
+\[
+    \lim_{x \to \pm\infty} \in \mathbb{R}
+\] 
+
+\subsection*{Oblicuas}
+Para $\pm \infty$, una asíntota oblicua se expresa de la forma:
+\[
+    y=mx+n
+\] 
+siendo:
+
+\noindent\begin{minipage}{.5\linewidth}
+    \begin{equation*}
+        m = \lim_{x \to \pm \infty} \frac{f(x)}{x}
+    \end{equation*}
+    \end{minipage}%
+    \begin{minipage}{.5\linewidth}
+    \begin{equation*}
+        n = \lim_{x \to \pm \infty} f(x) -mx
+    \end{equation*}
+    \end{minipage}
+\[
+    m\not \in \mathbb{R} \vee n\not \in \mathbb{R} \Rightarrow \text{no hay asíntota oblicua.}
+\]
+\end{document}
