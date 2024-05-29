@@ -1,0 +1,59 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{bm}
+
+\title{Probabilidad - Mates Social}
+\author{Alejandro Zubiri Funes}
+\date{}
+
+\begin{document}
+\maketitle
+\section*{Distribución normal}
+\begin{itemize}
+    \item $\bm{p(Z\leq a)}$ con $\bm{a>0}$: mirar tabla.
+    \item $\bm{p(Z\leq a)}$ con $\bm{a<0}$: $p(Z\leq a)= 1-p(Z\leq -a)$
+    \item $\bm{p(Z\geq a)}$ con $\bm{a>0}$: $p(Z\geq a)=1-p(Z\leq a)$
+    \item $\bm{p(Z\geq a)}$ con $\bm{a<0}$: $p(Z\geq a)=p(Z\leq -a)$
+    \item $\bm{p(a\leq Z \leq b)}$: $p(a\leq Z \leq b)= p(Z\leq b)-p(Z\leq a)$
+\end{itemize}
+\subsection*{Tipificación}
+Para poder utilizar la tabla de distribución $N(0,1)$, debemos \textbf{tipificar}:
+\[
+    p(Z\leq a)=p(Z\leq \frac{x-\mu}{\sigma})
+\]
+Una vez hecho esto podemos observar la probabilidad en la tabla.
+
+\subsection*{Intervalo característico}
+Utilizado para obtener el \textbf{intervalo} centrado en la media poblacional en el que se encuentra el $\bm{(1-a)\cdot 100\%}$ de los individuos de la población,
+es decir, este intervalo:
+\[
+    (\mu-Z_{\frac{a}{2}}\cdot \sigma, \mu+Z_{\frac{a}{2}}\cdot \sigma)
+\]
+
+\subsection*{Distribución binomial}
+La distribución binomial aproxima a la distribución normal cuando la cantidad de experimentos es \textbf{demasiado grande} $(n\geq 30)$. Para utilizarla,
+$p$ y $q$ deben ser mayores a $0.1$.
+\[
+    N(n\cdot p, \sqrt{n\cdot p\cdot q})
+\]
+
+\section*{Teoría de muestras y nivel de confianza}
+\subsection*{Distribución muestral de medias}
+Con una población que tiene una media $\mu$ y una desviación típica $\sigma$, si $n\geq 30$, entonces las medias siguen la siguiente distribución normal:
+\[
+    N(\mu, \frac{\sigma}{\sqrt{n}})
+\]
+
+\subsection*{Distribución muestral de proporciones}
+Tomemos una serie de muestras de tamaño $n$. Si hallamos la proporción de individuos que presentan una determinada característica $p_1, p_2, p_3\dots$,
+todos estos valores dan como resultado una variable aleatoria $\bm{P}$, llamada \textbf{distribución muestral de proporciones}. Esta variable sigue la
+siguiente distribución normal:
+\[
+    P\approx N(p, \sqrt{ \frac{p\cdot q}{n}})
+\]
+
+\subsection*{Intervalos de confianza}
+\textit{Por continuar\dots} 
+
+\end{document}
