@@ -1,0 +1,142 @@
+\documentclass{article}
+
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{bm}
+
+\title{Sistemas de coordenadas}
+\author{Alejandro Zubiri Funes}
+\date{}
+
+\begin{document}
+\maketitle
+Los sistemas de coordenadas son utilizados para describir la posición y otras propiedades del espacio de un objeto. Existen diferentes tipos de sistemas,
+variando en función de la dimensión del espacio a tratar y el tipo de movimiento.
+
+\subsection*{Sistemas en 3D}
+Por convención, los sistemas en 3 dimensiones utilizan los siguientes ejes:
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[scale = 0.5, every node/.style={scale=0.8}, x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp7216381744033507] 
+\draw  (231,174.7) -- (394,174.7)(247.3,28) -- (247.3,191) (387,169.7) -- (394,174.7) -- (387,179.7) (242.3,35) -- (247.3,28) -- (252.3,35)  ;
+%Straight Lines [id:da5922809991261604] 
+\draw    (247.3,174.7) -- (153.41,268.59) ;
+\draw [shift={(152,270)}, rotate = 315] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+
+% Text Node
+\draw (135,275.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+% Text Node
+\draw (241,8.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+% Text Node
+\draw (399,166.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+
+
+\end{tikzpicture}
+
+Donde el eje $\mathrm{z}$ representaría la ``altura``.
+
+\pagebreak
+
+\subsection*{Sistema cartesiano}
+El sistemas de coordenadas cartesiano describe la posición de un objeto mediante la distancia que tiene este al eje de coordenadas en cada eje.
+Una posición se representaría de la siguiente forma:
+\[
+    \mathbf{r}=(x_r,y_r,z_r)
+\]
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[scale = 0.5, every node/.style={scale=0.8}, x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp7216381744033507] 
+\draw  (231,174.7) -- (394,174.7)(247.3,28) -- (247.3,191) (387,169.7) -- (394,174.7) -- (387,179.7) (242.3,35) -- (247.3,28) -- (252.3,35)  ;
+%Straight Lines [id:da5922809991261604] 
+\draw    (247.3,174.7) -- (153.41,268.59) ;
+\draw [shift={(152,270)}, rotate = 315] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+%Straight Lines [id:da40745792052990915] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (214,207.6) -- (294,207.6) ;
+%Straight Lines [id:da1967032713930439] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (327.3,174.7) -- (294,207.6) ;
+%Straight Lines [id:da053490985236124944] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (294,207.6) -- (294,131.6) ;
+%Shape: Circle [id:dp5884694882138559] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (291.6,129.2) .. controls (291.6,127.87) and (292.67,126.8) .. (294,126.8) .. controls (295.33,126.8) and (296.4,127.87) .. (296.4,129.2) .. controls (296.4,130.53) and (295.33,131.6) .. (294,131.6) .. controls (292.67,131.6) and (291.6,130.53) .. (291.6,129.2) -- cycle ;
+
+% Text Node
+\draw (135,275.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+% Text Node
+\draw (241,8.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+% Text Node
+\draw (399,166.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+% Text Node
+\draw (238,213.4) node [anchor=north west][inner sep=0.75pt]    {$y_{r}$};
+% Text Node
+\draw (324,185.4) node [anchor=north west][inner sep=0.75pt]    {$x_{r}$};
+% Text Node
+\draw (303,142.4) node [anchor=north west][inner sep=0.75pt]    {$z_{r}$};
+% Text Node
+\draw (298,120.4) node [anchor=north west][inner sep=0.75pt]    {$\mathbf{r}$};
+
+
+\end{tikzpicture}
+
+\subsection*{Sistema esférico}
+El sistema esférico parte de un radio (distancia \textbf{total} al eje de coordenadas) y dos ángulos respecto del eje $\mathrm{x}$ y el eje $\mathrm{z}$.
+Este sistema es muy conveniente para sistemas donde haya un objeto rotanto, como una órbita.
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[scale = 0.5, every node/.style={scale=0.8}, x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Shape: Axis 2D [id:dp7216381744033507] 
+\draw  (231,174.7) -- (394,174.7)(247.3,28) -- (247.3,191) (387,169.7) -- (394,174.7) -- (387,179.7) (242.3,35) -- (247.3,28) -- (252.3,35)  ;
+%Straight Lines [id:da5922809991261604] 
+\draw    (247.3,174.7) -- (153.41,268.59) ;
+\draw [shift={(152,270)}, rotate = 315] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]    (10.93,-4.9) .. controls (6.95,-2.3) and (3.31,-0.67) .. (0,0) .. controls (3.31,0.67) and (6.95,2.3) .. (10.93,4.9)   ;
+%Straight Lines [id:da40745792052990915] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (247.3,174.7) -- (294,207.6) ;
+%Straight Lines [id:da1967032713930439] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (294,131.6) -- (294,207.6) ;
+%Straight Lines [id:da053490985236124944] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (247.3,174.7) -- (294,131.6) ;
+%Shape: Circle [id:dp5884694882138559] 
+\draw  [draw opacity=0][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (291.6,129.2) .. controls (291.6,127.87) and (292.67,126.8) .. (294,126.8) .. controls (295.33,126.8) and (296.4,127.87) .. (296.4,129.2) .. controls (296.4,130.53) and (295.33,131.6) .. (294,131.6) .. controls (292.67,131.6) and (291.6,130.53) .. (291.6,129.2) -- cycle ;
+%Shape: Arc [id:dp5503445102030255] 
+\draw  [draw opacity=0] (276,196.06) .. controls (268.12,206.32) and (255.17,212.25) .. (241.41,210.53) .. controls (233.34,209.52) and (226.19,206.03) .. (220.62,200.92) -- (246.08,173.13) -- cycle ; \draw   (276,196.06) .. controls (268.12,206.32) and (255.17,212.25) .. (241.41,210.53) .. controls (233.34,209.52) and (226.19,206.03) .. (220.62,200.92) ;  
+%Shape: Arc [id:dp6047064650476885] 
+\draw  [draw opacity=0] (248.44,127.91) .. controls (249.98,127.95) and (251.54,128.07) .. (253.1,128.26) .. controls (263.94,129.62) and (273.44,134.57) .. (280.57,141.78) -- (247.3,174.7) -- cycle ; \draw   (248.44,127.91) .. controls (249.98,127.95) and (251.54,128.07) .. (253.1,128.26) .. controls (263.94,129.62) and (273.44,134.57) .. (280.57,141.78) ;  
+
+% Text Node
+\draw (135,275.4) node [anchor=north west][inner sep=0.75pt]    {$x$};
+% Text Node
+\draw (241,8.4) node [anchor=north west][inner sep=0.75pt]    {$z$};
+% Text Node
+\draw (399,166.4) node [anchor=north west][inner sep=0.75pt]    {$y$};
+% Text Node
+\draw (298,120.4) node [anchor=north west][inner sep=0.75pt]    {$\mathbf{r}$};
+% Text Node
+\draw (245,214.4) node [anchor=north west][inner sep=0.75pt]    {$\Phi _{r}$};
+% Text Node
+\draw (252,106.4) node [anchor=north west][inner sep=0.75pt]    {$\theta _{r}$};
+% Text Node
+\draw (272.65,151.55) node [anchor=north west][inner sep=0.75pt]    {$r$};
+
+
+\end{tikzpicture}
+
+\subsection*{Aplicación del sistema esférico}
+Supongamos que tenemos un objeto en la posición $\mathbf{r}=(r, \psi, \theta)$. Debido a que está orbitando un objeto, su ecuación de movimiento es la siguiente:
+\[
+    \ddot{\mathbf{r}}=g(r)\hat{\mathbf{r}}
+\]
+donde $\hat{\mathbf{r}}$ es el \textbf{vector unitario}, que apunta al objeto al que se orbita.
+\end{document}
