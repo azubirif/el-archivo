@@ -1,0 +1,57 @@
+\documentclass{article}
+\title{Geometría - Versión actualizada}
+\author{Alejandro Zubiri Funes}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\newtheorem*{normal*}{Definición}
+
+\date{}
+
+\begin{document}
+\maketitle
+\section*{Terminología}
+\begin{itemize}
+    \item $\vec{V}$: vector.
+    \item $\vec{u}$: vector director.
+    \item $|u|=\sqrt{u_1^2+u_2^2+u_3^2}$: módulo o magnitud.
+    \item $P$: punto.
+    \item $P_c$: punto de corte.
+    \item $\alpha$: plano.
+    \item $\vec{n}_\alpha$ vector normal de un plano. 
+\end{itemize}
+
+\section*{Operaciones con vectores}
+\textbf{Producto escalar}\\
+\[
+    \vec{u}\cdot \vec{v}=|u|\cdot |v|\cdot \cos \theta = u_1\cdot v_1+u_2\cdot v_2+u_3\cdot v_3
+\]
+donde $\theta$ es el \textbf{ángulo} entre los vectores.
+
+\section*{Planos}
+\subsection*{Construcción de planos}
+Para construir un plano, se deben cumplir uno de estos dos requisitos equivalentes:
+\begin{itemize}
+    \item 3 puntos que formen el plano
+    \item 1 punto y dos vectores directores
+\end{itemize}
+con esto, seguiremos la siguiente fórmula para crear el plano:
+\[
+    \alpha \equiv \begin{vmatrix}
+    u_1 & v_1 & x-P_1 \\ 
+    u_2 & v_2 & y-P_2 \\ 
+    u_3 & v_3 & z-P_3
+    \end{vmatrix}=0
+\]
+\subsection*{Recta normal de un plano}
+\begin{normal*}[Recta normal]
+    Vector cuya dirección es perpendicular a la superficie en la que está.
+\end{normal*}
+Los componentes de este vector director son los coeficientes que multiplican a las
+componentes $x,y$ y $z$ del plano:
+\begin{align}
+    \pi\equiv Ax+By+Cz+D=0\\
+    \vec{n}_\pi=(A,B,C)
+\end{align}
+\end{document}

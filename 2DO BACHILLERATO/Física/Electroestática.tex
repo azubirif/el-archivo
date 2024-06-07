@@ -1,0 +1,57 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\newtheorem*{Conductor*}{Definición}
+\newtheorem*{Insulador*}{Definición}
+\newtheorem*{superposición*}{Definición}
+
+\title{Electroestática}
+\author{Alejandro Zubiri Funes}
+\date{}
+
+\begin{document}
+\maketitle
+\section*{Resumen}
+\begin{itemize}
+    \item Permitividad eléctrica del espacio: $\epsilon_0= 8.854\cdot 10^{-12}\:(\frac{C^2}{N\cdot m^2})$ 
+    \item Constante de Coulomb: $K=9\cdot 10^9= \frac{1}{4\pi \epsilon_0}\:( \frac{N\cdot m^2}{C^2})$
+    \item $1\:(C)\approx-q_e\cdot 6\cdot 10^{18}$ 
+    \item Carga de un electrón: $q_e=-1.6\cdot 10^-19\:(C)$
+    \item Carga de un protón: $q_p=-q_e$
+    \item Campo eléctrico en un punto: $\mathbf{E}=K \frac{Q}{r^2}\hat{\mathbf{r}}\:(\frac{N}{C})$
+    \item Ley de Coulomb: $\mathbf{F}=q\mathbf{E}=K \frac{qQ}{r^2}\hat{\mathbf{r}}\:(N)$
+    \item Potencial eléctrico: $V=K \frac{Q}{r}\:(\frac{J}{C})$
+    \item Energía potencial eléctria: $P=qV\:(J)$
+    \item Trabajo por \textbf{fuerza externa}: $W_{ext}=q(\Delta V)=q(V_f-V_0)\:(J)$
+    \item Trabajo por \textbf{campo}: $W_{campo}=-W_{ext}=-q(\Delta V)=-q(V_f-V_0)\:(J)$
+    \item $A= \frac{C}{s}$
+    \item $C\cdot V=J$
+\end{itemize}
+\pagebreak
+
+\section*{Definiciones}
+\begin{Conductor*}[Conductor]
+    Material que permite que las cargas eléctricas se muevan con gran facilidad por él.
+\end{Conductor*}
+
+\begin{Insulador*}[Insulador]
+    Material que dificulta el movimiento de las cargas eléctricas.
+\end{Insulador*}
+
+\section*{Ley de Coulomb}
+La ley de Coulomb establece que la fuerza entre dos cargas puntuales es la siguiente:
+\[
+    \mathbf{F}=K \frac{q_1 q_2}{r^2}\hat{\mathbf{r}}\:(N)
+\]
+donde $\hat{\mathbf{r}}$ es el vector unitario al que apuntará cada fuerza. En función de los signos de las cargas, estas se \textbf{atraerán} o se
+\textbf{repelerán}.\\
+Esta ley sigue el \textbf{principio de superposición de fuerzas}.
+\begin{superposición*}[Principio de superposición de fuerzas]
+    La fuerza ejercida simultáneamente en una carga por un número $n$ de cargas es la suma vectorial de las fuerzas que ejercerían
+    \textbf{individualmente} cada carga.
+\end{superposición*}
+Esta ley solo debería ser usada en el \textbf{vacío}, ya que la presencia de un material intermediario cambiaría la fuerza que actua en
+cada carga, ya que parte de la carga se induce en el material intermediario.
+\end{document}
