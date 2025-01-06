@@ -1,0 +1,267 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Tue Dec 03 2024}
+\title{Entregable 2}
+
+\usepackage{amsmath, amsthm, amsfonts, enumitem}
+
+\setcounter{secnumdepth}{0}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+
+\section{Ejercicio 1}
+\begin{enumerate}[label = (\alph*)]
+    \item Expresa $H$ como variedad lineal y en forma implícita
+    \begin{equation}
+        \begin{split}
+            \begin{pmatrix}
+                a+c & b+c \\
+                a+c & -a+b \\
+                \end{pmatrix} = \begin{pmatrix}
+                a & 0 \\
+                a & -a \\
+                \end{pmatrix}+\begin{pmatrix}
+                0 & b \\
+                0 & b \\
+                \end{pmatrix}+\begin{pmatrix}
+                c & c \\
+                c & 0 \\
+                \end{pmatrix}
+        \end{split}
+    \end{equation}
+    Por tanto:
+    \begin{equation}
+        \begin{split}
+            H = <\begin{pmatrix}
+                1 & 0 \\
+                1 & -1 \\
+                \end{pmatrix},\begin{pmatrix}
+                0 & 1 \\
+                0 & 1 \\
+                \end{pmatrix},\begin{pmatrix}
+                1 & 1 \\
+                1 & 0 \\
+                \end{pmatrix}>
+        \end{split}
+    \end{equation}
+    \item
+    Puesto que la tercer matriz es la suma de las dos primeras, la base del subespacio sería\footnote{No se ha demostrado
+    explícitamente, pero es fácil ver que estos dos vectores son LI.}:
+    \begin{equation}
+        \begin{split}
+            B_{H} = \{ \begin{pmatrix}
+                1 & 0 \\
+                1 & -1 \\
+                \end{pmatrix},\begin{pmatrix}
+                0 & 1 \\
+                0 & 1 \\
+                \end{pmatrix} \}
+        \end{split}
+    \end{equation}
+    Como $\# B_{H} = 2 \implies dim(H) = 2$.\\
+    Para obtener las ecuaciones implícitas, igualamos una matriz genérica de incógnitas a las matrices de la base:
+    \begin{equation}
+        \begin{split}
+            x &= a\\
+            y &= b\\
+            z &= a\\
+            t &= -a+b
+        \end{split}
+    \end{equation}
+    Y ahora despejamos, obteniendo que:
+    \begin{equation}
+        \begin{split}
+            x - z &= 0\\
+            t+x-y &= 0
+        \end{split}
+    \end{equation}
+    Así que el subespacio en forma implícita sería:
+    \begin{equation}
+        \begin{split}
+            H = \{ \begin{pmatrix}
+            x & y \\ z & t
+            \end{pmatrix} x,y,z,t \in \mathbb{R} / x-z = 0, t +x -y = 0 \}
+        \end{split}
+    \end{equation}
+    \item 
+    Para saber si pertenece a la base, sustituimos los componentes en las ecuaciones y vemos si las cumplen:
+    \begin{equation}
+        \begin{split}
+            x-z &= 3 - 3 = 0\\
+            t+x-y &= 2 + 3 - 5 = 0
+        \end{split}
+    \end{equation}
+    Por tanto, pertenece al subespacio.
+    \item
+    Primero debemos comprobar que todos los vectores de este conjunto pertenecen a la base:
+    \begin{equation}
+        \begin{split}
+            x-y = 1- 0 = 1 \neq 0
+        \end{split}
+    \end{equation}
+    Como el primero no pertenece, este conjunto no puede ser base.
+    \item
+    Primero expresamos este subespacio en forma de variedad lineal para obtener su base:
+    \begin{equation}
+        \begin{split}
+            H = < \begin{pmatrix}
+            0 & 0 \\2 & 2
+            \end{pmatrix}, \begin{pmatrix}
+            1 & 1 \\1 & 0
+            \end{pmatrix}>
+        \end{split}
+    \end{equation}
+    Si son el mismo subespacio, deberán generar los mismos vectores, y por tanto también los vectores de la base. Esto significa que
+    también deberán cumplir con las ecuaciones implícitas:
+    \begin{equation}
+        \begin{split}
+            x-y = 0-2 = -2 \neq 0
+        \end{split}
+    \end{equation}
+    Luego no pertenece a la base y luego no son el mismo subespacio.
+\end{enumerate}
+\section{Ejercicio 2}
+Tenemos el siguiente subespacio:
+\begin{equation}
+    \begin{split}
+        U = \{ A \in M_{3\times 3} / tr(A)=0 \}
+    \end{split}
+\end{equation}
+Esto nos deja con el siguiente subespacio:
+\begin{equation}
+    \begin{split}
+        U = \{ \begin{pmatrix}
+        a_{11} & a_{12} & a_{13} \\ a_{21} & a_{22} & a_{23} \\ a_{31} & a_{32} & a_{33}
+        \end{pmatrix} \in M_{3\times 3} / a_{11} + a_{22} + a_{33} = 0 \}
+    \end{split}
+\end{equation}
+Ahora resolvemos la ecuación asignando parámetros genéricos:
+\begin{equation}
+    \begin{split}
+        a_{11} + q + z = 0 \implies a_{11} = -q - z
+    \end{split}
+\end{equation}
+Dejándonos así el siguiente subespacio:
+\begin{equation}
+    \begin{split}
+        U = \{ \begin{pmatrix}
+        -q-z & b & c \\ p & q & r \\ x & y & z
+        \end{pmatrix} / b,c,p,q,r,x,y,z \in \mathbb{R} \}
+    \end{split}
+\end{equation}
+De donde podemos (tediosamente) extraer la siguiente base:
+\begin{equation}
+    \begin{split}
+        B_{U} = \{ \begin{pmatrix}
+        -1 & 0 & 0 \\ 0 & 1 & 0\\ 0 & 0 & 0
+        \end{pmatrix}, \begin{pmatrix}
+        0 & 1 & 0 \\0 & 0 & 0\\0 & 0 & 0
+        \end{pmatrix}, \begin{pmatrix}
+        0 & 0 & 1\\0 & 0 & 0\\0 & 0 & 0
+        \end{pmatrix}, \begin{pmatrix}
+        0 & 0 & 0\\1 & 0 & 0\\0 & 0 & 0
+        \end{pmatrix},\\ \begin{pmatrix}
+        0 & 0 & 0\\0 & 0 & 1\\0 & 0 & 0
+        \end{pmatrix}, \begin{pmatrix}
+        0 & 0 & 0\\0 & 0 & 0\\1 & 0 & 0
+        \end{pmatrix}, \begin{pmatrix}
+        0 & 0 & 0\\0 & 0 & 0\\0 & 1 & 0
+        \end{pmatrix}, \begin{pmatrix}
+        -1 & 0 & 0\\0 & 0 & 0\\0 & 0 & 1
+        \end{pmatrix} \}
+    \end{split}
+\end{equation}
+Puesto que $\# B_{U} = 8 \implies dim(U) = 8$
+\section{Ejercicio 3}
+\begin{equation}
+    \begin{split}
+        U &= \{ (a,b,a-b,a-2b) / a,b \in \mathbb{R} \} = <(1,0,1,1),(0,1,-1,-2)>\\
+        & \implies B_{U} = \{ (1,0,1,1),(0,1,-1,-2) \}
+    \end{split}
+\end{equation}
+Para sacar las ecuaciones implícitas:
+\begin{equation}
+    \begin{split}
+        x &= a\\ y &= b \\ z &= a-b \\ t &= a -2b
+    \end{split}
+\end{equation}
+Por tanto:
+\begin{equation}
+    \begin{split}
+        z - x + y &= 0\\ t - x +2y &= 0
+    \end{split}
+\end{equation}
+Para $W$:
+\begin{equation}
+    \begin{split}
+        W = \{ (x,y,z,t) / x-z = 0, x+y-z+t = 0 \}
+    \end{split}
+\end{equation}
+Al tener dos ecuaciones (dos grados de libertad), asignamos $x = a$ e $y = b$:
+\begin{equation}
+    \begin{split}
+        z &= a\\ a + b -a + t &= 0 \implies t = -b
+    \end{split}
+\end{equation}
+Obteniendo así:
+\begin{equation}
+    \begin{split}
+        W = \{ (a,b,a,-b) / a,b \in \mathbb{R} \}
+    \end{split}
+\end{equation}
+De donde obtenemos que:
+\begin{equation}
+    \begin{split}
+        B_{W} = \{ (1,0,1,0), (0,1,0,-1) \}
+    \end{split}
+\end{equation}
+Para hallar $U \cap W$, buscamos el subespacio que cumpla con todas las ecuaciones \textbf{únicas} de ambos subespacios. Para determinar
+el número de ecuaciones únicas, buscamos el rango de la matriz formada por las coeficientes de las ecuaciones:
+\begin{equation}
+    \begin{split}
+        A = \begin{pmatrix}
+        1 & 0 & -1 & 0\\0 & 1 & 0 & 1\\-1 & 1 & 1 & 0\\0 & 1 & -1 & 0
+        \end{pmatrix}
+    \end{split}
+\end{equation}
+Podemos calcular que $\det (A)=-1 \neq 0 \implies $ las cuatro ecuaciones son independientes. Esto implica que el sistema es SCD, por lo
+que la única solución es:
+\begin{equation}
+    \begin{split}
+        x = y = z = t = 0
+    \end{split}
+\end{equation}
+Es decir:
+\begin{equation}
+    \begin{split}
+        U \cap W = \{ \vec{0} \}
+    \end{split}
+\end{equation}
+Debido a que $U \cap W = \{ \vec{0} \}$, sabemos que:
+\begin{equation}
+    \begin{split}
+        U+W = U \oplus W
+    \end{split}
+\end{equation}
+Ahora, gracias a la ecuación de Grassmann:
+\begin{equation}
+    \begin{split}
+        dim(U+W) = dim(U) + dim(W) - dim(U\cap W) = 2 + 2 -0 = 4
+    \end{split}
+\end{equation}
+Puesto que la dimensión del subespacio es igual a la dimensión del espacio al que pertenece:
+\begin{equation}
+    \begin{split}
+        U + W = \mathbb{R}^4
+    \end{split}
+\end{equation}
+Y por tanto:
+\begin{equation}
+    \begin{split}
+        U \oplus W = \mathbb{R}^4
+    \end{split}
+\end{equation}
+\end{document}

@@ -1,0 +1,310 @@
+\documentclass{article}
+\title{Teoremas Parcial}
+\author{Alejandro Zubiri}
+
+\usepackage{physics, amsmath, amsthm, amsfonts}
+
+\newtheorem{theorem}{Teorema}
+
+\begin{document}
+\maketitle
+\section{Teorema Fundamental del Cálculo Integral}
+    Sea $f$ una función continua en $[a,b]$, y sea $F(x)= \int _{a}^x f(t) \dd{t} / x \in [a,b] \implies $ F es
+    derivable y
+    \begin{equation}
+        \begin{split}
+            F'(x)=f(x) \forall x \in [a,b]
+        \end{split}
+    \end{equation}
+\begin{proof}[Demostración]
+    \begin{equation}
+        \begin{split}
+            F'(x) = \lim_{h \to 0} \frac{F(x+h) - F(x)}{h} = \lim_{h \to 0} \frac{ \int _{x}^{x+h} f(t) \dd{t}}{h}
+        \end{split}
+    \end{equation}
+    Ahora podemos aplicar el teorema del valor medio para integrales:
+    \begin{equation}
+        \begin{split}
+            \exists c \in [x,x+h] / f(c) \cdot h = \int _{x}^{x+h}f(t) \dd{t}
+        \end{split}
+    \end{equation}
+    Por tanto
+    \begin{equation}
+        \begin{split}
+            F'(x)= \frac{1}{h} \int _{x}^{x+h} f(t) \dd{t} = \lim_{h \to 0} \frac{f(c) \cdot h}{h}=\lim_{h \to 0}f(c)
+            =f(x)
+        \end{split}
+    \end{equation}
+Para memorizar:
+\begin{itemize}
+	\item Definir \(F(x) = \int_a^x f(t) \dd{t}\).
+	\item Aplicar derivada por definición.
+	\item Usar el TVM para integrales.
+\end{itemize}
+\end{proof}
+\section{Teorema del valor medio}
+    Sean dos funciones $f,g : f: \mathbb{R} \to \mathbb{R} \wedge g: \mathbb{R} \to \mathbb{R}$, continuas y derivables en $[a,b]$.
+    \begin{equation}
+        \begin{split}
+            \exists c \in (a,b): (f(b)-f(a))g'(c) = (g(b) - g(a))f'(c)
+        \end{split}
+    \end{equation}
+\begin{proof}[Demostración]
+    Sea una función real y continua en $[a,b]$
+    \begin{equation}
+        \begin{split}
+            h(x)= (f(b)-f(a))g(x)- (g(b)-g(a))f(x)
+        \end{split}
+    \end{equation}
+    Si evaluamos $h(a)$ tenemos que
+    \begin{equation}
+        \begin{split}
+            h(a)= f(b)g(a)-g(b)f(a)
+        \end{split}
+    \end{equation}
+    Y $h(b)$ es
+    \begin{equation}
+        \begin{split}
+            h(b)=f(b)g(a)-g(b)f(a)
+        \end{split}
+    \end{equation}
+    Por tanto,
+    \begin{equation}
+        \begin{split}
+            h(a)=h(b)\Rightarrow \exists c \in [a,b] : h'(c)=0
+        \end{split}
+    \end{equation}
+    Es decir
+    \begin{equation}
+        \begin{split}
+            h'(c)=(f(b)-f(a))g'(c)- (g(b)-g(a))f'(c)=0
+        \end{split}
+    \end{equation}
+    Que implica que
+    \begin{equation}
+        \begin{split}
+            (f(b)-f(a))g'(c)=(g(b)-g(a))f'(c)
+        \end{split}
+    \end{equation}
+    QED\\
+    Para memorizar:
+    \begin{itemize}
+	    \item La función $h(x) = [f(b)-f(a)]g(x) - [g(b)-g(a)]f(x)$
+		\item Aplicar teorema de Rolle.
+	\end{itemize}
+\end{proof}
+\section{Teorema de Rolle}
+    Sea una función $f: \mathbb{R} \to \mathbb{R}$ continua en $[a,b]$ y derivable en $(a,b)$, si
+    $f(a)=f(b)\Rightarrow \exists c \in (a,b): f'(c)=0$.
+\begin{proof}[Demostración]
+    Para demostrarlo, vamos a partir de que toda función contínua en un intervalo cerrado y acotado
+    alcanza un valor máximo y un valor mínimo absolutos en dicho intervalo.\\
+    Como el máximo y el mínimo son análogos, vamos a demostrar para el máximo.\\
+    \textbf{Caso 1}: el máximo no pertenece a $(a,b)$, que implica que $Max=f(a)$ o $Max=f(b)$. Si
+    $f(a)=f(b)\Rightarrow Max=Min \Rightarrow f(x)=cte\Rightarrow f'(x)=0$.
+    \textbf{Caso 2}: Supongamos que $m\in (a,b)$ es el máximo. Como $f(x)$ es derivable $\Rightarrow \exists f'(m)$.
+    Como $m$ es un punto máximo, $f(x)$ es creciente en $a<x<m$:
+    \begin{equation}
+        \begin{split}
+            \lim_{x \to m^-} \frac{f(x)-f(m)}{x-m}\geq 0\\
+            \lim_{x \to m^+} \frac{f(x)-f(m)}{x-m}\leq 0
+        \end{split}
+    \end{equation}
+    Al ser derivable, ambos límites deben coincidir, por lo que si se debe cumplir que
+    \begin{equation}
+        \begin{split}
+            f'(m)\geq 0\\
+            f'(m)\leq 0
+        \end{split}
+    \end{equation}
+    Entonces
+    \begin{equation}
+        \begin{split}
+            f'(m)=0
+        \end{split}
+    \end{equation}
+Para memorizar demostración:
+\begin{itemize}
+	\item Hacer casos para los cuales \(Max \in (a,b)\) y los que no.
+	\item Hacer derivada por definición de \(f'(max)\) y hacer \(\leq\) y \(\geq\).  
+\end{itemize}
+\end{proof}
+\section{Teorema de Taylor}
+    Sea $f(x)$ una función derivable $n+1$ veces. Sean $x,x_{0} \in  (a,b)$:
+    \begin{equation}
+        \begin{split}
+            \exists \varepsilon \in (x,x_{0}) / f(x)-Pn(f,x_{0})(x)= \frac{f^{n+1}(\varepsilon)}{(n+1)!}(x-x_{0})^{n+1}
+        \end{split}
+    \end{equation}
+\begin{proof}[Demostración]
+    Supongamos que $x_{0}<x$ (el caso contrario es análogo). Vamos a definir una función
+    auxiliar:
+    \begin{equation}
+        \begin{split}
+            h(s)= f(s) + \sum ^n_{k=1} \frac{f^k (s)}{k!}(x-s)^{k}
+        \end{split}
+    \end{equation}
+    Primero, $h(s)$ es contínua y derivable. Vamos a evaluar $h(s)$ en:
+    \begin{itemize}
+        \item $h(x)=f(x) + \sum ^n_{k=1} \frac{f^k (x)}{k!}(x-x)^{k}=f(x)$
+        \item $h(x_{0})=f(x_{0})+\sum ^n_{k=1} \frac{f^k (x_{0})}{k!}(x-x_{0})^{k}= P_{n}(f,x_{0})(x)$
+    \end{itemize}
+    Ahora vamos a derivar la función:
+    \begin{equation}
+        \begin{split}
+            h'(s) &= f'(s)+ \sum _{k=1} ^n \frac{f^{k+1}(s)}{k!} (x-s)^{k} +\sum ^n_{k=1}
+            \frac{f^k (s)}{k!}k(x-s)^{k-1}\cdot -1\\
+            &= f'(s)+ \sum _{k=1} ^n \frac{f^{k+1}(s)}{k!} (x-s)^{k} - 
+            \sum ^n_{k=1} \frac{f^k (s)}{(k-1)!}(x-s)^{k-1}\\
+            &= f'(s) + \sum _{k=1} ^n \frac{f^{k+1}(s)}{k!} (x-s)^{k} -
+            f'(s ) -\sum ^n_{k=2} \frac{f^k (s)}{(k-1)!}(x-s)^{k-1}\\
+            &= \sum _{k=1} ^n \frac{f^{k+1}(s)}{k!} (x-s)^{k}-\sum ^n_{k=2} \frac{f^k (s)}{(k-1)!}(x-s)^{k-1}\\
+            &= \frac{f^{n+1}(s)}{n!}(x-s)^{n}
+        \end{split}
+    \end{equation}
+    Vamos a crear una segunda función auxiliar:
+    \begin{equation}
+        \begin{split}
+            g(s)= (x-s)^{n+1}
+        \end{split}
+    \end{equation}
+    \begin{itemize}
+        \item $g'(s)=-(n+1)(x-s)^{n}$
+        \item $g(x) -g(x_{0})= (x-x)^{n+1} - (x-x_{0})^{n+1}= - (x-x_{0})^{n+1}$
+        \item $g'(c)= -(n+1)(x-c)^{n}$
+    \end{itemize}
+    Si ahora aplicamos el teorema del valor medio, podemos afirmar que:
+    \begin{equation}
+        \begin{split}
+            \exists c \in [x,x_{0}] / \quad \frac{h(x)-h(x_{0})}{g(x)-g(x_{0})} = \frac{h'(c)}{g'(c)}
+        \end{split}
+    \end{equation}
+    Ahora evaluamos e igualamos:
+    \begin{equation}
+        \begin{split}
+            \frac{h(x)-h(x_{0})}{g(x)-g(x_{0})} = \frac{f(x)- P_{n}(f,x_{0})(x)}{-(x-x_{0})^{n+1}}
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            \frac{h'(c)}{g'(c)} &= \frac{\frac{f^{n+1}(c)}{n!}(x-c)^{n}}{-(n+1)(x-c)^{n}}\\
+            &= \frac{f^{n+1}(c)}{-n!(n+1)} \\
+            &= -\frac{f^{n+1}(c)}{(n+1)!}
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            \frac{f(x)- P_{n}(f,x_{0})(x)}{-(x-x_{0})^{n+1}} &= -\frac{f^{n+1}(c)}{(n+1)!}\\
+            f(x)- P_{n}(f,x_{0})(x) &= \frac{f^{n+1}(c)}{(n+1)!}(x-x_{0})^{n+1}
+        \end{split}
+    \end{equation}
+    QED\\
+Para memorizar
+\begin{itemize}
+	\item Definimos \(h(s) = f(s) + \frac{\sum f^{k)(s)}}{k!}(x-s)^{k}\)
+	\item Evaluar \(h(x), h(x_0)\)
+	\item Sacar derivada \(h'(s)\)
+	\item Definir \(g(s)=(x-s)^{n+1}\)
+	\item Aplicar TVM para \(h(s)\) y \(g(s)\) en \([x,x_0]\) y despejar.  
+\end{itemize}
+\end{proof}
+\section{Teorema del error del método de iteración de punto fijo}
+    Sea la iteración definida para el método de iteración de punto fijo donde $g(x)$ cumple las
+    hipótesis del teorema del punto fijo para un intervalo $[a,b]$.\\
+    Sea un $x_{0} \in [a,b]$, sea $\varepsilon > 0$ la tolerancia y sea $k_{0}(\varepsilon )$
+    el entero positivo más pequeño tal que $|x_{k} - \xi | < \varepsilon  \forall k \geq k_{0}(\varepsilon )$:
+    \begin{equation}
+        \begin{split}
+            K_{0}(\varepsilon ) \leq \left \lfloor{\frac{\ln(x_{1}-x_{0})-\ln (\varepsilon (1-L))}
+            {\ln (\frac{1}{L})}}\right \rfloor +1
+        \end{split}
+    \end{equation}
+\begin{proof}[Demostración]
+    Primero, demostramos por inducción que:
+    \begin{equation}
+        \begin{split}
+            |x_{k}-\xi | \leq L^{K} |x_{0}-\xi | \forall k \geq 1
+        \end{split}
+    \end{equation}
+    Empezamos por el caso base:
+    \begin{equation}
+        \begin{split}
+            |x_{1}-\xi | \leq L|x_{0}-\xi |
+        \end{split}
+    \end{equation}
+    Tal que:
+    \begin{equation}
+        \begin{split}
+            x_{1}=g(x_{0}) \quad \xi =g(\xi )
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            \lvert g(x_{0})-g(\xi ) \rvert \leq L \lvert x_{0}-\xi  \rvert  
+        \end{split}
+    \end{equation}
+    Que se cumple $\forall x_{0} \in [a,b], L \in (0,1)$ ya que es contractiva.\\
+    Asumimos para $n=p$:
+    \begin{equation}
+        \begin{split}
+            \lvert x_{p}-\xi  \rvert \leq L^{p}|x_{0}-\xi |
+        \end{split}
+    \end{equation}
+    Deberá cumplirse para $n=p+1$:
+    \begin{equation}
+        \begin{split}
+            \lvert x_{p+1}-\xi  \rvert = \lvert g(x_{p})-g(\xi ) \rvert \leq L\lvert x_{p}-\xi \rvert
+            \leq L^{p}L \lvert x_{0}-\xi  \rvert\leq L^{p+1}\lvert x_{0}-\xi  \rvert   
+        \end{split}
+    \end{equation}
+    Volvemos para el caso $n=1$:
+    \begin{equation}
+        \begin{split}
+            \lvert x_{0}-\xi  \rvert &= \lvert x_{0}-\xi +x_{1}-x_{1} \rvert\\
+            &\leq \lvert x_{0}-x_{1} \rvert + \lvert x_{1}-\xi  \rvert\\
+            &\leq \lvert x_{0}-x_{1} \rvert  +L\lvert x_{0}-\xi  \rvert
+		\end{split}
+	\end{equation}
+	\begin{equation}
+		\begin{split}
+            \lvert x_{0}-\xi  \rvert &\leq \lvert x_{0}-x_{1} \rvert + L\lvert x_{0}-\xi  \rvert\\
+            \lvert x_{0}-\xi \rvert (1-L) &\leq \lvert x_{0}-x_{1} \rvert \\ 
+            \lvert x_{0}-\xi  \rvert &\leq \frac{\lvert x_{0}-x_{1} \rvert }{1-L}\\
+            \lvert x_{k}-\xi  \rvert &\leq L^{K}\lvert x_{0}-\xi  \rvert \leq L^{k} \frac{1}{1-L}
+            \lvert x_{1}-x_{0} \rvert   
+        \end{split}
+    \end{equation}
+    Tenemos que:
+    \begin{equation}
+        \begin{split}
+            \lvert x_{k}-\xi  \rvert &< \varepsilon \forall k \geq k_{0}\\
+            \lvert x_{k}-\xi  \rvert&\leq \frac{L^{k}}{1-L}\lvert x_{1}-x_{0} \rvert<\varepsilon\\
+			L^{k}\lvert x_{1}-x_{0} \rvert &\leq \varepsilon (1-L)
+        \end{split}
+    \end{equation}
+    Luego despejamos para $k$:
+    \begin{equation}
+        \begin{split}
+            k \ln L + \ln \lvert x_{1}-x_{0} \rvert &\leq \ln(\varepsilon (1-L))\\
+            \ln \lvert x_{1}-x_{0} \rvert - \ln (\varepsilon (1-L)) &\leq -k \ln L = k \ln (\frac{1}{L})\\
+			k &> \frac{\ln(x_{1}-x_{0})-\ln (\varepsilon (1-L))}{\ln (\frac{1}{L})}
+        \end{split}
+    \end{equation}
+    Para que obtengamos los mismos valores y sea una cota superior:
+    \begin{equation}
+        \begin{split}
+            K_{0}(\varepsilon ) \leq \left \lfloor{\frac{\ln(x_{1}-x_{0})-\ln (\varepsilon (1-L))}
+            {\ln (\frac{1}{L})}}\right \rfloor +1
+        \end{split}
+    \end{equation}
+	
+\end{proof}
+Para memorizar:
+\begin{itemize}
+	\item Demostrar por inducción que \(|x_{k}-\xi | \leq L^{K} |x_{0}-\xi | \forall k \geq 1\)
+	\item Reordenar hasta obtener \(|x_0 - \xi |(1-L) \leq |x_0-x_1|\)
+	\item Utilizar lo demostrado por induccion y sistituir \(|x_0-\xi|\)
+	\item Aplicar desigualdad para \(|x_k - \xi|<\varepsillon\) y despejar para \(K\).
+	\item Aplicar función suelo y \(+1\). 
+\end{itemize}
+\end{document}

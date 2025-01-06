@@ -1,0 +1,271 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Wed Oct 09 2024}
+\title{Tema 1}
+
+\usepackage{amsmath}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+\section{Definiciones Básicas}
+\begin{itemize}
+    \item \textbf{Muestra}: datos recopilados
+    \item \textbf{Escalas}: intervalo (existe 0 pero no indica ausencia) y razón (0 es ausencia).
+\end{itemize}
+
+\section{Tabla de distribución}
+Se trabaja con la \textbf{frecuencia} con la que aparecen los datos:
+\begin{itemize}
+    \item Absoluta $(f)$: cuánto aparece.
+    \item Total $(n)$: número de datos.
+    \item Relativa $(f_r)$: $\frac{f}{n}$.
+    \item Acumulada: con datos ordenados, sumar todos los anteriores a $x_i$:
+    \item Absoluta $(F)$
+    \item Relativa $(F_r)$
+\end{itemize}
+\section{Clases}
+\begin{itemize}
+    \item Clase modal: clase que tiene más frecuencia por unidad de amplitud (Densidad de frecuencia).\\
+    se calcula mediante
+    \begin{equation}
+        \begin{split}
+            h_j= \frac{f_j}{b_j - b_{j-1}}
+        \end{split}
+    \end{equation}
+    Es decir, la frecuencia de la clase entre su amplitud.
+    \item Intervalo / Clase mediana: clase donde se encuentra la mediana.
+\end{itemize}
+\section{Representación gráfica}
+\subsection{Función de distribución empírica}
+La función de distribución empírica se define por intervalos. En una gráfica, haremos tantos
+puntos en el eje X como extremos de intervalos haya. Al final del intervalo, su altura será
+su frecuencia relativa acumulada. Después, uniremos todos los puntos.
+\section{Medidas de centralización}
+\subsection{Media aritmética}
+\begin{equation}
+    \begin{split}
+        \bar{x}=\frac{\sum x_i}{n}
+    \end{split}
+\end{equation}
+Para datos agrupados en clases, siendo $m_j$ el valor central y $f_r(m_j)$ la frecuencia relativa de esta:
+\begin{equation}
+    \begin{split}
+        \bar{x}=\sum m_j f_r(m_j)
+    \end{split}
+\end{equation}
+Para \textbf{transformaciones a la media}, esta es linear, puesto que para una suma de $k$, se le suma $k$ a la media,
+y una transformación por $k$ multiplica po $k$ la media.
+\subsection{Media geométrica}
+\begin{equation}
+    \begin{split}
+        \bar{x}_G = (\prod x_i)^{\frac{1}{n}}
+    \end{split}
+\end{equation}
+\subsection{Media armónica}
+\begin{equation}
+    \begin{split}
+        \bar{x}_H=\frac{n}{\sum \frac{1}{x_{i}}}
+    \end{split}
+\end{equation}
+Es fácilmente demostrable que:
+\begin{equation}
+    \begin{split}
+        \bar{x}_H\leq\bar{x}_G\leq\bar{x}
+    \end{split}
+\end{equation}
+\subsection{Mediana}
+La mediana es el valor que está ``en medio`` en un número de datos impar, o la media aritmética de los dos datos del centro.
+Cumple que el $50\%$ de los valores es menor a la mediana y el otro $50\%$ es mayor.
+\subsection{Moda}
+Es el valor más frecuente.
+\section{Medidas de dispersión}
+Miden la separación de los datos entre sí
+\subsection{Desviación media}
+\begin{equation}
+    \begin{split}
+        D_{\bar{x}}=\frac{1}{n}\sum|x_{i}-\bar{x}|
+    \end{split}
+\end{equation}
+\subsection{Varianza}
+\begin{equation}
+    \begin{split}
+        s^{2}_{x}=\frac{\sum(x_{i}-\bar{x})^{2}f(x_{i})}{n}=\frac{1}{n}\sum x_{i}^{2}f(x_{i})-\bar{x}^{2}
+    \end{split}
+\end{equation}
+Algunas propiedades de la varianza:
+\begin{itemize}
+    \item Es acotado y positivo
+    \item No se ve afectado por cambios de origen
+    \item Se ve afectado por cambios de escala $k$ en un factor $k^{2}$. 
+\end{itemize}
+\subsection{Cuasivarianza}
+\begin{equation}
+    \begin{split}
+        \hat{s}^{2}_{x}=\frac{\sum(x_{i}-\bar{x})^{2}f(x_{i})}{n-1}
+    \end{split}
+\end{equation}
+\subsection{Desviación típica}
+\begin{equation}
+    \begin{split}
+        \bar{s}_{x}=\frac{\sqrt{ \sum(x_{i}-\bar{x})^{2}f(x_{i}) }}{n}
+    \end{split}
+\end{equation}
+\subsection{Cuasidesviación típica}
+\begin{equation}
+    \begin{split}
+        \hat{s}_{x}=\frac{\sqrt{ \sum(x_{i}-\bar{x})^{2}f(x_{i}) }}{n-1}
+    \end{split}
+\end{equation}
+\subsection{Coeficiente de variación}
+Mide la dispersión relativamente a los datos.
+\begin{equation}
+    \begin{split}
+        CV=\frac{s_{x}}{|\bar{x}|} / \bar{x}\neq 0
+    \end{split}
+\end{equation}
+\subsection{MEDA}
+"Mediana de las desviaciones absolutas respecto a la media"
+\begin{equation}
+    \begin{split}
+        MEDA=median(|x_{i}-Med_{x})
+    \end{split}
+\end{equation}
+\subsection{Cuantiles}
+Dividen la distribución en $c$ partes. Los más comunes son:
+\begin{itemize}
+    \item Cuartiles $(Q)$: cuatro partes
+    \item Quintiles $(K)$: cinco partes
+    \item Percentiles $(p)$: cien partes
+\end{itemize}
+La posición de un cuantil viene dada por:
+\begin{equation}
+    \begin{split}
+        C_i= \frac{i \cdot n}{c}
+    \end{split}
+\end{equation}
+El cuantil $i$, con $n$ datos y $c$ divisiones.\\
+Para encontrar el valor del cuantil, que definiremos como $C_i^v$, tenemos que encontrar el valor
+cuya frecuencia absoluta acumulada sea mayor o igual al valor de la posición cuantil:
+\begin{equation}
+    \begin{split}
+        C_i^v \to F_i \geq C_i
+    \end{split}
+\end{equation}
+\subsection{Rango Intercuartílico}
+\begin{equation}
+    \begin{split}
+        RI=Q_3-Q_1
+    \end{split}
+\end{equation}
+\section{Medidas de forma}
+\subsection{Coeficiente de asimetría Fisher}
+Caracteriza la deformación en el eje X:
+\begin{equation}
+    \begin{split}
+        CA_f=\gamma_1= \frac{\sum {(x_i-\bar{x})}^3 f(x_{i})}{ns^3}
+    \end{split}
+\end{equation}
+\begin{itemize}
+    \item Si $\gamma_1=0\Rightarrow$ distribución simétrica. La media es igual a la mediana. 
+    \item Si $\gamma_1>0\Rightarrow$ distribución asimétrica a derechas. La media es mayor a la mediana.
+    \item Si $\gamma_1<0\Rightarrow$ distribución asimétrica a izquierdas. La media es menor a la mediana.  
+\end{itemize}
+\section{Medidas de concentración}
+\subsection{Curva de Lorenz}
+Definimos los montos acumulados $S_i$ como
+\begin{equation}
+    \begin{split}
+        S_i=x_i f_i
+    \end{split}
+\end{equation}
+Y $S_n$ como
+\begin{equation}
+    \begin{split}
+        S_n=\sum x_i f_i
+    \end{split}
+\end{equation}
+Definimos $q_i$
+\begin{equation}
+    \begin{split}
+        q_i = \frac{S_i}{S_n} \cdot 100
+    \end{split}
+\end{equation}
+Y $p_i$
+\begin{equation}
+    \begin{split}
+        p_i= \frac{F_i}{n} \cdot 100
+    \end{split}
+\end{equation}
+Ahora, las coordenadas de la curva serán
+\begin{equation}
+    \begin{split}
+        \frac{p_i}{q_i}
+    \end{split}
+\end{equation}
+\subsection{Índice de Gini}
+Oscila entre $0$ y $1$, el 0 indicando uniformidad, y el 1 máxima desigualdad. Es la medida más
+apropiada para la concentración.
+\begin{equation}
+    \begin{split}
+        I_G= \frac{\sum^{n-1} (p_i-q_i)}{\sum ^{n-1} p_i}= 1-\frac{\sum^{n-1} q_i}{\sum ^{n-1} p_i}
+    \end{split}
+\end{equation}
+\subsection{Coeficiente de Asimetría Bowley}
+\begin{equation}
+    \begin{split}
+        CA_B= \frac{Q_1+Q_3-2Q_2}{RI}
+    \end{split}
+\end{equation}
+\subsection{Curtosis}
+Agrupamiento respecto a la media
+\begin{equation}
+    \begin{split}
+        CA_P= \frac{\sum (x_i-\bar{x})^4}{ns^4}-3
+    \end{split}
+\end{equation}
+\subsection{Diagrama de Caja}
+Necesitamos los mínimos, máximos y cuartiles.\\
+Definimos el límite inferior como
+\begin{equation}
+    \begin{split}
+        L_I= Q_1^v-1.5RI
+    \end{split}
+\end{equation}
+Y el límite superior como
+\begin{equation}
+    \begin{split}
+        L_S=Q_3^v+1.5RI
+    \end{split}
+\end{equation}
+Todos los datos por debajo del inferior o por encima del superior son atípicos.
+\subsection{Números Índice}
+Cambio relativo de una variable o variables respecto al tiempo. Se relaciona el valor actual con el valor en un período base.
+\begin{equation}
+    \begin{split}
+        I= \frac{x_t}{x_0}
+    \end{split}
+\end{equation}
+Donde $x_t$ es el valor ahora y $x_0$ el valor en el período base.
+\subsection{Índice de Laspeyres}
+Sea
+\begin{itemize}
+    \item $q_{i0}$ la cantidad comprada en el período origen.
+    \item $p_{i0}$ el precio de producto $i$ en tiempo origen.
+    \item $q_{it}$ la cantidad de $i$ comprada ahora.
+    \item $p_{it}$ el precio de $i$ ahora.
+\end{itemize}
+\begin{equation}
+    \begin{split}
+        IPL_t= \frac{\sum p_{it}q_{i0}}{\sum p_{i0}q_{i0}}
+    \end{split}
+\end{equation}
+\subsection{Índice de Paasche}
+Con la mismas variables
+\begin{equation}
+    \begin{split}
+        IPP_t = \frac{\sum p_{it} q_{it}}{\sum p_{i0} q_{it}}
+    \end{split}
+\end{equation}
+\end{document}

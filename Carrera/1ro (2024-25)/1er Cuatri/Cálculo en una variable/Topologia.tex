@@ -1,0 +1,51 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Thu Oct 17 2024}
+\title{Topología}
+
+\usepackage{amsmath, amsthm, amsfonts, multicol}
+
+\begin{document}
+\maketitle
+\begin{multicols}{2}
+    \section{Definiciones}
+    \subsection{Distancia}
+    Dado un conjunto $E$ y una métrica, una distancia es una aplicación:
+    \begin{equation}
+        \begin{split}
+            d: E \times E \to \mathbb{R}^+ \cup \{ 0 \}
+        \end{split}
+    \end{equation}
+    \subsection{Espacio métrico}
+    Un espacio métrico es un par $(E,d)$, donde $E$ es un conjunto y $d$ una función distancia.
+    \subsection{Bola abierta}
+    Una bola abierta es el conjunto de puntos que se encuentra a una distancia $<r$ de un centro $x_{0}$:
+    \begin{equation}
+        \begin{split}
+            B(x_{0},r)= \{ x / d(x,x_{0})<r \}
+        \end{split}
+    \end{equation}
+    \subsection{Bola cerrada}
+    \begin{equation}
+        \begin{split}
+            \bar{B}( x_{0},r)= \{ x / d(x,x_{0}) \leq r \}
+        \end{split}
+    \end{equation}
+    \subsection{Entorno}
+    Un subconjunto $A \subset E$ es un entorno si existe una bola abierta contenida en $A$.
+    \subsection{Bola abierta y entorno reducidos}
+    Dada una bola $B(x_{0},r)$ y un entorno $A$, la bola reducida es $B(x_{0},r)-\{ x_{0} \}$ y
+    $A-\{ x_{0} \}$.
+    \subsection{Punto interior}
+    Un punto $x_{0} \in E$ es interior a $A$ si $\exists r > 0 / B(x_{0},r) \subset A$
+    \subsection{Punto exterior}
+    Un punto $x_{0} \in E$ es exterior a $A$ si $\exists r > 0 / B(x_{0},r) \subset \bar{A}$
+    \subsection{Punto de acumulación}
+    $x_{0} \in E$ es de acumulación de $A$ si
+    \begin{equation}
+        \begin{split}
+            \forall r > 0 [B(x_{0},r)-\{ x_{0} \}] \cap A \neq \O
+        \end{split}
+    \end{equation}
+\end{multicols}{2}
+\end{document} 

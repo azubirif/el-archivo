@@ -1,0 +1,93 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Thu Nov 14 2024}
+\title{Errores}
+
+\usepackage{amsmath, amsthm, amsfonts}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+
+\section{Redondeos}
+Acción de reemplazar un número por otro con menos dígitos
+\subsection{Reglas}
+\begin{enumerate}
+    \item Los $n$ primeros dígitos se mantienen y se descarta el resto. Rellenamos con ceros.
+    \item Si los dígitos descartados forman un número menor a 5, entonces los dígitos
+    conservados no cambian (redondeo por defecto). Si es mayor, el último de los dígitos
+    conservados aumenta en 1.
+    \item Si es igual a 5, no hay regla general, pero \textbf{nosotros} sumaremos 1.
+\end{enumerate}
+\section{Cálculo de error absoluto y relativo}
+El error de redondeo es el que resulta al sustituir un cierto número $p$ por su forma
+redondeada $\hat{p}$.\\
+El error absoluto de aproximación a $p$: $E_{A}(\hat{p}) = \lvert p-\hat{p} \rvert $.
+Error relativo de aproximación: $E_{r}(\hat{p}) = \frac{\lvert p-\hat{p} \rvert }{\lvert p \rvert }$.\\
+Cuando no tenemos el valor real, aproximamos:
+\begin{equation}
+    \begin{split}
+        E_{r}(\hat{p}) \approx \frac{E_{A}(\hat{p})}{\lvert \hat{p} \rvert }
+    \end{split}
+\end{equation}
+El error relativo porcentual es:
+\begin{equation}
+    \begin{split}
+        \epsilon _{r} ( \hat{p}) = E_{r}(\hat{p})\cdot 100 \%
+    \end{split}
+\end{equation}
+\begin{proof}[Cifras significativas]
+    Aquellas situadas a la derecha del primer dígito nu nulo.
+\end{proof}
+\begin{proof}[Definición]
+    Sea $\hat{p}$ una aproximación de $p$:
+    \begin{equation}
+        \begin{split}
+            \hat{p} = \pm (\alpha \cdot 10^{m}+ \alpha _{2} \cdot 10^{m-1}+ \dots)
+        \end{split}
+    \end{equation}
+    $\alpha _{n}$ es una cifra significativa válida cuando el error absoluto sea:
+    \begin{equation}
+        \begin{split}
+            E_{A} (\hat{p}) \leq 0.5\cdot 10^{m-n+1}
+        \end{split}
+    \end{equation}
+    Podemos afirmar que $\alpha_{n}$ es CSV si:
+    \begin{equation}\tag*{Utilizamos esta cuando vamos de $CSV$ a $E_{r}$}
+        \begin{split}
+            E_{r}(\hat{p}) \leq \frac{0.5}{(\alpha _{n} +1)\cdot 10^{n-1}}
+        \end{split}
+    \end{equation}
+    Si $\alpha _{n}$ es la última CSV de $\hat{p}$, entonces:
+    \begin{equation}
+        \begin{split}
+            E_{A}(\hat{p}) = 0.5\cdot 10^{m-n+1}
+        \end{split}
+    \end{equation}
+\end{proof}
+\section{Operaciones con errores}
+\subsection{Suma y resta}
+\begin{itemize}
+    \item Localizar los números con mayor error absoluto
+    \item Redondear los restantes, reteniendo un dígito más que en los redondeados anteriormente
+    \item Sumamos o restamos los valores
+    \item Redondeamos y descartamos el último obtenido
+    \item Tomamos como error absoluto la suma de errores absolutos de los números menos exactos
+    más el error absoluto del redondeo
+    \item Sacamos $E_{r}$ con la fórmula
+    \item Sacamos el número de CSVs con $E_{A}$
+\end{itemize}
+\subsection{Multiplicación}
+\begin{itemize}
+    \item Localizar los números con menos CSVs
+    \item Redondear el resto, reteniendo uno más
+    \item Operamos con los valores sin errores
+    \item Redondear el resultado, reteniendo tantos dígitos como cifras exactas había en el
+    operando menos exacto
+    \item $E_{r}$ con la suma de errores relativos
+    \item $E_{A}$ a partir de error relativo
+    \item $E_{A}$ para hallar los CSVs
+\end{itemize}
+
+\end{document}

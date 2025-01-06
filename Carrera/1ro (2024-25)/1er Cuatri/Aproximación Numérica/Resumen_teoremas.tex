@@ -1,0 +1,538 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Mon Nov 11 2024}
+\title{Resumen teoremas}
+
+\usepackage{amsmath, physics, amsfonts, amsthm}
+
+\newtheorem{taylor}{Teorema}
+\newtheorem{lhopital}{Teorema}
+\newtheorem{midval}{Teorema}
+\newtheorem{derivableLuegoContinua}{Teorema}
+\newtheorem{derivada_par_impar}{Teorema}
+\newtheorem{rolle}{Teorema}
+\newtheorem{theorem}{Teorema}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+\section{Teorema de Taylor}
+\begin{taylor}[Teorema de Taylor]
+    Sea $f(x)$ una función derivable $n+1$ veces. Sean $x,x_{0} \in  (a,b)$:
+    \begin{equation}
+        \begin{split}
+            \exists \varepsilon \in (x,x_{0}) / f(x)-Pn(f,x_{0})(x)= \frac{f^{n+1}(\varepsilon)}{(n+1)!}(x-x_{0})^{n+1}
+        \end{split}
+    \end{equation}
+\end{taylor}
+\begin{proof}[Demostración]
+    Supongamos que $x_{0}<x$ (el caso contrario es análogo). Vamos a definir una función
+    auxiliar:
+    \begin{equation}
+        \begin{split}
+            h(s)= f(s) + \sum ^n_{k=1} \frac{f^k (s)}{k!}(x-s)^{k}
+        \end{split}
+    \end{equation}
+    Primero, $h(s)$ es contínua y derivable. Vamos a evaluar $h(s)$ en:
+    \begin{itemize}
+        \item $h(x)=f(x) + \sum ^n_{k=1} \frac{f^k (x)}{k!}(x-x)^{k}=f(x)$
+        \item $h(x_{0})=f(x_{0})+\sum ^n_{k=1} \frac{f^k (x_{0})}{k!}(x-x_{0})^{k}= P_{n}(f,x_{0})(x)$
+    \end{itemize}
+    Ahora vamos a derivar la función:
+    \begin{equation}
+        \begin{split}
+            h'(s) &= f'(s)+ \sum _{k=1} ^n \frac{f^{k+1}(s)}{k!} (x-s)^{k} +\sum ^n_{k=1}
+            \frac{f^k (s)}{k!}k(x-s)^{k-1}\cdot -1\\
+            &= f'(s)+ \sum _{k=1} ^n \frac{f^{k+1}(s)}{k!} (x-s)^{k} - 
+            \sum ^n_{k=1} \frac{f^k (s)}{(k-1)!}(x-s)^{k-1}\\
+            &= f'(s) + \sum _{k=1} ^n \frac{f^{k+1}(s)}{k!} (x-s)^{k} -
+            f'(s ) -\sum ^n_{k=2} \frac{f^k (s)}{(k-1)!}(x-s)^{k-1}\\
+            &= \sum _{k=1} ^n \frac{f^{k+1}(s)}{k!} (x-s)^{k}-\sum ^n_{k=2} \frac{f^k (s)}{(k-1)!}(x-s)^{k-1}\\
+            &= \frac{f^{n+1}(s)}{n!}(x-s)^{n}
+        \end{split}
+    \end{equation}
+    Vamos a crear una segunda función auxiliar:
+    \begin{equation}
+        \begin{split}
+            g(s)= (x-s)^{n+1}
+        \end{split}
+    \end{equation}
+    \begin{itemize}
+        \item $g'(s)=-(n+1)(x-s)^{n}$
+        \item $g(x) -g(x_{0})= (x-x)^{n+1} - (x-x_{0})^{n+1}= - (x-x_{0})^{n+1}$
+        \item $g'(c)= -(n+1)(x-c)^{n}$
+    \end{itemize}
+    Si ahora aplicamos el teorema del valor medio, podemos afirmar que:
+    \begin{equation}
+        \begin{split}
+            \exists c \in [x,x_{0}] / \quad \frac{h(x)-h(x_{0})}{g(x)-g(x_{0})} = \frac{h'(c)}{g'(c)}
+        \end{split}
+    \end{equation}
+    Ahora evaluamos e igualamos:
+    \begin{equation}
+        \begin{split}
+            \frac{h(x)-h(x_{0})}{g(x)-g(x_{0})} = \frac{f(x)- P_{n}(f,x_{0})(x)}{-(x-x_{0})^{n+1}}
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            \frac{h'(c)}{g'(c)} &= \frac{\frac{f^{n+1}(c)}{n!}(x-c)^{n}}{-(n+1)(x-c)^{n}}\\
+            &= \frac{f^{n+1}(c)}{-n!(n+1)} \\
+            &= -\frac{f^{n+1}(c)}{(n+1)!}
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            \frac{f(x)- P_{n}(f,x_{0})(x)}{-(x-x_{0})^{n+1}} &= -\frac{f^{n+1}(c)}{(n+1)!}\\
+            f(x)- P_{n}(f,x_{0})(x) &= \frac{f^{n+1}(c)}{(n+1)!}(x-x_{0})^{n+1}
+        \end{split}
+    \end{equation}
+    QED\\
+Para memorizar
+\begin{itemize}
+	\item Definimos \(h(s) = f(s) + \frac{\sum f^{k)(s)}}{k!}(x-s)^{k}\)
+	\item Evaluar \(h(x), h(x_0)\)
+	\item Sacar derivada \(h'(s)\)
+	\item Definir \(g(s)=(x-s)^{n+1}\)
+	\item Aplicar TVM para \(h(s)\) y \(g(s)\) en \([x,x_0]\) y despejar.  
+\end{itemize}
+\end{proof}
+\section{Regla de L'Hôpital}
+\begin{lhopital}[Regla de L'Hôpital]
+    Sea $f,g$ derivables en un entorno de un punto $x=a$ y $\lim_{x \to a}f(x)=0$ y
+    $\lim_{x \to a}g(x)=0$ y $\exists \lim_{x \to a} \frac{f'(x)}{g'(x)}$
+\end{lhopital}
+entonces
+\begin{equation}
+    \begin{split}
+        \lim_{x \to a} \frac{f(x)}{g(x)}= \lim_{x \to a} \frac{f'(x)}{g'(x)}
+    \end{split}
+\end{equation}
+\begin{proof}[Demostración]
+    Supongamos que $f(a)=0$ y que $g(a)=0$
+    \begin{equation}
+        \begin{split}
+            \frac{f(x)}{g(x)} = \frac{f(x)-f(a)}{g(x)-g(a)} = \frac{\frac{f(x)-f(a)}{x-a}}{\frac{g(x)-g(a)}{x-a}}
+        \end{split}
+    \end{equation}
+    Si tomamos $\lim_{x \to a}$ en ambos lados
+    \begin{equation}
+        \begin{split}
+            \lim_{x \to a} \frac{f(x)}{g(x)} = \lim_{x \to a} \frac{\frac{f(x)-f(a)}{x-a}}{\frac{g(x)-g(a)}{x-a}}
+            = \lim_{x \to a} \frac{f'(x)}{g'(x)}
+        \end{split}
+    \end{equation}
+    QED
+\end{proof}
+\section{Teorema de Weierstrass}
+\begin{proof}[Teorema de Weierstrass]
+    Si una función continua en un intervalo compacto (cerrado y acotado), sabemos que hay, al menos, dos puntos
+    $x_{1},x_{2} \in [a,b]$ donde $f$ alcanza valores extremos absolutos:
+    \begin{equation}
+        \begin{split}
+            f(x_{1}) \leq f(x) \leq f(x_{2})
+        \end{split}
+    \end{equation}
+\end{proof}
+\begin{proof}[Teorema del valor medio para integrales]
+    Si una función es continua en $[a,b]$ entonces existe un punto:
+    \begin{equation}
+        \begin{split}
+            c \in (a,b) / f(c)(b-a) = \int_{a}^b f(x) \dd{x}
+        \end{split}
+    \end{equation}
+\end{proof}
+\begin{proof}[Demostración]
+    Sea $f(x)$ como en el enunciado:
+    \begin{itemize}
+        \item Si $f$ es constante en $[a,b]$:
+        \begin{equation}
+            \begin{split}
+                \int _{a}^b f(x) \dd{x} = \int _{a}^b c \dd{x} = f(x)(b-a)
+            \end{split}
+        \end{equation}
+    \end{itemize}
+    \item Si no es constante, sean $M,m$ el valor máximo y mínimo, respectivamente. Sea $g(x) = m$:
+    \item \begin{equation}
+        \begin{split}
+            m \leq f(x) \leq M \implies g(x) \leq f(x)
+        \end{split}
+    \end{equation}
+    Por tanto
+    \begin{equation}
+        \begin{split}
+            \int _{a}^b g(x) \dd{x} \leq \int _{a}^b f(x) \dd{x} \implies m(b-a) \leq \int _{a}^b f(x) \dd{x}
+        \end{split}
+    \end{equation}
+    Y análogamente, sea \(h(x) = M\) :
+    \begin{equation}
+        \begin{split}
+            m(b-a) \leq \int _{a}^b f(x) \dd{x} \leq M(b-a)\\
+            m \leq \frac{1}{b-a} \int _{a}^b f(x) \dd{x} \leq M
+        \end{split}
+    \end{equation}
+    Ahora por Weierstrass, sabemos que $f$ alcanza el máximo y el mínimo en $[a,b]$,
+    \begin{equation}
+        \begin{split}
+            \exists (x_{1},x_{2}) \subset [a,b] / f(x_{1})=m \wedge f(x_{2})=M
+        \end{split}
+    \end{equation}
+    Por tanto, sea \(c \in (x_1, x_2) / f(c)=\frac{1}{b-a} \int _{a}^b f(x) \dd{x}\) 
+    \begin{equation}
+        \begin{split}
+            m \leq f(c) \leq M
+        \end{split}
+    \end{equation}
+Como \(f(x)\) va a alcanzar todos los valores en el intervalo, entonces:
+    \begin{equation}
+        \begin{split}
+            f(c)= \frac{1}{b-a} \int _{a}^b f(x) \dd{x}
+        \end{split}
+    \end{equation}
+Para memorizar:
+\begin{itemize}
+	\item Caso constante, trivial.
+	\item Definir dos funciones que sean el máximo y el mínimo y hacer desigualdad.
+	\item "Aplicar" integrales a ambos lados y despejar máximo y mínimo.
+	\item Aplicar Weierstrass
+\end{itemize}
+\end{proof}
+\section{TFC del cálculo integral}
+\begin{proof}[Teorema fundamental del cálculo integral]
+    Sea $f$ una función continua en $[a,b]$, y sea $F(x)= \int _{a}^x f(t) \dd{t} / x \in [a,b] \implies $ F es
+    derivable y
+    \begin{equation}
+        \begin{split}
+            F'(x)=f(x) \forall x \in [a,b]
+        \end{split}
+    \end{equation}
+\end{proof}
+\begin{proof}[Demostración]
+    \begin{equation}
+        \begin{split}
+            F'(x) = \lim_{h \to 0} \frac{F(x+h) - F(x)}{h} = \lim_{h \to 0} \frac{ \int _{x}^{x+h} f(t) \dd{t}}{h}
+        \end{split}
+    \end{equation}
+    Ahora podemos aplicar el teorema del valor medio para integrales:
+    \begin{equation}
+        \begin{split}
+            \exists c \in [x,x+h] / f(c) \cdot h = \int _{x}^{x+h}f(t) \dd{t}
+        \end{split}
+    \end{equation}
+    Por tanto
+    \begin{equation}
+        \begin{split}
+            F'(x)= \frac{1}{h} \int _{x}^{x+h} f(t) \dd{t} = \lim_{h \to 0} \frac{f(c) \cdot h}{h}=\lim_{h \to 0}f(c)
+            =f(x)
+        \end{split}
+    \end{equation}
+Para memorizar:
+\begin{itemize}
+	\item Definir \(F(x) = \int_a^x f(t) \dd{t}\).
+	\item Aplicar derivada por definición.
+	\item Usar el TVM para integrales.
+\end{itemize}
+\end{proof}
+\section{Corolario del TFC}
+\begin{proof}[Corolario del TFC]
+Sea $f$ una función continua en $[a,b]$:
+\begin{equation}
+    \begin{split}
+        F(x)= \int _{g(x)}^{h(x)}f(t) \dd{t}
+    \end{split}
+\end{equation}
+Si $g(x), h(x)$ son derivables entonces:
+\begin{equation}
+    \begin{split}
+        F'(x)=f(h(x))h'(x) - f(g(x))g'(x)
+    \end{split}
+\end{equation}
+\end{proof}
+\begin{proof}[Teorema de Barrow]
+    Sea una función continua $f$ y $F(x)$ una primitiva de $f(x)$:
+    \begin{equation}
+        \begin{split}
+            \int _{a}^{b} f(x) \dd{x} = F(b)-F(a)
+        \end{split}
+    \end{equation}
+\end{proof}
+\begin{proof}[Demostración]
+    Sea $g(x)= \int _{a}^{x} f(t) \dd{t}$. Por TFC, $g(x)$ es primitiva de $f(x)$:
+    \begin{equation}
+        \begin{split}
+            g(x)-F(x) = c \in \mathbb{R} \implies g(x)= F(x)+c
+        \end{split}
+    \end{equation}
+    En $x=a$:
+    \begin{equation}
+        \begin{split}
+            g(a) = \int _{a}^{a}f(t) \dd{t}=0=g(a)= F(a)+c \implies c = -F(a)
+        \end{split}
+    \end{equation}
+    En $x=b$:
+    \begin{equation}
+        \begin{split}
+            g(b) = \int _{a}^{b}f(t) \dd{t}= F(b)+c = F(b)-F(a)
+        \end{split}
+    \end{equation}
+    Por tanto
+    \begin{equation}
+        \begin{split}
+            \int _{a}^{b} f(t) \dd{t} = F(b)-F(a)
+        \end{split}
+    \end{equation}
+Para memorizar:
+\begin{itemize}
+	\item Usar $g(x)= \int _{a}^{x} f(t) \dd{t}$.
+	\item Evaluar en \(a\) y en \(b\) y despejar. 
+\end{itemize}
+\end{proof}
+\section{Teorema del valor medio}
+\begin{midval}
+    Sean dos funciones $f,g : f: \mathbb{R} \to \mathbb{R} \wedge g: \mathbb{R} \to \mathbb{R}$, continuas y derivables en $[a,b]$.
+    \begin{equation}
+        \begin{split}
+            \exists c \in (a,b): (f(b)-f(a))g'(c) = (g(b) - g(a))f'(c)
+        \end{split}
+    \end{equation}
+\end{midval}
+\begin{proof}[Demostración]
+    Sea una función real y continua en $[a,b]$
+    \begin{equation}
+        \begin{split}
+            h(x)= (f(b)-f(a))g(x)- (g(b)-g(a))f(x)
+        \end{split}
+    \end{equation}
+    Si evaluamos $h(a)$ tenemos que
+    \begin{equation}
+        \begin{split}
+            h(a)= f(b)g(a)-g(b)f(a)
+        \end{split}
+    \end{equation}
+    Y $h(b)$ es
+    \begin{equation}
+        \begin{split}
+            h(b)=f(b)g(a)-g(b)f(a)
+        \end{split}
+    \end{equation}
+    Por tanto,
+    \begin{equation}
+        \begin{split}
+            h(a)=h(b)\Rightarrow \exists c \in [a,b] : h'(c)=0
+        \end{split}
+    \end{equation}
+    Es decir
+    \begin{equation}
+        \begin{split}
+            h'(c)=(f(b)-f(a))g'(c)- (g(b)-g(a))f'(c)=0
+        \end{split}
+    \end{equation}
+    Que implica que
+    \begin{equation}
+        \begin{split}
+            (f(b)-f(a))g'(c)=(g(b)-g(a))f'(c)
+        \end{split}
+    \end{equation}
+    QED\\
+    Para memorizar:
+    \begin{itemize}
+	    \item La función $h(x) = [f(b)-f(a)]g(x) - [g(b)-g(a)]f(x)$
+		\item Aplicar teorema de Rolle.
+	\end{itemize}
+\end{proof}
+\section{Derivable implica continua}
+\begin{derivableLuegoContinua}[Teorema]
+    Si una función es derivable en un punto $x=a$, entonces también es continua.
+\end{derivableLuegoContinua}
+\begin{proof}[Demostración]
+    Queremos demostrar que
+    \begin{equation}
+        \begin{split}
+            \lim_{x \to a} f(x)=f(a) \iff \lim_{x \to a} f(x)-f(a)=0
+        \end{split}
+    \end{equation}
+    que es la definición de continuidad.\\
+    Partimos de que nuestra función es derivable, lo que implica que
+    \begin{equation}
+        \begin{split}
+            \exists f'(a) \Rightarrow \lim_{x \to} \frac{f(x)-f(a)}{x-a} \in \mathbb{R}
+        \end{split}
+    \end{equation}  
+    \begin{equation}
+        \begin{split}
+            \lim_{x \to a} f(x)-f(a) = \lim_{x \to a} (f(x)-f(a)) \cdot \frac{x-a}{x-a}
+            = \lim_{x \to a} \frac{f(x)-f(a)}{x-a} \cdot \lim_{x \to a} x-a
+        \end{split}
+    \end{equation}
+Podemos identificar que el primer término es la definición de derivada, que sabemos que existe y
+que es menor a $\infty$. El segundo término tiende a $0$.
+\begin{equation}
+    \begin{split}
+        \lim_{x \to a} \frac{f(x)-f(a)}{x-a} \cdot \lim_{x \to a} x-a =f'(a) \cdot 0=0
+    \end{split}
+\end{equation}
+Obteniendo así que
+\begin{equation}
+    \begin{split}
+        \lim_{x \to a} f(x) -f(a)=0
+    \end{split}
+\end{equation}
+QED
+\end{proof}
+\section{Derivada par o impar}
+\begin{derivada_par_impar}[Teorema]
+    Sea $f: [a,b] \to \mathbb{R}$ una $k+1$ derivable en $(a,b)$.\\
+    Sea $c \in (a,b)$, si $f'(c)=f'(c)=\dots=f^k(c)=0$ y $f^{k+1}(c) \neq 0$:
+    \begin{itemize}
+        \item Si $k$ es impar, $f(c)$ es un máximo relativo.
+        \item Si $k$ es par, $f(c)$ es un punto de inflexión.
+    \end{itemize}
+    
+\end{derivada_par_impar}
+\section{Teorema de Rolle}
+\begin{rolle}
+    Sea una función $f: \mathbb{R} \to \mathbb{R}$ continua en $[a,b]$ y derivable en $(a,b)$, si
+    $f(a)=f(b)\Rightarrow \exists c \in (a,b): f'(c)=0$. 
+\end{rolle}
+\begin{proof}[Demostración]
+    Para demostrarlo, vamos a partir de que toda función contínua en un intervalo cerrado y acotado
+    alcanza un valor máximo y un valor mínimo absolutos en dicho intervalo.\\
+    Como el máximo y el mínimo son análogos, vamos a demostrar para el máximo.\\
+    \textbf{Caso 1}: el máximo no pertenece a $(a,b)$, que implica que $Max=f(a)$ o $Max=f(b)$. Si
+    $f(a)=f(b)\Rightarrow Max=Min \Rightarrow f(x)=cte\Rightarrow f'(x)=0$.
+    \textbf{Caso 2}: Supongamos que $m\in (a,b)$ es el máximo. Como $f(x)$ es derivable $\Rightarrow \exists f'(m)$.
+    Como $m$ es un punto máximo, $f(x)$ es creciente en $a<x<m$:
+    \begin{equation}
+        \begin{split}
+            \lim_{x \to m^-} \frac{f(x)-f(m)}{x-m}\geq 0\\
+            \lim_{x \to m^+} \frac{f(x)-f(m)}{x-m}\leq 0
+        \end{split}
+    \end{equation}
+    Al ser derivable, ambos límites deben coincidir, por lo que si se debe cumplir que
+    \begin{equation}
+        \begin{split}
+            f'(m)\geq 0\\
+            f'(m)\leq 0
+        \end{split}
+    \end{equation}
+    Entonces
+    \begin{equation}
+        \begin{split}
+            f'(m)=0
+        \end{split}
+    \end{equation}
+Para memorizar demostración:
+\begin{itemize}
+	\item Hacer casos para los cuales \(Max \in (a,b)\) y los que no.
+	\item Hacer derivada por definición de \(f'(max)\) y hacer \(\leq\) y \(\geq\).  
+\end{itemize}
+\end{proof}
+\section{Convergencia del método de la secante}
+\begin{theorem}
+    El orden de convergencia de la secante es
+    \begin{equation}
+        \begin{split}
+            \phi = \frac{1+\sqrt{5}}{2}
+        \end{split}
+    \end{equation}
+\end{theorem}
+\begin{proof}[Demostración]
+    Sea $\varepsilon _{k} = |\xi -x_{k}| = E_{a}(x_{k})$. Como $f(\xi )=0$:
+    \begin{equation}
+        \begin{split}
+            \varepsilon _{n+1}&=x_{n+1}-\xi = x_{n}-f(x_{n}) \frac{x_{n}-x_{n-1}}{f(x_{n})-f(x_{n-1})}
+            - \xi \\
+            &=x_{n} - f(x_{n}) \frac{x_{n}-\xi -x_{n-1}+\xi }{f(x_{n})-f(x_{n-1})}\\
+            &=\varepsilon _{n} - \frac{f(x_{n})\varepsilon _{n}+f(x_{n})\varepsilon _{n-1}}
+            {f(x_{n})-f(x_{n-1})}\\
+            &= \frac{\varepsilon _{n}(f(x_{n})-f(x_{n-1}))- 
+            f(x_{n})(\varepsilon _{n}-\varepsilon _{n-1})}{f(x_{n})-f(x_{n-1})}\\
+            &=\frac{\varepsilon _{n-1}f(x_{n})-\varepsilon _{n}f_(x_{n-1})}{f(x_{n})-f(x_{n-1})}\\
+            &=\frac{\varepsilon _{n-1}f(x_{n})-\varepsilon _{n}f_(x_{n-1})}{x_{n}-x_{n-1}}
+            \frac{x_{n}-x_{n-1}}{f(x_{n})-f(x_{n-1})}\\
+            &=\frac{x_{n}-x_{n-1}}{f(x_{n})-f(x_{n-1})} \frac{\frac{f(x_{n})}{\varepsilon _{n}}
+            -\frac{f(x_{n-1})}{\varepsilon _{n-1}}}{x_{n}-x_{n-1}}(\varepsilon _{n}\varepsilon _{n-1})
+        \end{split}
+    \end{equation}
+    Ahora hacemos el polinomio de Taylor de orden 2 centrado en $\xi $ para $f(x_{n})$ y $f(x_{n-1})$.\\
+    Nota: $\varepsilon _{n} = x_{n}-\xi $:  
+    \begin{equation}
+        \begin{split}
+            f(x_{n})&= f(\xi ) + f'(\xi )\varepsilon _{n} + \frac{1}{2}f''(\xi ) \varepsilon _{n}^{2}
+            +O(n^{3})\\
+            &= f'(\xi )\varepsilon _{n} + \frac{1}{2}f''(\xi )\varepsilon _{n}^{2}+O(n^{3})\\
+            \frac{f(x_{n})}{\varepsilon _{n}}&=f'(\xi )+\frac{1}{2}f''(\xi )\varepsilon _{n}+O(\varepsilon _{n}^{2})\\
+            \frac{f(x_{n-1})}{\varepsilon _{n-1}} &=f'(\xi )+\frac{1}{2}f''(\xi )\varepsilon _{n-1}+O(\varepsilon _{n-1}^{2})
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            \frac{f(x_{n})}{\varepsilon _{n}}-\frac{f(x_{n-1})}{\varepsilon _{n-1}}
+            = \frac{1}{2}f''(\xi )(\varepsilon _{n}-\varepsilon _{n-1})+O(\varepsilon _{n-1}^{2})
+        \end{split}
+    \end{equation}
+    A medida que $n \to \infty,O(\varepsilon _{n-1}^{2}) \to 0$
+    \begin{equation}
+        \begin{split}
+            \frac{f(x_{n})}{\varepsilon _{n}}-\frac{f(x_{n-1})}{\varepsilon _{n-1}}
+            \approx \frac{1}{2}f''(\xi )(\varepsilon _{n}-\varepsilon _{n-1})
+        \end{split}
+    \end{equation}
+    Ahora volviendo a nuestra ecuación inicial:
+    \begin{equation}
+        \begin{split}
+            \varepsilon _{n+1} = \frac{x_{n}-x_{n-1}}{f(x_{n})-f(x_{n-1})}
+            \frac{\frac{1}{2}f''(\xi )(\varepsilon _{n}-\varepsilon _{n-1})}{x_{n}-x_{n-1}}(\varepsilon _{n}-\varepsilon _{n-1})
+        \end{split}
+    \end{equation}
+    Ahora volviendo:
+    \begin{equation}
+        \begin{split}
+            \varepsilon -\varepsilon _{n-1} = x_{n}-\xi -x_{n-1}+\xi =x_{n}-x_{n-1}
+        \end{split}
+    \end{equation}
+    Además:
+    \begin{equation}
+        \begin{split}
+            \forall x_{n},x_{n-1} \text{ cercanos a }\xi \implies \frac{x_{n}-x_{n-1}}{f(x_{n}-f(x_{n-1}))} \approx f'(\xi )
+        \end{split}
+    \end{equation}
+    Sea $L=f'(\xi )\frac{1}{2}f''(\xi )<\infty$
+    \begin{equation}
+        \begin{split}
+            \varepsilon _{n+1} &\approx f'(\xi )\frac{1}{2} f''(\xi )\varepsilon _{n}\varepsilon _{n-1}\\
+            &= L \varepsilon _{n} \varepsilon _{n-1}
+        \end{split}
+    \end{equation}
+    Para hallar el orden de convergencia exacto supongemos un $A \in \mathbb{R}$, una relación
+    entre los errores $\varepsilon _{k}, \varepsilon _{k+1}$:
+    \begin{equation}
+        \begin{split}
+            |\varepsilon _{k+1}| &\leq A |\varepsilon _{k}|^{\alpha }\\
+            |\varepsilon _{k+1}| &= A^{-1}|\varepsilon _{k}|^{\frac{1}{\alpha }} \implies 
+            |\varepsilon _{n+1}| = A |\varepsilon _{n}|^{\alpha }\\
+            &= L \varepsilon _{n} \varepsilon _{n-1} = L |\varepsilon _{n}|
+            (A^{-1}|\varepsilon _{n}|^{\frac{1}{\alpha }})
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            A|\varepsilon _{n}|^{\alpha } &= L\cdot A^{-1}|\varepsilon _{n}|^{1+\frac{1}{\alpha }}\\
+            A^{1-\frac{1}{\alpha }}\cdot L^{-1}=|\varepsilon _{n}|^{1+\frac{1}{\alpha }-\alpha }
+        \end{split}
+    \end{equation}
+    Como no depende de $n$, ambos lados deben ser independientes, y por tanto, si $n \to  \infty$:
+    \begin{equation}
+        \begin{split}
+            1+\frac{1}{\alpha }-\alpha =0
+        \end{split}
+    \end{equation}
+    Que tiene como única solución positiva a la cual converge:
+    \begin{equation}
+        \begin{split}
+            \boxed{\alpha = \frac{1+\sqrt{5}}{2}}
+        \end{split}
+    \end{equation}
+\end{proof}
+\end{document}

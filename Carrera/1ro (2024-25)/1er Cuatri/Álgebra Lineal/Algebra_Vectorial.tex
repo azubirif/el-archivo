@@ -1,0 +1,236 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Mon Oct 14 2024}
+\title{Álgebra Vectorial}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{makeidx}
+
+\newtheorem*{bases_n_vectores}{Teorema}
+\newtheorem*{propiedades_bases}{Teorema}
+
+\makeindex
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+\section{Espacio Vectorial}
+Un espacio vectorial es una terna $(V; +,\cdot )$ sobre un cuerpo $\mathbb{K}$, denominado
+$\mathbb{K}-\text{EV}$. Donde $V$ es un conjunto no vacío, $+$ es una operación interna en $V$,
+y $\cdot $ una operación de un elemento de $V$ con uno de $\mathbb{K}$ denominado producto por
+escalar.
+\begin{equation}
+    \begin{split}
+        +: V\times V \to V\quad\quad\quad \cdot : \mathbb{K}\times V \to V
+    \end{split}
+\end{equation}
+Para que sea un espacio vectorial siendo $u,v,w \in V$ y $c,t \in  \mathbb{K}$, debe cumplir que:
+\begin{enumerate}
+    \item La suma es asociativa: $(u+v)+w=u+(v+w)$
+    \item La suma es conmutativa: $u+v=v+u$
+    \item Existe el neutro para la suma: $\exists \bar{0} \in V / u+ \bar{0}=u$
+    \item Existe inverso para la suma: $\forall u \in V \exists u^{-1} / u+u^{-1}=\bar{0}$
+    \item Producto por escalar es distributivo respecto a la suma: $c(u+v)=cu+cv$
+    \item $(c+t)u=cu+tu$
+    \item $(c\cdot t)\cdot u=c(tu)$
+    \item Existe neutro para producto: $\exists I \in V / uI=Iu=u,\forall u \in V$
+\end{enumerate}
+\subsection{Bases}
+Una base es un sistema de vectores libre que a su vez es un sistema generador. Para que se cumpla
+que un sistema $S$ es una base, basta con comprobar las siguientes condiciones.
+\begin{itemize}
+    \item La cardinalidad del sistema es igual a la dimensión del espacio.
+    \item Es un sistema libre.
+    \item El sistema es generador.
+\end{itemize}
+\begin{bases_n_vectores}[Teorema]
+    Todas las bases de un espacio vectorial finitamente generado (con base no infinite) no nulo
+    tienen el mismo número de elementos.
+\end{bases_n_vectores}
+\subsection{Bases canónicas}
+Son aquellas bases "simplificadas" de cada espacio:
+\begin{itemize}
+    \item $\mathbb{R}^{2}:\: B_{c} = \{ (1,0), (0,1) \}$
+    \item $\mathbb{R}_{2}[x]:\: B_{c} = \{ 1,x,x^{2} \}$
+\end{itemize}
+\subsection{Matriz de cambio de base}
+Definimos una matric $C$ compuesta por las coordenadas de los vectores de la segunda base respecto a la primera base.\\
+Si tenemos dos bases $B_{1} = \{ u_{1},\dots,u_{n} \}$ y $B_{2}=\{ e_{1},\dots,e_{b} \}$,
+podemos escribir la matriz que cambia de $B_{1}$ a $B_{2}$ como:
+\begin{equation}
+    \begin{split}
+        C = ([u_{1}]_{B_{2}},\dots, [u_{n}]_{B_{2}})
+    \end{split}
+\end{equation}
+Las coordenadas se escriben \textbf{en columnas}.\\
+Si $X$ y $X'$ son las coordenadas de un $u \in V$ respecto a $B_{1}$ y $B_{2}$, se cumple que:
+\begin{equation}
+    \begin{split}
+        X' &= CX\\
+        X &= C^{-1}X'
+    \end{split}
+\end{equation}
+Estas se conocen como las \textbf{ecuaciones de cambio de base}.
+\subsection{Dimensión}
+La dimension $n$ de un espacio vectorial es el número de elementos de una de sus bases.
+\begin{propiedades_bases}[Teorema]
+    Sea $V$ un espacio vectorial de dimensión $n$:
+    \begin{itemize}
+        \item Un conjunto LI de $n$ vectores es una base.
+        \item Un conjunto generador de $n$ vectores es una base.
+        \item Los sistemas generadores tienen mínimo $n$ vectores.
+        \item Un sistema de vectores es generador si tiene $n$ vectores LI.
+        \item Los sistemas $LI$ tienen máximo $n$ vectores.
+        \item El vector nulo $\bar{0}$ no pertenece nunca a una base.
+    \end{itemize}
+    
+\end{propiedades_bases}
+\subsection{Coordenadas}
+En un espacio vectorial $V$ de dimensión $n$, las coordenadas de un vector
+$\bar{v}$ con respecto a una base $\mathfrak{B} = (u_{1},\dots,u_{n})$ son el conjunto de
+coeficientes $(a_{1},\dots,a_{n})$ tal que:
+\begin{equation}
+    \begin{split}
+        \bar{v}_{\mathfrak{B}} = a_{1}u_{1}+\dots a_{n}u_{n}
+    \end{split}
+\end{equation}
+\subsubsection{Propiedades}
+Si $[v]_{B} = (a_{1},\dots,a_{n})$, $[u]_{B} = (b_{1},\dots,b_{b})$ y $r \in \mathbb{K}$:
+\begin{itemize}
+    \item $[v]_{B} + [u]_{B} = [u+v]_{B}$
+    \item $r[v]_{B}=[rv]_{B}$
+\end{itemize}
+
+\section{Sistema de vectores}
+Un sistema de vectores es un conjunto finito de vectores que pertenecen a un espacio vectorial $V$:
+\begin{equation}
+    \begin{split}
+        S=\{ u_{1},u_{2},\dots,u_{n} \} / u_{i} \in V
+    \end{split}
+\end{equation}
+\subsection{Combinación lineal}
+Decimos que un vector $u$ es combinación linea de $v_{1},v_{2},\dots,v_{n}$ si
+$\exists a_{1}, \dots,a_{n} \in \mathbb{K}$ que cumpla que:
+\begin{equation}
+    \begin{split}
+        u=a_{1}v_{1}+ \dots +a_{n}v_{n}
+    \end{split}
+\end{equation}
+Una combinación lineal es una forma de generar vectores.
+\subsection{Variedad lineal}
+Con $k$ vectores finitos, la variedad lineal generada por $<u_{1},u_{2},\dots,u_{n}>$ es el
+conjunto de todas las posibles combinaciones lineales. La cardinalidad de una variedad lineal
+es infinita, excepto la variedad lineal del elemento nulo: $<\bar{0}>= \bar{0}$
+\subsection{Sistema generador}
+Un sistema generador es un sistema de vectores cuya variedad puede generar todo el espacio vectorial:
+\begin{equation}
+    \begin{split}
+        <S> = V
+    \end{split}
+\end{equation}
+\section{Espacios Vectoriales Comunes}
+\subsection{EV Común $R^n$}
+Un vector de $R^n$ es una lista de $n$ elementos.
+\begin{itemize}
+    \item $+: R^n \times R^n \to R^n$
+    \item $\cdot : R \times R^n \to R^n$
+    \item Neutro: $\bar{0}$
+\end{itemize}
+\subsection{EV Común $M_{2\times 2}$}
+De \textbf{orden definido}:
+\begin{itemize}
+    \item $+: M_{2\times 2} \times M_{2\times 2} \to M_{2\times 2}$
+    \item $\cdot : R \times M_{2\times 2} \to M_{2\times 2}$
+    \item Neutro: $\bar{0}$
+\end{itemize}
+\subsection{Polinomios}
+Definidos como $R_{n}[x]$, de la forma $ax^{2}+bx+c$
+\begin{itemize}
+    \item $+: R_{n}[x] \times R_{n}[x] \to R_{n}[x]$
+    \item $\cdot : R \times R_{n}[x] \to R_{n}[x]$
+    \item Neutro: $\bar{0}$
+\end{itemize}
+\section{Tipos de sistemas}
+Un sistema \textbf{ligado} es aquel en el que algún vector es CL del resto. Si igualasemos al sistema
+a cero, tendríamos un \textbf{SCI}.\\
+Un sistema \textbf{libre} es aquel donde todos los vectores son LI. Sería un sistema \textbf{SCD}.\\
+El rango de una matriz de vectores es el número de vectores LI.
+\section{Subespacios Vectoriales}
+Un conjunto de vectores contenido en el espacio vectorial inicial. Deben cumplir las siguientes
+condiciones:
+\begin{itemize}
+    \item Clausura en la suma.
+    \item Clausura en el producto por escalar.
+    \item El vector nulo está incluido
+\end{itemize}
+\subsection{Propiedades}
+Sea $H$ un subespacio vectorial:
+\begin{itemize}
+    \item Una variedad lineal siempre es un SEV
+    \item Los SEV triviales son $H_{1}= \{ \vec{0} \}$ y $H_{2} = \{ V \}$
+    \item Tienen bases y dimensión
+    \item $dim(H) \leq dim(V)$
+\end{itemize}
+\subsection{SEV como variedad lineal}
+\begin{itemize}
+    \item $dim(<H>)= rg(H)$
+    \item Una base de $<H>$ son los vectores LIs de $H$.
+\end{itemize}
+\subsection{SEV en forma paramétrica}
+Ej:
+\begin{equation}
+    \begin{split}
+        H = \{ (a,1,b) / a,b \in \mathbb{R}\}
+    \end{split}
+\end{equation}
+\begin{itemize}
+    \item Tiene estructura de SEV
+    \item Viene dado por parámetros
+\end{itemize}
+\subsection{SEV en forma implícita}
+Ej:
+\begin{equation}
+    \begin{split}
+        \{ (x,y,z) / x+y = 0, z=0 \}
+    \end{split}
+\end{equation}
+\begin{itemize}
+    \item Estructura de SEV
+    \item Las ecuaciones lineales
+    \item Formado por las soluciones a las ecuaciones
+    \item Siempre tiene la solución homogénes (vector nulo)
+    \item $dim(H) = dim(V) - \text{n eqs. LI}$
+\end{itemize}
+\subsection{Suma e intersección de subespacios}
+\subsubsection{Intersección}
+Denotada como $H \cap W$, es el conjunto de vectores que pertenece tanto a $H$ como a $W$:
+\begin{equation}
+    \begin{split}
+        H \cap W = \{ v / v \in H \wedge v \in W \}
+    \end{split}
+\end{equation}
+Cumple que:
+\begin{itemize}
+    \item $H \cap W$ es siempre SEV.
+    \item $H \cap W$ es no vacío, ya que al menos tiene el vector nulo.
+    \item $dim(H \cap W) \leq min(dim (W),dim(H))$
+\end{itemize}
+\subsubsection{Suma}
+Denotada $H+W$, es el conjunto de vectores que se pueden expresar como una suma de un vector de
+$H$ y otro de $W$:
+\begin{equation}
+    \begin{split}
+        H+W = \{ v / v = u + e / u \in H \wedge e \in W \}
+    \end{split}
+\end{equation}
+\begin{itemize}
+    \item $H+W$ tiene estructura de SEV.
+    \item $dim(H+W)= dim(H) + dim(W) - dim(H \cap W)$ (Ecuación de Grassman).
+    \item Si $H \cap W = \{ \vec{0} \}$, entonces $H+W = H \bigoplus W$ (suma directa).
+    Cada $v \in H \bigoplus W$ se puede expresar de forma única como un vector de $H$ y de $W$.
+\end{itemize}
+
+\end{document}

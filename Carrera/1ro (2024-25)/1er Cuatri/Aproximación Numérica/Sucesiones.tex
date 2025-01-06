@@ -1,0 +1,31 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Wed Nov 27 2024}
+\title{Sucesiones}
+
+\usepackage{amsmath, amsthm}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+
+\section{Sucesiones telescópicas}
+El objetivo de una sucesión es encontrar el término $a_{n}$ en función de $n$ y de $a_{0}$.
+Para resolver una sucesión, iremos sumando a ambos lados la ecuación inicial, restando
+cada vez $1$ al valor de $n$, hasta que podamos expresar uno de los lados como un sumatorio:
+\begin{equation}
+    \begin{split}
+        a_{n+1} - a_{n} &=  - \frac{a_{1}}{n^{2}}\\
+        (a_{2}-a_{1}) \dots(a_{n}- a_{n-1})+(a_{n+1}-a_{n})&= -\frac{a_{1}}{n^{2}}-\frac{a_{1}}{(n-1)^{2}}
+        - \dots - \frac{a_{1}}{1^{2}}
+    \end{split}
+\end{equation}
+Del LI se mantienen $a_{n+1}-a_{1}$, y el LD se puede expresar como
+$-\sum _{i=1}^n \frac{a_{1}}{n^{2}}$, obteniendo así:
+\begin{equation}
+    \begin{split}
+        a_{k} = a_{1}(1-\sum _{i=1}^{k-1} \frac{1}{n^{2}})
+    \end{split}
+\end{equation}
+\end{document}

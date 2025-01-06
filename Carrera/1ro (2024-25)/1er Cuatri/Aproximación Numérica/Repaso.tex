@@ -1,0 +1,114 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Wed Oct 09 2024}
+\title{Repaso}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{physics}
+\usepackage{amsfonts}
+
+\newtheorem{rolle}{Teorema de Rolle}[section]
+\newtheorem{midval}{Teorema del punto medio}
+
+\begin{document}
+\maketitle
+\section{Tipos de funciones}
+\begin{itemize}
+    \item Injectiva: a cada valor del dominio de la función, le corresponde un valor de su rango.
+    \item Biyectiva: a todos los elementos del rango, les corresponde un valor de la función.
+    \item Sobreyectiva: múltiples valores del dominio pueden corresponder a un único valor de su rango.
+\end{itemize}
+\section{Funciones inversas}
+La inversa de una función $f(x)$ es la que cumple que:
+\begin{equation}
+    \begin{split}
+        (fof^{-1})(x)=x
+    \end{split}
+\end{equation}
+La derivada de una función inversa es:
+\begin{equation}
+    \begin{split}
+        \dv{f^{-1}(y)}{y}= \frac{1}{(fof^{-1}(y))}
+    \end{split}
+\end{equation}
+\begin{rolle}
+    Sea una función $f: \mathbb{R} \to \mathbb{R}$ continua en $[a,b]$ y derivable en $(a,b)$, si
+    $f(a)=f(b)\Rightarrow \exists c \in (a,b): f'(c)=0$. 
+\end{rolle}
+\begin{proof}[Demostración]
+    Para demostrarlo, vamos a partir de que toda función contínua en un intervalo cerrado y acotado
+    alcanza un valor máximo y un valor mínimo absolutos en dicho intervalo.\\
+    Como el máximo y el mínimo son análogos, vamos a demostrar para el máximo.\\
+    \textbf{Caso 1}: el máximo no pertenece a $(a,b)$, que implica que $Max=f(a)$ o $Max=f(b)$. Si
+    $f(a)=f(b)\Rightarrow Max=Min \Rightarrow f(x)=cte\Rightarrow f'(x)=0$.
+    \textbf{Caso 2}: Supongamos que $m\in (a,b)$ es el máximo. Como $f(x)$ es derivable $\Rightarrow \exists f'(m)$.
+    Como $m$ es un punto máximo, $f(x)$ es creciente en $a<x<m$:
+    \begin{equation}
+        \begin{split}
+            \lim_{x \to m^-} \frac{f(x)-f(m)}{x-m}\geq 0\\
+            \lim_{x \to m^+} \frac{f(x)-f(m)}{x-m}\leq 0
+        \end{split}
+    \end{equation}
+    Al ser derivable, ambos límites deben coincidir, por lo que si se debe cumplir que
+    \begin{equation}
+        \begin{split}
+            f'(m)\geq 0\\
+            f'(m)\leq 0
+        \end{split}
+    \end{equation}
+    Entonces
+    \begin{equation}
+        \begin{split}
+            f'(m)=0
+        \end{split}
+    \end{equation}
+\end{proof}
+\begin{midval}
+    Sean dos funciones $f,g : f: \mathbb{R} \to \mathbb{R} \wedge g: \mathbb{R} \to \mathbb{R}$, continuas y derivables en $[a,b]$.
+    \begin{equation}
+        \begin{split}
+            \exists c \in (a,b): (f(b)-f(a))g'(c) = (g(b) - g(a))f'(c)
+        \end{split}
+    \end{equation}
+\end{midval}
+\begin{proof}[Demostración]
+    Sea una función real y continua en $[a,b]$
+    \begin{equation}
+        \begin{split}
+            h(x)= (f(b)-f(a))g(x)- (g(b)-g(a))f(x)
+        \end{split}
+    \end{equation}
+    Si evaluamos $h(a)$ tenemos que
+    \begin{equation}
+        \begin{split}
+            h(a)= f(b)g(a)-g(b)f(a)
+        \end{split}
+    \end{equation}
+    Y $h(b)$ es
+    \begin{equation}
+        \begin{split}
+            h(b)=f(b)g(a)-g(b)f(a)
+        \end{split}
+    \end{equation}
+    Por tanto,
+    \begin{equation}
+        \begin{split}
+            h(a)=h(b)\Rightarrow \exists c \in [a,b] : h'(c)=0
+        \end{split}
+    \end{equation}
+    Es decir
+    \begin{equation}
+        \begin{split}
+            h'(c)=(f(b)-f(a))g'(c)- (g(b)-g(a))f'(c)=0
+        \end{split}
+    \end{equation}
+    Que implica que
+    \begin{equation}
+        \begin{split}
+            (f(b)-f(a))g'(c)=(g(b)-g(a))f'(c)
+        \end{split}
+    \end{equation}
+    QED
+\end{proof}
+\end{document}

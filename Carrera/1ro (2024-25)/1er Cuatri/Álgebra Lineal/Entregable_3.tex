@@ -1,0 +1,254 @@
+\documentclass{article}
+\title{Entregable 3}
+\author{Alejandro Zubiri}
+
+\usepackage{amsmath, amsfonts, amsthm, enumitem}
+
+\begin{document}
+\maketitle
+Sea la aplicación lineal definida por \(f: \mathbb{R}^{3} \to \mathbb{R}^{3} / 
+f(x,y,z) = (3x-y, 2y-x-z, 3z-y)\) 
+\begin{enumerate}[label={(\alph*)}]
+	\item Para que sea un endomorfismo, el espacio vectorial inicial y final deben coincidir,
+		y la aplicación debe ser lineal.\\Podemos ver que ambos espacios vectoriales coinciden,
+		por lo que falta ver si la aplicación es lineal. Para que lo sea, se debe cumplir que:
+		\begin{itemize}
+			\item \(f(a \vec{u})=af( \vec{u}) /a \in \mathbb{R}, \vec{u} \in \mathbb{R}^{3}\)\\
+				\begin{equation}
+					\begin{split}
+						f(a \vec{u}))&=(3au_1-au_2,2au_2-au_1-au_3,3au_3-au_2)\\
+									 &=(a(3u_1-u-2),a(2u_2-u_1-u_3),a(3u_3-u_2))\\
+									 &=af(\vec{u})
+					\end{split}
+				\end{equation}
+			\item \(f(\vec{u}+\vec{e})=f(\vec{u})+f(\vec{e}) / \vec{e} \in \mathbb{R}^{3}\)
+				\begin{equation}
+					\begin{split}
+				f(\vec{u}+\vec{e})&=(3u_1+3e_1-u_2-e_2,2u_2+2e_2-u_1-e_1-u_3-e_3,3u_3+3e_3-u_2-e_2)\\
+				&= f(\vec{u})+f(\vec{e})
+					\end{split}
+				\end{equation}
+		\end{itemize}
+	Para encontrar la matriz asociada al endomorfismo:
+	\begin{equation}
+		\begin{split}
+			(3x-y,2y-x-z,3z-y)&=\\(3x,-x,0)+(-y,2y,-y)+(0,-z,3z)&=\\ \begin{pmatrix}
+3 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 3 \\
+\end{pmatrix}\begin{pmatrix}
+x \\
+y \\
+z\end{pmatrix}
+		\end{split}
+	\end{equation}
+	Por tanto, la matriz asociada respecto a la base canónica es:
+	\begin{equation}
+		\begin{split}
+			A_{B_c}=  \begin{pmatrix}
+3 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 3 \\
+\end{pmatrix}
+		\end{split}
+	\end{equation}
+\item Teniendo el vector \(\vec{v}=(1,2,0)\), su imagen es:
+	\begin{equation}
+		\begin{split}
+			f(\vec{v})= \begin{pmatrix}
+3 & -1 & 0 \\
+-1 & 2 & -1 \\
+0 & -1 & 3 \\
+\end{pmatrix}\begin{pmatrix}
+1 \\
+2 \\
+0\end{pmatrix}=(1,3,-2)
+		\end{split}
+	\end{equation}
+\item Ahora siendo \(\vec{w}=(1,1,1)\), buscamos si \(\exists \vec{u} \in \mathbb{R}^{3} /
+	f(\vec{u})=\vec{w}\). Para hacerlo, igualamos cada componente de la aplicación a cada
+	componente del vector:
+	\begin{equation}
+		\begin{split}
+			3x-y&=1\\-x+2y-z&=1\\-y+3z&=1
+		\end{split}
+	\end{equation}
+	Que tiene como solución:
+	\begin{equation}
+		\begin{split}
+			\vec{u}=(0.75,1.25,0.75)
+		\end{split}
+	\end{equation}
+\item Para encontrar la matriz asociada respecto a la base
+	\begin{equation}
+		\begin{split}
+			B' = \{ (1,0,1),(1,-1,0),(1,0,0) \} = \{ v_1,v_2,v_3 \}
+		\end{split}
+	\end{equation}
+	Queremos las coordenadas de las imágenes de cada vector de la base respecto a la base:
+	\begin{equation}
+		\begin{split}
+			f(v_1)&=(3,-2,3)\\f(v_2)&=(4,-3,1)\\f(v_3)&=(3,-1,0)
+		\end{split}
+	\end{equation}
+	Y sus respectivas coordenadas son:
+	\begin{equation}
+		\begin{split}
+			[f(v_1)]_{B'} &= (3,2,-2)\\
+			[f(v_2)]_{B'} &= (1,3,0)\\
+			[f(v_3)]_{B'} &= (0,1,2)
+		\end{split}
+	\end{equation}
+	Por tanto, la matriz es:
+		\begin{equation}
+			\begin{split}
+				A_{B'}=\begin{pmatrix}
+3 & 1 & 0 \\
+2 & 3 & 1 \\
+-2 & 0 & 2 \\
+\end{pmatrix}
+			\end{split}
+		\end{equation}
+	\item Siendo \(\vec{z}=(0,1,-1)\), para encontrar las coordenadas de la imagen respecto a
+		\(B'\), simplemente la multiplicamos por la matriz asociada respecto a \(B'\):
+		\begin{equation}
+			\begin{split}
+				[f(\vec{z})]_{B'} = A_{B'} \vec{z}=(-1,-4,-2)
+			\end{split}
+		\end{equation}
+	\item Primero debemos buscar los autovalores, por lo que tenemos que resolver la ecuación:
+		\begin{equation}
+			\begin{split}
+				\det (A-\lambda I)= 0
+			\end{split}
+		\end{equation}
+		Donde \(A\) es la matriz asociada, \(\lambda\) es cada autovector, y \(I\) es la matriz
+		identidad.
+\begin{equation}
+	\begin{split}
+		\begin{vmatrix}
+3-\lambda & -1 & 0 \\
+-1 & 2-\lambda  & -1 \\
+0 & -1 & 3-\lambda \\
+\end{vmatrix}=(3-\lambda)^{2}(2-\lambda)-2(3-\lambda)=-(\lambda -3)(\lambda -1)(\lambda -4)
+	\end{split}
+\end{equation}
+Ahora lo igualamos a cero:
+\begin{equation}
+	\begin{split}
+		(\lambda -3)(\lambda -1)(\lambda-4)=0 \implies \lambda_1=3,\lambda_2=1,\lambda_3=4	
+	\end{split}
+\end{equation}
+Puesto que la \(m.a.\) de cada autovalor es \(1\), sabemos que su \(m.g.\) también será \(1\),
+y por tanto el endomorfismo es diagonalizable.\\
+Para encontrar la base, buscamos los autovectores reemplazando cada autovalor en la ecuación
+característica y utilizando un vector genérico \(\vec{v}=(x,y,z)\):
+\begin{equation}
+	\begin{split}
+		(A-\lambda_1 I)\vec{v}=(-y,-x-y-z,-y)=(0,0,0)
+	\end{split}
+\end{equation}
+Ahora resolvemos para cada parámetro. Como dos ecuaciones son iguales, nos quedamos con:
+\begin{equation}
+	\begin{split}
+		x+y+z &=0 \\ y &= 0
+	\end{split}
+\end{equation}
+Si definimos \(z = \alpha\), vemos que \(x = -\alpha\), lo que define el siguiente subespacio
+vectorial:
+\begin{equation}
+	\begin{split}
+		H_1=\{ (-\alpha,0,\alpha) / \alpha \in \mathbb{R} \}
+	\end{split}
+\end{equation}
+De donde podemos obtener el primer autovector:
+\begin{equation}
+	\begin{split}
+		\vec{v}_1=H_1(1)=(-1,0,1)
+	\end{split}
+\end{equation}
+Repetimos el proceso para el segundo autovalor, obteniendo:
+\begin{equation}
+	\begin{split}
+		(A-\lambda_2 I)\vec{v}=(2x-y,-x+y-z,-y+2z)=(0,0,0)
+	\end{split}
+\end{equation}
+\begin{equation}
+	\begin{split}
+		2x-y &= 0\\ -x+y-z &= 0\\ -y+2z &= 0
+	\end{split}
+\end{equation}
+Como se cumple que \(-(eq_1 +eq_3)=2 eq_2\), descartamos la egunda ecuación, definimos \(y=\alpha\)
+y obtenemos:
+\begin{equation}
+	\begin{split}
+		H_2= \{ (\alpha, 2\alpha, \alpha) / \alpha \in \mathbb{R} \}
+	\end{split}
+\end{equation}
+Y obtenemos el segundo autovector:
+\begin{equation}
+	\begin{split}
+		\vec{v}_2=H_2(1)=(1,2,1)
+	\end{split}
+\end{equation}
+Finalmente repetimos para el tercer autovector:
+\begin{equation}
+	\begin{split}
+		(A-\lambda_3 I)\vec{v}=(-x-y,-x-2y-z,-y-z)=(0,0,0)
+	\end{split}
+\end{equation}
+La segunda ecuacion es la suma de las otras, por la que la descartamos y obtenemos:
+\begin{equation}
+	\begin{split}
+		H_3=\{ (-\alpha, \alpha, -\alpha) / \alpha \in \mathbb{R} \}
+	\end{split}
+\end{equation}
+Para conseguir:
+\begin{equation}
+	\begin{split}
+		\vec{v}_3=(-1,1,-1)
+	\end{split}
+\end{equation}
+Por tanto, nuestra base es:
+\begin{equation}
+	\begin{split}
+		B_D= \{ (-1,0,1),(1,2,1),(-1,1,-1) \}
+	\end{split}
+\end{equation}
+Y la matriz asociada a esta base es:
+\begin{equation}
+	\begin{split}
+		A_{B_D}=\begin{pmatrix}
+3 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 4 \\
+\end{pmatrix}
+	\end{split}
+\end{equation}
+\item Teniendo \(\vec{v}=(1,2,0)\), queremos \([\vec{v}]_{B_D}\), por lo que expresamos la base
+	como variedad lineal e igualamos cada componente:
+	\begin{equation}
+		\begin{split}
+			<B_{D}> = (-x+y-z,2y+z,x+y-z)
+		\end{split}
+	\end{equation}
+	Generando el siguiente sistema:
+	\begin{equation}
+		\begin{split}
+			-x+y-z &= 1 \\ 2y+z &= 2 \\ x+y-z &= 0
+		\end{split}
+	\end{equation}
+	Obteniendo:
+	\begin{equation}
+		\begin{split}
+			[\vec{v}]_{B_D}=(-\frac{1}{2}, \frac{5}{6}, \frac{1}{3})
+		\end{split}
+	\end{equation}
+\item Para obtener \([f(\vec{v})]_{B_D}\), multiplicamos el vector por la matriz de autovalores.
+	\begin{equation}
+		\begin{split}
+			[f(\vec{v})]_{B_D}=A_D \vec{v}=(3 \cdot 1, 1 \cdot 2, 4\cdot 0)=(3,2,0)	
+		\end{split}
+	\end{equation}
+\end{enumerate}
+\end{document}

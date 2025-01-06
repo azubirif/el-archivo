@@ -1,0 +1,89 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Wed Dec 18 2024}
+\title{Regresión Múltiple}
+
+\usepackage{geometry, amsmath, amsthm, amsfonts}
+
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+ }
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+Vamos a crear una recta de la forma:
+\begin{equation}
+    \begin{split}
+        y = \beta _{0} + \beta _{1} x_{1i}+\dots + \beta _{i} x_{ik} + e_{i}
+    \end{split}
+\end{equation}
+Que podemos expresar de forma matricial de la siguiente forma:
+\begin{equation}
+    \begin{split}
+        Y = X\beta + e
+    \end{split}
+\end{equation}
+Obtendremos los coeficientes mediante:
+\begin{equation}
+    \begin{split}
+        \beta = (X^{T}X)^{-1}X^{T}Y
+    \end{split}
+\end{equation}
+Para estimar la varianza $\sigma^{2}$:
+\begin{equation}
+    \begin{split}
+        S^{2}_{e} = \frac{\sum e^{2}}{n}
+    \end{split}
+\end{equation}
+Que es la varianza residual. Para que sea \textbf{sesgado}, usamos:
+\begin{equation}
+    \begin{split}
+        S^{2}_{R} = \frac{\sum e^{2}}{n-p}
+    \end{split}
+\end{equation}
+Donde $p$ es el número de parámetros beta. Se cumple que:
+\begin{equation}
+    \begin{split}
+        E(S^{2}_{R}) &= \sigma^{2}\\
+        e &\to N(0,\sigma^{2})\\
+        y &\to N(\beta _{0} + \beta _{1} x_{1i}+\dots, \sigma^{2})
+    \end{split}
+\end{equation}
+El coeficiente de determinación corregido es aquel que funcione para muchos valores:
+\begin{equation}
+    \begin{split}
+        R^{2}=1- \frac{S^{2}_{R}}{S^{2}_{y}}
+    \end{split}
+\end{equation}
+\section{Diagnosis del modelo}
+Debemos comprobar las hipótesis del modelo:
+\begin{itemize}
+    \item Linealidad: residuos frente a valores. La distribución debe ser aleatoria.
+    \item Homocedasticidad: residuos frente a $x$, que debe ser aleatoria.
+    \item Independencia.
+    \item Normalidad.
+\end{itemize}
+\section{Transformaciones}
+Son las vistas previamente. Solo se deben transformar las variables sin comportamiento lineal.
+\section{Variables binarias}
+Son aquellas que toman valores de $0$ o $1$, y representan ausencia o presencia de propiedad.
+Deben ser excluyentes.
+\section{Contraste de parámetros}
+Queremos ver si las variables son significativas, y existen tres métodos:
+\begin{itemize}
+    \item Si $p<0.05$, $\beta $ es significativa.
+    \item $t-$valor: si $|t|>2$, $\beta $ es significativa.
+    \item Error estándar: calculamos un intervalo de confianza para $\beta $ con $\alpha =0.05$:
+    \begin{equation}
+        \begin{split}
+            \beta \pm 2 SE(\beta )
+        \end{split}
+    \end{equation}
+    Si el $0$ está incluido, $\beta $ \textbf{NO} es significativa
+\end{itemize}
+\end{document}

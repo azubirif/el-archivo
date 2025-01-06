@@ -1,0 +1,50 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Wed Dec 11 2024}
+\title{Regresión Lineal}
+
+\usepackage{amsmath, amsthm, amsfonts}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+Hacemos un estudio de la relación lineal, un modelo de regresión, y luego predicciones.\\
+Partimos de cuatro hipótesis:
+\begin{itemize}
+    \item Linealidad.
+    \item Homocedasticidad: la varianza de los errores es constante.
+    \item Independencia: los datos son independientes.
+    \item Normalidad: los errores siguen una distribución normal.
+\end{itemize}
+Si no se cumplen, hay que transformar los datos.
+\section{Transformaciones}
+Las más comunes son:
+\begin{itemize}
+    \item Logaritmo
+    \item Potencia
+    \item Inversa
+    \item Raíz
+\end{itemize}
+\section{Construcción}
+Cuanto más cerca a $\pm 1$ esté el coeficiente de correlación, más posible la regresión.\\
+Queremos crear una recta que minimice:
+\begin{equation}
+    \begin{split}
+        \sum e_{i}^{2} = \sum (y_{i}-y)^{2}
+    \end{split}
+\end{equation}
+Donde $y_{i}$ es el valor real e $y$ la predicción. La recta que lo cumple es:
+\begin{equation}
+    \begin{split}
+        \boxed{y-\bar{y} = \frac{cov(x,y)}{S_{x}^{2}}(x-\bar{x})}
+    \end{split}
+\end{equation}
+Además está el coeficiente de determinación:
+\begin{equation}
+    \begin{split}
+        R^{2}= 1-\frac{\sum e_{i}^{2}}{\sum (y_{i}-\bar{y})^{2}} = corr^{2}
+    \end{split}
+\end{equation}
+Cuanto más cercano a $1$, más estrecha.
+\end{document}

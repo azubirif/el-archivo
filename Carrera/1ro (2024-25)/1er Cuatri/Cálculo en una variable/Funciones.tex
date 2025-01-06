@@ -1,0 +1,351 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Fri Oct 11 2024}
+\title{Funciones}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{physics}
+\usepackage{amsfonts}
+
+\newtheorem{deriv}{Definición}
+\newtheorem{derivableLuegoContinua}{Teorema}
+\newtheorem{rolle}{Teorema de Rolle}[section]
+\newtheorem{midval}{Teorema del punto medio}
+\newtheorem{derivada_par_impar}{Teorema}
+\newtheorem{diferencial}{Definición}
+
+\begin{document}
+\maketitle
+Una función es una correspondencia que a cada valor de un conjunto, le asigna otro único valor de otro conjunto. En este
+caso, se estudiarán funciones \textbf{reales}:
+\begin{equation}
+    \begin{split}
+        f(x): \mathbb{R} \to \mathbb{R}
+    \end{split}
+\end{equation}
+Para representar una función, utilizamos un \textbf{grafo}, que es una representación de todos valores que $f$ toma
+dependiendo del valor que toma $x$.\\
+El conjunto \textbf{dominio} es el conjunto de valores para los cuales $\exists f(x)$.\\
+El conjunto \textbf{imagen} es el conjunto de todos los valores que puede tomar $f(x)$.
+\begin{equation}
+    \begin{split}
+        &\mathrm{Dom}(f(x))= \{ x / \forall x \in \mathbb{R}, \exists f(x) \}\\
+        &\mathrm{Im}(f(x))= \{ y / \forall x,y \in \mathbb{R}, y=f(x) \} 
+    \end{split}
+\end{equation}
+Distinguimos entre funciones:
+\begin{itemize}
+    \item Pares: $f(x) = f(-x)$
+    \item Impares: $f(x)=-f(-x)$
+    \item Periódicas: $\sin x, \cos x\dots$ 
+\end{itemize}
+\pagebreak
+\section{Continuidad y derivabilidad}
+\begin{deriv}[Derivada]
+    La derivada de una función $f(x)$ en un punto $x=a$ es la tasa de cambio
+    instantánea de $f(x)$ con respecto a $x$:
+    \begin{equation}
+        \begin{split}
+            f'(x)= \lim_{h \to 0} \frac{f(x+h)-f(x)}{h}
+        \end{split}
+    \end{equation}
+\end{deriv}
+\begin{deriv}[Diferencial]
+    El diferencial $ \dd{f}$ de una función $f$ es un incremento infinitesimal a lo largo de esta:
+    \begin{equation}
+        \begin{split}
+            \dd{f} = \lim_{x \to x_{0}}f(x)-x_{0}&=\lim_{x \to x_{0}}f(x)-x_{0}\cdot \frac{x-x_{0}}{x-x_{0}}
+            =f'(x_{0}) \dd{x}\\
+            \dd{f} &= f'(x_{0}) \dd{x}
+        \end{split}
+    \end{equation}
+\end{deriv}
+Una función $f(x)$ es continua en un punto $x=a$ si se cumple que:
+\begin{itemize}
+    \item $\exists f(a)$
+    \item $\exists \lim_{x \to a} f(x) \Rightarrow \lim_{x \to a^-} f(x)= \lim_{x \to a^+} f(x)$
+    \item $\lim_{x \to a}f(x)=f(a)$  
+\end{itemize}
+Similarmente, una función es derivable en un punto $x=a$ si se cumple que:
+\begin{equation}
+    \begin{split}
+        \exists \lim_{x \to a} f'(x) \Rightarrow \lim_{x \to a^-} f'(x)= \lim_{x \to a^+} f'(x)
+    \end{split}
+\end{equation}
+\begin{derivableLuegoContinua}[Teorema]
+    Si una función es derivable en un punto $x=a$, entonces también es continua.
+\end{derivableLuegoContinua}
+\begin{proof}[Demostración]
+    Queremos demostrar que
+    \begin{equation}
+        \begin{split}
+            \lim_{x \to a} f(x)=f(a) \iff \lim_{x \to a} f(x)-f(a)=0
+        \end{split}
+    \end{equation}
+    que es la definición de continuidad.\\
+    Partimos de que nuestra función es derivable, lo que implica que
+    \begin{equation}
+        \begin{split}
+            \exists f'(a) \Rightarrow \lim_{x \to} \frac{f(x)-f(a)}{x-a} \in \mathbb{R}
+        \end{split}
+    \end{equation}  
+    \begin{equation}
+        \begin{split}
+            \lim_{x \to a} f(x)-f(a) = \lim_{x \to a} (f(x)-f(a)) \cdot \frac{x-a}{x-a}
+            = \lim_{x \to a} \frac{f(x)-f(a)}{x-a} \cdot \lim_{x \to a} x-a
+        \end{split}
+    \end{equation}
+Podemos identificar que el primer término es la definición de derivada, que sabemos que existe y
+que es menor a $\infty$. El segundo término tiende a $0$.
+\begin{equation}
+    \begin{split}
+        \lim_{x \to a} \frac{f(x)-f(a)}{x-a} \cdot \lim_{x \to a} x-a =f'(a) \cdot 0=0
+    \end{split}
+\end{equation}
+Obteniendo así que
+\begin{equation}
+    \begin{split}
+        \lim_{x \to a} f(x) -f(a)=0
+    \end{split}
+\end{equation}
+QED
+\end{proof}
+\section{Representación de funciones}
+Para representar una función, debemos encargarnos de una serie de apartados:
+\subsection{Dominio}
+Debemos calcular el conjunto dominio de la función:
+\begin{equation}
+    \begin{split}
+        \mathrm{Dom}(f(x))= \{ x / \forall x \in \mathbb{R}, \exists f(x) \}
+    \end{split}
+\end{equation}
+\subsection{Asíntotas}
+Una asíntota es una curva de una recta a la cual tiende la función en el
+infinito de $x$ o de $f(x)$.
+\subsubsection{Verticales}
+Una recta en $x=x_{0}$ es una asíntota si se cumple que:
+\begin{equation}
+    \begin{split}
+        \lim_{x \to x_{0}}f(x)&= \pm \infty\\
+        \lim_{x \to x_{0}^{+}} f(x) &= \pm \infty\\
+        \lim_{x \to x_{0}^{-}} f(x) &= \pm \infty
+    \end{split}
+\end{equation}
+\subsubsection{Horizontales}
+Una función tiene una asíntota horizontal si se cumple una de estas
+condiciones:
+\begin{equation}
+    \begin{split}
+        \exists \lim_{x \to \infty}f(x)\\
+        \exists \lim_{x \to -\infty}f(x)
+    \end{split}
+\end{equation}
+\subsubsection{Oblicuas}
+Una asíntota oblicua es una recta de la forma $y=mx+n\: / \: m \neq 0$ a
+la que $f(x)$ se aproxima en $\pm \infty$.
+\begin{equation}
+    \begin{split}
+        \lim_{x \to \infty} f(x) = mx+n 
+    \end{split}
+\end{equation}
+Para obtener la pendiente, podemos despejar $m$ para obtener:
+\begin{equation}
+    \begin{split}
+        m = \lim_{x \to \infty} \frac{f(x)}{x}
+    \end{split}
+\end{equation}
+Similarmente, podemos reordenar $n$ para obtener:
+\begin{equation}
+    \begin{split}
+        n = \lim_{x \to \infty} f(x) -mx
+    \end{split}
+\end{equation}
+\subsection{Monotonía}
+Una función es creciente en un intervalo $[a,b]$ para cualquier par de
+puntos $x_{1},x_{2} \in [a,b] / x_{1} < x_{2} \implies  f(x_{1}) < f(x_{2})$.\\
+Si $f(x)$ es derivable en $(a,b)$:
+\begin{itemize}
+    \item $f'(x) > 0 \forall x \in  (a,b) \implies f(x)$ es creciente en $(a,b)$.
+    \item $f'(x) < 0 \forall x \in  (a,b) \implies  f(X)$ es decreciente en $k(a,b)$.
+    \item $f'(x) = 0 \forall  x \in (a,b) \implies f(x)$ es constante en $(a,b)$.
+\end{itemize}
+\subsubsection{Puntos críticos}
+Una función derivable en $x=a$ tiene un máximo o un mínimo si $f'(a)=0$.\\
+Un punto crítico es donde la derivada es $0$ o no existe.
+\subsection{Curvatura}
+Una función $f(x)$ es cóncava hacia arriba en el intervalo $(a,b)$ si en
+todos los puntos del intervalo, la curva está por encima de las tangentes
+en dichos puntos.
+\begin{proof}[Definición]
+    Llamamos \textbf{puntos de inflexión} de una curva a los puntos donde
+    cambia la concavidad. Son los puntos donde la recta corta a la función.
+    Debemos comprobar si la segunda derivada se anula en dicho punto, y si
+    cambia de signo.
+\end{proof}
+\begin{proof}[Definición]
+    Sea $f: \mathbb{R} \to \mathbb{R}$, diremos que es cóncava hacia arriba
+    en $(a,b)$ si
+    \begin{equation}
+        \begin{split}
+            \forall x \in (a,b) \exists \varepsilon > 0 / 
+            f'(x+ \varepsilon) > f'(x)
+        \end{split}
+    \end{equation}
+\end{proof}
+\begin{derivada_par_impar}[Teorema]
+    Sea $f: [a,b] \to \mathbb{R}$ una $k+1$ derivable en $(a,b)$.\\
+    Sea $c \in (a,b)$, si $f'(c)=f'(c)=\dots=f^k(c)=0$ y $f^{k+1}(c) \neq 0$:
+    \begin{itemize}
+        \item Si $k$ es impar, $f(c)$ es un máximo relativo.
+        \item Si $k$ es par, $f(c)$ es un punto de inflexión.
+    \end{itemize}
+    
+\end{derivada_par_impar}
+\section{Recta tangente y normal}
+Para hallar la ecuación de la recta tangente de una función en un punto $a$, se debe cumplir que:
+\begin{equation}
+    \begin{split}
+        \dv{y}{x}=f'(a)\\
+        y(a)=f(a)
+    \end{split}
+\end{equation}
+Con esto podemos llegar a que la recta se describe por la siguiente ecuación:
+\begin{equation}
+    \begin{split}
+        y=f(a)+f'(a)(x-a)
+    \end{split}
+\end{equation}
+Para obtener la recta normal, debemos transformar la pendiente para que pase a ser $m \to - \frac{1}{m}$:
+\begin{equation}
+    \begin{split}
+        y= f(a) -\frac{1}{f'(a)}(x-a)
+    \end{split}
+\end{equation} 
+\section{Tipos de funciones}
+\begin{itemize}
+    \item Injectiva: a cada valor del dominio de la función, le corresponde un valor de su rango.
+    Para estas funciones, se cumple que:
+    \begin{equation}
+        \begin{split}
+            f(a) = f(b) \implies a = b
+        \end{split}
+    \end{equation}
+    Ejemplos: $2x, 5x+5, x^3 + 2x$
+    \item Biyectiva: a todos los elementos del rango, les corresponde un \textbf{único}
+    valor de la función. Es decir, no hay ningún elemento del dominio que comparta valor en
+    la imagen.
+    \item Sobreyectiva: múltiples valores del dominio pueden corresponder a un único valor de su rango.
+\end{itemize}
+\subsection{Funciones periódicas}
+Una función $f$ es periódica de período $T$, si $\forall x \in Dom(f)$:
+\begin{equation}
+    \begin{split}
+        f(x)=f(x+ kT)\: / \: k \in  \mathbb{Z}
+    \end{split}
+\end{equation}
+\section{Funciones inversas}
+La inversa de una función $f(x)$ es la que cumple que:
+\begin{equation}
+    \begin{split}
+        (fof^{-1})(x)=x
+    \end{split}
+\end{equation}
+La derivada de una función inversa es:
+\begin{equation}
+    \begin{split}
+        \dv{f^{-1}(y)}{y}= \frac{1}{(fof^{-1}(y))}
+    \end{split}
+\end{equation}
+\begin{rolle}
+    Sea una función $f: \mathbb{R} \to \mathbb{R}$ continua en $[a,b]$ y derivable en $(a,b)$, si
+    $f(a)=f(b)\Rightarrow \exists c \in (a,b): f'(c)=0$. 
+\end{rolle}
+\begin{proof}[Demostración]
+    Para demostrarlo, vamos a partir de que toda función contínua en un intervalo cerrado y acotado
+    alcanza un valor máximo y un valor mínimo absolutos en dicho intervalo.\\
+    Como el máximo y el mínimo son análogos, vamos a demostrar para el máximo.\\
+    \textbf{Caso 1}: el máximo no pertenece a $(a,b)$, que implica que $Max=f(a)$ o $Max=f(b)$. Si
+    $f(a)=f(b)\Rightarrow Max=Min \Rightarrow f(x)=cte\Rightarrow f'(x)=0$.
+    \textbf{Caso 2}: Supongamos que $m\in (a,b)$ es el máximo. Como $f(x)$ es derivable $\Rightarrow \exists f'(m)$.
+    Como $m$ es un punto máximo, $f(x)$ es creciente en $a<x<m$:
+    \begin{equation}
+        \begin{split}
+            \lim_{x \to m^-} \frac{f(x)-f(m)}{x-m}\geq 0\\
+            \lim_{x \to m^+} \frac{f(x)-f(m)}{x-m}\leq 0
+        \end{split}
+    \end{equation}
+    Al ser derivable, ambos límites deben coincidir, por lo que si se debe cumplir que
+    \begin{equation}
+        \begin{split}
+            f'(m)\geq 0\\
+            f'(m)\leq 0
+        \end{split}
+    \end{equation}
+    Entonces
+    \begin{equation}
+        \begin{split}
+            f'(m)=0
+        \end{split}
+    \end{equation}
+\end{proof}
+\begin{midval}
+    Sean dos funciones $f,g : f: \mathbb{R} \to \mathbb{R} \wedge g: \mathbb{R} \to \mathbb{R}$, continuas y derivables en $[a,b]$.
+    \begin{equation}
+        \begin{split}
+            \exists c \in (a,b): (f(b)-f(a))g'(c) = (g(b) - g(a))f'(c)
+        \end{split}
+    \end{equation}
+\end{midval}
+\begin{proof}[Demostración]
+    Sea una función real y continua en $[a,b]$
+    \begin{equation}
+        \begin{split}
+            h(x)= (f(b)-f(a))g(x)- (g(b)-g(a))f(x)
+        \end{split}
+    \end{equation}
+    Si evaluamos $h(a)$ tenemos que
+    \begin{equation}
+        \begin{split}
+            h(a)= f(b)g(a)-g(b)f(a)
+        \end{split}
+    \end{equation}
+    Y $h(b)$ es
+    \begin{equation}
+        \begin{split}
+            h(b)=f(b)g(a)-g(b)f(a)
+        \end{split}
+    \end{equation}
+    Por tanto,
+    \begin{equation}
+        \begin{split}
+            h(a)=h(b)\Rightarrow \exists c \in [a,b] : h'(c)=0
+        \end{split}
+    \end{equation}
+    Es decir
+    \begin{equation}
+        \begin{split}
+            h'(c)=(f(b)-f(a))g'(c)- (g(b)-g(a))f'(c)=0
+        \end{split}
+    \end{equation}
+    Que implica que
+    \begin{equation}
+        \begin{split}
+            (f(b)-f(a))g'(c)=(g(b)-g(a))f'(c)
+        \end{split}
+    \end{equation}
+    QED
+\end{proof}
+\section{Álgebra de funciones}
+\begin{equation}
+    \begin{split}
+        (f_1+f_2)(x)=f_1(x)+f_2(x)
+    \end{split}
+    \quad\quad
+    \begin{split}
+        (f_1 \cdot f_2)(x)=f_1(x) \cdot f_2(x)
+    \end{split}
+\end{equation}
+Distinguimos entre funciones \textbf{elementales}, que son aquellas basadas en combinaciones de series o productos infinitos,
+integrales indefinidas, a trozos o ecuaciones diferenciales.
+\end{document}

@@ -1,0 +1,405 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Tue Nov 26 2024}
+\title{Algoritmos de resolución}
+
+\usepackage{amsmath, amsthm, amsfonts}
+
+\newtheorem{theo}{Teorema}
+\newtheorem{defin}{Definición}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+\begin{defin}
+    Definicimos como ceros o soluciones de una función a los valores $\xi $ tal que:
+    \begin{equation}
+        \begin{split}
+            f(\xi ) = 0
+        \end{split}
+    \end{equation}
+\end{defin}
+\begin{defin}
+    Sea $g$ una función continua en $[a,b]$ de forma que $g(x) \in [a,b] \forall x \in [a,b]$.\\
+    La recursión definida por $x_{k+1} g(x) / k=0,1,2\dots$ es la iteración simple y $x_{k}$
+    los iterandos.
+\end{defin}
+\begin{defin}
+    Un método recursivo tiene propiedad de convergencia local hacia $\xi $ si
+    $\exists \delta >0 / \forall x_{0} \in (\xi -\delta , \xi +\delta )$ se puede
+    construir una sucesión de $x_{k}$ y $\lim_{k \to \infty} x_{k} = \xi $
+\end{defin}
+\begin{defin}
+    Sea una sucesión de números reales $\{ x_{k} \} / \lim_{k \to \infty}x_{k} = \xi $ y
+    $p > 0$. La sucesión es convergente a $\xi $ con orden de convergencia al menos $p$ si:
+    \begin{equation}
+        \begin{split}
+            \lim_{k \to \infty} \frac{|x_{k+1} - \xi |}{|x_{k}-\xi |^{p}} = L \in (0,\infty)
+        \end{split}
+    \end{equation}
+    Si $p = 1 \implies L \in (0,1)$, donde $L$ es la \textbf{constante de error asintótica}.\\
+    Si $p=1$, converge de forma lineal.\footnote{No toda sucesión convergente tiene orden de convergencia.}\\
+    Si $p = 2$, converge de forma cuadrática.
+\end{defin}
+\begin{defin}
+    Sea $f: \mathbb{R} \to \mathbb{R}, g: \mathbb{R} \to \mathbb{R}$ dos funciones definidas en
+    el entorno de un punto $x_{0}$, decimos que $f=O(g(x))$ cuando $x \to x_{0}$ si y solo si:
+    \begin{equation}
+        \begin{split}
+            \exists \varepsilon > 0 \wedge \text{entorno }U(x_{0}) / |f(x)| \leq \varepsilon 
+            |g(x)| \forall x \in U
+        \end{split}
+    \end{equation}
+    Decimos que $f=o(g(x))$ cuando $x \to  x_{0} \iff \forall \varepsilon >0 \wedge \text{entorno} U(x_{0})$
+    \begin{equation}
+        \begin{split}
+            |f(x)| \leq \varepsilon |g(x)| \forall x \in U
+        \end{split}
+    \end{equation}
+    De forma equivalente:
+    \begin{equation}
+        \begin{split}
+            f(x)&=o(g(x)) / \lim_{x \to x_{0}} \frac{f(x)}{g(x)} = 0\\
+            f(x) &= O(g(x)) / \frac{f(x)}{g(x)} = L < \infty \text{para } x \text{ grandes}
+        \end{split}
+    \end{equation}
+\end{defin}
+\section{Método de la biseccón}
+Demostramos la existencia de una raíz y su unicidad. Necesitamos una función continua en un
+intervalo $[a,b]$ cerrado y acotado tal que $f(a)\cdot f(b) < 0$.\\
+Sabemos que $\exists c \in [a,b] / f(c)=0$. Ahora continuamos dividiendo el intervalo inicial
+y evaluando en $\frac{a+b}{2}$. El error absoluto en el paso $n$ es:
+\begin{equation}
+    \begin{split}
+        \boxed{\frac{b-a}{2^{n}} \leq E_{a}}
+    \end{split}
+\end{equation}
+\section{Método de la secante}
+\begin{equation}
+    \begin{split}
+        \boxed{
+            x_{k+1} = x_{k} - f(x_{k}) \frac{x_{k}-x_{k-1}}{f(x_{k})-f(x_{k-1})}
+        }
+    \end{split}
+\end{equation}
+Se asume que $f(x_{k})-f(x_{k-1}) \neq 0 \forall k \geq 1$
+\begin{itemize}
+    \item $x_{0},x_{1}$ deben estar cercanos a la raíz.
+    \item La funcion debe `comportarse bien'.
+\end{itemize}
+\begin{theo}
+    Sea $f:\mathbb{R}$ una función continua y derivable en un intervalo cerrado y acotado
+    $I=(\xi -h,\xi +h) / h>0$.\\
+    Si $f(\xi )=0$ y $f'(\xi ) \neq 0 \implies \{ x_{k} \}$ definida por el método de la
+    secante converge linealmente a $\xi $ para casos en los que $x_{0}$ y $x_{1}$ son cercanos
+    a $\xi $.
+\end{theo}
+\begin{proof}[Demostración]
+    Por hipótesis sabemos que $f'(\xi ) \neq 0$. Supongamos que $f(\xi )= \alpha >0$.
+    Como la derivada es continua en $I$, entonces vamos a coger unos intervalos
+    $I_{\delta } = [\xi -\delta , \xi +\delta ] / 0 < \delta < h$:
+    \begin{equation}
+        \begin{split}
+            |f'(x)-\alpha | <\varepsilon > 0 \forall x \in I_{\delta }
+        \end{split}
+    \end{equation}
+    Como podemos elegir, sea $\varepsilon  = \frac{\alpha }{4} \implies 0 < \frac{3\alpha }{4}
+    < f'(x) < \frac{5\alpha }{4} \forall x \in I_{\delta }$.\\
+    Usando el TVM en $[x_{k}, \xi ] \implies \exists \phi _{k} \in [x_{k}, \xi ] / 
+    f'(\phi _{k}) = \frac{f(\xi )-f(x_{k})}{\xi -x_{k}}$.\\
+    Como $f(\xi )=0 \implies \varepsilon -x_{k+1} = \varepsilon -x_{k} + 
+    \frac{(x_{k}-\xi )f'(\phi _{k})}{f'(\beta _{k})} / \beta _{k} \in [x_{k}, x_{k-1}]$.\\
+    Si $x_{k-1} \in I_{\delta } \wedge x_{k} \in I_{\delta } \implies \phi _{k},\beta _{k} \in I_{\delta }$
+    \begin{equation}
+        \begin{split}
+            |\xi -x_{k+1}| &\leq |\xi -x_{k}|\frac{2}{3} \implies x_{k+1} \in I_{\delta }
+        \end{split}
+    \end{equation}
+    Como esto aplica $\forall k \implies $ se cumple que $\forall \{ x_{k} \} \implies p=1$.
+\end{proof}
+\begin{theo}
+    El orden de convergencia de la secante es
+    \begin{equation}
+        \begin{split}
+            \phi = \frac{1+\sqrt{5}}{2}
+        \end{split}
+    \end{equation}
+\end{theo}
+\begin{proof}[Demostración]
+    Sea $\varepsilon _{k} = |\xi -x_{k}| = E_{a}(x_{k})$. Como $f(\xi )=0$:
+    \begin{equation}
+        \begin{split}
+            \varepsilon _{n+1}&=x_{n+1}-\xi = x_{n}-f(x_{n}) \frac{x_{n}-x_{n-1}}{f(x_{n})-f(x_{n-1})}
+            - \xi \\
+            &=x_{n} - f(x_{n}) \frac{x_{n}-\xi -x_{n-1}+\xi }{f(x_{n})-f(x_{n-1})}\\
+            &=\varepsilon _{n} - \frac{f(x_{n})\varepsilon _{n}+f(x_{n})\varepsilon _{n-1}}
+            {f(x_{n})-f(x_{n-1})}\\
+            &= \frac{\varepsilon _{n}(f(x_{n})-f(x_{n-1}))- 
+            f(x_{n})(\varepsilon _{n}-\varepsilon _{n-1})}{f(x_{n})-f(x_{n-1})}\\
+            &=\frac{\varepsilon _{n-1}f(x_{n})-\varepsilon _{n}f_(x_{n-1})}{f(x_{n})-f(x_{n-1})}\\
+            &=\frac{\varepsilon _{n-1}f(x_{n})-\varepsilon _{n}f_(x_{n-1})}{x_{n}-x_{n-1}}
+            \frac{x_{n}-x_{n-1}}{f(x_{n})-f(x_{n-1})}\\
+            &=\frac{x_{n}-x_{n-1}}{f(x_{n})-f(x_{n-1})} \frac{\frac{f(x_{n})}{\varepsilon _{n}}
+            -\frac{f(x_{n-1})}{\varepsilon _{n-1}}}{x_{n}-x_{n-1}}(\varepsilon _{n}\varepsilon _{n-1})
+        \end{split}
+    \end{equation}
+    Ahora hacemos el polinomio de Taylor de orden 2 centrado en $\xi $ para $f(x_{n})$ y $f(x_{n-1})$.\\
+    Nota: $\varepsilon _{n} = x_{n}-\xi $:  
+    \begin{equation}
+        \begin{split}
+            f(x_{n})&= f(\xi ) + f'(\xi )\varepsilon _{n} + \frac{1}{2}f''(\xi ) \varepsilon _{n}^{2}
+            +O(n^{3})\\
+            &= f'(\xi )\varepsilon _{n} + \frac{1}{2}f''(\xi )\varepsilon _{n}^{2}+O(n^{3})\\
+            \frac{f(x_{n})}{\varepsilon _{n}}&=f'(\xi )+\frac{1}{2}f''(\xi )\varepsilon _{n}+O(\varepsilon _{n}^{2})\\
+            \frac{f(x_{n-1})}{\varepsilon _{n-1}} &=f'(\xi )+\frac{1}{2}f''(\xi )\varepsilon _{n-1}+O(\varepsilon _{n-1}^{2})
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            \frac{f(x_{n})}{\varepsilon _{n}}-\frac{f(x_{n-1})}{\varepsilon _{n-1}}
+            = \frac{1}{2}f''(\xi )(\varepsilon _{n}-\varepsilon _{n-1})+O(\varepsilon _{n-1}^{2})
+        \end{split}
+    \end{equation}
+    A medida que $n \to \infty,O(\varepsilon _{n-1}^{2}) \to 0$
+    \begin{equation}
+        \begin{split}
+            \frac{f(x_{n})}{\varepsilon _{n}}-\frac{f(x_{n-1})}{\varepsilon _{n-1}}
+            \approx \frac{1}{2}f''(\xi )(\varepsilon _{n}-\varepsilon _{n-1})
+        \end{split}
+    \end{equation}
+    Ahora volviendo a nuestra ecuación inicial:
+    \begin{equation}
+        \begin{split}
+            \varepsilon _{n+1} = \frac{x_{n}-x_{n-1}}{f(x_{n})-f(x_{n-1})}
+            \frac{\frac{1}{2}f''(\xi )(\varepsilon _{n}-\varepsilon _{n-1})}{x_{n}-x_{n-1}}(\varepsilon _{n}-\varepsilon _{n-1})
+        \end{split}
+    \end{equation}
+    Ahora volviendo:
+    \begin{equation}
+        \begin{split}
+            \varepsilon -\varepsilon _{n-1} = x_{n}-\xi -x_{n-1}+\xi =x_{n}-x_{n-1}
+        \end{split}
+    \end{equation}
+    Además:
+    \begin{equation}
+        \begin{split}
+            \forall x_{n},x_{n-1} \text{ cercanos a }\xi \implies \frac{x_{n}-x_{n-1}}{f(x_{n}-f(x_{n-1}))} \approx f'(\xi )
+        \end{split}
+    \end{equation}
+    Sea $L=f'(\xi )\frac{1}{2}f''(\xi )<\infty$
+    \begin{equation}
+        \begin{split}
+            \varepsilon _{n+1} &\approx f'(\xi )\frac{1}{2} f''(\xi )\varepsilon _{n}\varepsilon _{n-1}\\
+            &= L \varepsilon _{n} \varepsilon _{n-1}
+        \end{split}
+    \end{equation}
+    Para hallar el orden de convergencia exacto supongemos un $A \in \mathbb{R}$, una relación
+    entre los errores $\varepsilon _{k}, \varepsilon _{k+1}$:
+    \begin{equation}
+        \begin{split}
+            |\varepsilon _{k+1}| &\leq A |\varepsilon _{k}|^{\alpha }\\
+            |\varepsilon _{k+1}| &= A^{-1}|\varepsilon _{k}|^{\frac{1}{\alpha }} \implies 
+            |\varepsilon _{n+1}| = A |\varepsilon _{n}|^{\alpha }\\
+            &= L \varepsilon _{n} \varepsilon _{n-1} = L |\varepsilon _{n}|
+            (A^{-1}|\varepsilon _{n}|^{\frac{1}{\alpha }})
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            A|\varepsilon _{n}|^{\alpha } &= L\cdot A^{-1}|\varepsilon _{n}|^{1+\frac{1}{\alpha }}\\
+            A^{1-\frac{1}{\alpha }}\cdot L^{-1}=|\varepsilon _{n}|^{1+\frac{1}{\alpha }-\alpha }
+        \end{split}
+    \end{equation}
+    Como no depende de $n$, ambos lados deben ser independientes, y por tanto, si $n \to  \infty$:
+    \begin{equation}
+        \begin{split}
+            1+\frac{1}{\alpha }-\alpha =0
+        \end{split}
+    \end{equation}
+    Que tiene como única solución positiva a la cual converge:
+    \begin{equation}
+        \begin{split}
+            \boxed{\alpha = \frac{1+\sqrt{5}}{2}}
+        \end{split}
+    \end{equation}
+\end{proof}
+Para aproximar el error, utilizamos el pseudo error relativo:
+\begin{equation}
+    \begin{split}
+        \varepsilon _{R} = |\frac{x_{k+1}-x_{k}}{x_{k+1}}|
+    \end{split}
+\end{equation}
+Cuando el método está bien utilizado.
+\section{Punto fijo}
+\begin{defin}
+    Sea $g$ una función definida y continua en $[a,b]$. $g$ es una contracción sobre $[a,b]$ si:
+    \begin{equation}
+        \begin{split}
+            \exists L / 0 < L < 1 \wedge |g(x)-g(y)|\leq L \lvert x-y \rvert  \forall x,y \in [a,b]
+        \end{split}
+    \end{equation}
+    Si $L \in \mathbb{R}^{+}$, se dice que cumple la condición de Lipschitz.
+\end{defin}
+\begin{defin}
+    Sea $f: \mathbb{R}$, un punto fijo $\xi $ de $f(x)$ cumple que:
+    \begin{equation}
+        \begin{split}
+            f(\xi ) = \xi 
+        \end{split}
+    \end{equation}
+\end{defin}
+\begin{theo}[Teorema del punto fijo]
+    Sea $g(x)$ una función continua en $[a,b]$, y $g(x) \in  [a,b] \forall x \in [a,b]$. Si $g(x)$
+    es contractiva, tiene un único punto fijo $x_{i}nn[a,b]$ y la sucesión $\{ x_{k} \}$ definida
+    por $x_{k+1} = g(x_{k})$, que converge a $\xi $ si $k \to  \infty$.\\
+    Esto se cumplirá $\forall x_{k} \in [a,b]$
+\end{theo}
+\begin{theo}
+    Sea la iteración definida para el método de iteración de punto fijo donde $g(x)$ cumple las
+    hipótesis del teorema del punto fijo para un intervalo $[a,b]$.\\
+    Sea un $x_{0} \in [a,b]$, sea $\varepsilon > 0$ la tolerancia y sea $k_{0}(\varepsilon )$
+    el entero positivo más pequeño tal que $|x_{k} - \xi | < \varepsilon  \forall k \geq k_{0}(\varepsilon )$:
+    \begin{equation}
+        \begin{split}
+            K_{0}(\varepsilon ) \leq \left \lfloor{\frac{\ln(x_{1}-x_{0})-\ln (\varepsilon (1-L))}
+            {\ln (\frac{1}{L})}}\right \rfloor +1
+        \end{split}
+    \end{equation}
+\end{theo}
+\begin{proof}[Demostración]
+    Primero, demostramos por inducción que:
+    \begin{equation}
+        \begin{split}
+            |x_{k}-\xi | \leq L^{K} |x_{0}-\xi | \forall k \geq 1
+        \end{split}
+    \end{equation}
+    Empezamos por el caso base:
+    \begin{equation}
+        \begin{split}
+            |x_{1}-\xi | \leq L|x_{0}-\xi |
+        \end{split}
+    \end{equation}
+    Tal que:
+    \begin{equation}
+        \begin{split}
+            x_{1}=g(x_{0}) \quad \xi =g(\xi )
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            \lvert g(x_{0})-g(\xi ) \rvert \leq L \lvert x_{0}-\xi  \rvert  
+        \end{split}
+    \end{equation}
+    Que se cumple $\forall x_{0} \in [a,b], L \in (0,1)$ ya que es contractiva.\\
+    Asumimos para $n=p$:
+    \begin{equation}
+        \begin{split}
+            \lvert x_{p}-\xi  \rvert \leq L^{p}|x_{0}-\xi |
+        \end{split}
+    \end{equation}
+    Deberá cumplirse para $n=p+1$:
+    \begin{equation}
+        \begin{split}
+            \lvert x_{p+1}-\xi  \rvert = \lvert g(x_{p})-g(\xi ) \rvert \leq L\lvert x_{p}-\xi \rvert
+            \leq L^{p}L \lvert x_{0}-\xi  \rvert\leq L^{p+1}\lvert x_{0}-\xi  \rvert   
+        \end{split}
+    \end{equation}
+    Volvemos para el caso $n=1$:
+    \begin{equation}
+        \begin{split}
+            \lvert x_{1}-\xi  \rvert &\leq L \lvert x_{0}-\xi +x_{1}-x_{1} \rvert\\
+            &\leq \lvert x_{0}-x_{1} \rvert + \lvert x_{1}-\xi  \rvert\\
+            &\leq \lvert x_{0}-x_{1} \rvert  +L\lvert x_{0}-\xi  \rvert\\
+            \lvert x_{0}-\xi  \rvert &\leq \lvert x_{0}-x_{1} \rvert + L\lvert x_{0}-\xi  \rvert\\
+            \lvert x_{0}-\xi \rvert (1-L) &\leq \lvert x_{0}-x_{1} \rvert \\ 
+            \lvert x_{0}-\xi  \rvert &\leq \frac{\lvert x_{0}-x_{1} \rvert }{1-L}\\
+            \lvert x_{k}-\xi  \rvert &\leq L^{K}\lvert x_{0}-\xi  \rvert \leq L^{k} \frac{1}{1-L}
+            \lvert x_{1}-x_{0} \rvert   
+        \end{split}
+    \end{equation}
+    Tenemos que:
+    \begin{equation}
+        \begin{split}
+            \lvert x_{k}-\xi  \rvert &< \varepsilon \forall k \geq k_{0}\\
+            \lvert x_{k}-\xi  \rvert&\leq \frac{L^{k}}{1-L}\lvert x_{1}-x_{0} \rvert<\varepsilon\\
+            L^{k}\lvert x_{1}-x_{0} \rvert \leq \varepsilon (1-L)
+        \end{split}
+    \end{equation}
+    Luego despejamos para $k$:
+    \begin{equation}
+        \begin{split}
+            k \ln L + \ln \lvert x_{1}-x_{0} \rvert &\leq \ln(\varepsilon (1-L))\\
+            \ln \lvert x_{1}-x_{0} \rvert - \ln (\varepsilon (1-L)) &\leq -k \ln L = k \ln (\frac{1}{L})\\
+            k > \frac{\ln(x_{1}-x_{0})-\ln (\varepsilon (1-L))}{\ln (\frac{1}{L})}
+        \end{split}
+    \end{equation}
+    Para que obtengamos los mismos valores y sea una cota superior:
+    \begin{equation}
+        \begin{split}
+            K_{0}(\varepsilon ) \leq \left \lfloor{\frac{\ln(x_{1}-x_{0})-\ln (\varepsilon (1-L))}
+            {\ln (\frac{1}{L})}}\right \rfloor +1
+        \end{split}
+    \end{equation}
+\end{proof}
+\begin{theo}
+    Sea $g(x)$ continua y derivable en un intervalo $(\xi -r_{0}, \xi +r_{0}) / r_{0}> 0$:
+    \begin{equation}
+        \begin{split}
+            \lvert g'(\xi ) \rvert < 1 \implies  \exists r_{0}>0 / \forall r< r_{0} \wedge 
+            \forall x_{0} \in (\xi -r,\xi +r)
+        \end{split}
+    \end{equation}
+    Vamos a poder construir una sucesión $x_{n+1}=g(x_{n}) / n \geq 0$ con todos los términos dentro
+    del intervalo. Esta sucesión converge a $\xi $.\\
+    Además, la sucesión de errores $\varepsilon _{n}= \lvert x_{n}-\xi  \rvert $ no son nulos y:
+    \begin{equation}
+        \begin{split}
+            \frac{\varepsilon _{n+1}}{\varepsilon _{n}} \to g'(\xi )
+        \end{split}
+    \end{equation}
+\end{theo}
+\begin{theo}
+    Sea $g(x)$ una función definida, continua y derivable en $(\xi -r_{0}, \xi +r_{0}) / r_{0}>0, \xi  = g(\xi )$
+    y $\lvert g'(x) \rvert >1$:\\
+    Las únicas sucesiones de términos que cumplen $x_{k+1}=g(x_{k}) \to \xi $ si $k \to  \infty$ son aquellos que
+    $x_{i} = \xi  \forall i \in \mathbb{N}$
+\end{theo}
+\begin{proof}[Demostración]
+    Elegimos $M / 1<M<\lvert g'(\xi ) \rvert \implies $ Como $g'(x)$ es continua, elegimos $r / r_{0}>r \forall x \in (\xi -r,\xi +r)$.
+    \begin{equation}
+        \begin{split}
+            g'(x)\geq M
+        \end{split}
+    \end{equation}
+    Haremos reducción al absudro:\\
+    Supongamos que $\exists \{ x_{k} \} / x_{k} \neq \xi \forall k \geq 0 / \lim_{k \to \infty}x_{k} = \xi $. Aplicando
+    el TVM:
+    \begin{equation}
+        \begin{split}
+            x_{k} \in (\xi -r,\xi +r) \implies \lvert x_{k+1}-\xi  \rvert = \lvert g(x_{k})-\xi  \rvert
+            = \lvert g'(\xi _{n})(x_{k}-\xi ) \rvert \geq M\lvert x_{k}-\xi  \rvert
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+            \lvert x_{k+1}-\xi  \rvert \geq M \lvert x_{k}-\xi  \rvert \geq M^{2}\lvert x_{k-1}-\xi \rvert \geq
+            \dots \geq M^{k-k_{0}}\lvert x_{k_{0}} -\xi \rvert \implies \lvert x_{k+1}-\xi  \rvert\geq \infty  
+        \end{split}
+    \end{equation}
+    Como $M>1$, hemos llegado a una contradicción.
+\end{proof}
+\section{Método de Newton}
+\begin{equation}
+    \begin{split}
+        \boxed{x_{k+1} = x_{k} - \frac{f(x_{k})}{f'(x_{k})}}
+    \end{split}
+\end{equation}
+Se asume que $f'(x_{k})\neq 0 \forall k \geq 0$
+\begin{theo}
+    Sea $f: \mathbb{R}$ definida y continua en $I_{\gamma }= [\xi -\gamma , \xi +\gamma ] / \gamma  > 0$, y $f''(x)$ continua 
+    y $f(\xi ) = 0 \wedge f''(\xi ) \neq 0$.\\
+    Si $\exists c>0 / \frac{f''(x)}{f'(y)} \leq c \forall x,y \in I_{\gamma }$ y $\lvert \xi -x_{0} \rvert \leq h / h=min(\gamma ,\frac{1}{c})$
+    El método de Newton converge cuadráticamente a $\xi $.
+\end{theo}
+\end{document}

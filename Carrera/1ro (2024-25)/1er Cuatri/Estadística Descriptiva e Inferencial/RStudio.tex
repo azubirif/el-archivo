@@ -1,0 +1,56 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Fri Oct 11 2024}
+\title{R Studio}
+
+\begin{document}
+\maketitle
+\section{Atajos de teclado}
+\begin{itemize}
+    \item \verb|Ctrl + Alt + K|: ver atajos de teclado.
+    \item \verb|Ctrl + Alt + I|: añadir bloque de código.
+    \item \verb|Ctrl + Shift + Enter|: ejecutar bloque actual.
+\end{itemize}
+\section{Gráficos}
+\subsection{Histogramas}
+\begin{verbatim}
+    hist(variable, xlab="Nombre Eje X", ylab="Nombre Eje Y", main="Nombre Gráfico",
+    col="color", xaxp=c(lim_inf, lim_sup, n_intervalos), breaks = n_clases)
+\end{verbatim}
+\textbf{Número de clases}:\\
+Podemos elegir el algoritmo a seguir (predeterminado es Sturges)
+\begin{itemize}
+    \item Sturges (\verb|"sturges"|)
+    \item Freedman-diaconis (\verb|"fd"|)
+    \item Scott (\verb|"scott"|)
+\end{itemize}
+\subsection{Diagrama de caja}
+\begin{verbatim}
+    boxplot(datos,xlab="Nombre Eje X", ylab="Nombre Eje Y", main="Nombre Gráfico",
+    col="color", xlim=c(lim_inf, lim_sup), ylim=c(lim_inf, lim_sup))
+\end{verbatim}
+Si queremos hacer dos diagramas de caja en función de otra variable, declaramos \verb|datos~datos$variable|.
+\section{Comandos}
+\begin{itemize}
+    \item \verb|par(mfrow=c(1,2))|: crear regiones con una fila y dos columnas.
+    \item \verb|range(vector)|: devuelve el valor más pequeño y el más grande.
+    \item \verb|seq(inicio, final, saltos)|: crea un vector que empieza en \verb|inicio|, acaba en \verb|final|, y salto por \verb|saltos|.
+    \item \verb|cut(variable, secuencia, right)|: divide \verb|variable| siguiendo la regla \verb|secuencia|. Si \verb|right|, los
+    valores se cortan por la derecha.
+    \item \verb|summary(variable)|: proporciona, de la \verb|variable|, su mínimo, primer cuartil, mediana, media, tercer
+    cuartil, y máximo.
+    \item \verb|descr(variable)| (de la librería \verb|summarytools|): proporciona información avanzada de la variable. Si
+    queremos ignorar una determinada variable, le indicamos al programa que lo trate como cualitativo:
+    \begin{verbatim}
+        datos$variable <- as.factor(datos$variable)
+    \end{verbatim}
+    \item \verb|quantile(variable, probs=seq(inicio, final, salto))|: da los\\cuantiles de \verb|variable|.
+    Podemos pedirle un cuantil en específico con \verb|quantile(variable, .50)| o \verb|quantile(variable, c(0.13, 0.90)|.
+\end{itemize}
+\section{Librerías}
+Para cargar una librería, escribimos \verb|library(nombre_libreria)|.
+\begin{itemize}
+    \item \verb|summarytools|: información más avanzada.
+\end{itemize}
+
+\end{document}

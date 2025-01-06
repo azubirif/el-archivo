@@ -1,0 +1,171 @@
+\documentclass{article}
+\title{Teoremas}
+\author{Alejandro Zubiri}
+
+\usepackage{amsmath, amsthm, physics, amsfonts}
+
+\newtheorem{theorem}{Teorema}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+\begin{theorem}
+    Sea $f(x)$ una función derivable $n+1$ veces. Sean $x,x_{0} \in  (a,b)$:
+    \begin{equation}
+        \begin{split}
+            \exists \varepsilon \in (x,x_{0}) / f(x)-Pn(f,x_{0})(x)= \frac{f^{n+1}(\varepsilon)}{(n+1)!}(x-x_{0})^{n+1}
+        \end{split}
+	\end{equation}
+
+\end{theorem}
+\begin{proof}[Demostración]
+    Supongamos que $x_{0}<x$ (el caso contrario es análogo). Vamos a definir una función
+    auxiliar:
+    \begin{equation}
+        \begin{split}
+            h(s)= f(s) + \sum ^n_{k=1} \frac{f^k (s)}{k!}(x-s)^{k}
+        \end{split}
+    \end{equation}
+    Primero, $h(s)$ es contínua y derivable. Vamos a evaluar $h(s)$ en:
+    \begin{itemize}
+        \item $h(x)=f(x) + \sum ^n_{k=1} \frac{f^k (x)}{k!}(x-x)^{k}=f(x)$
+        \item $h(x_{0})=f(x_{0})+\sum ^n_{k=1} \frac{f^k (x_{0})}{k!}(x-x_{0})^{k}= P_{n}(f,x_{0})(x)$
+    \end{itemize}
+    Ahora vamos a derivar la función:
+    \begin{equation}
+        \begin{split}
+            h'(s) &= f'(s)+ \sum _{k=1} ^n \frac{f^{k+1}(s)}{k!} (x-s)^{k} +\sum ^n_{k=1}
+            \frac{f^k (s)}{k!}k(x-s)^{k-1}\cdot -1\\
+            &= f'(s)+ \sum _{k=1} ^n \frac{f^{k+1}(s)}{k!} (x-s)^{k} - 
+            \sum ^n_{k=1} \frac{f^k (s)}{(k-1)!}(x-s)^{k-1}\\
+            &= f'(s) + \sum _{k=1} ^n \frac{f^{k+1}(s)}{k!} (x-s)^{k} -
+            f'(s ) -\sum ^n_{k=2} \frac{f^k (s)}{(k-1)!}(x-s)^{k-1}\\
+            &= \sum _{k=1} ^n \frac{f^{k+1}(s)}{k!} (x-s)^{k}-\sum ^n_{k=2} \frac{f^k (s)}{(k-1)!}(x-s)^{k-1}\\
+            &= \frac{f^{n+1}(s)}{n!}(x-s)^{n}
+        \end{split}
+    \end{equation}
+    Vamos a crear una segunda función auxiliar:
+    \begin{equation}
+        \begin{split}
+            g(s)= (x-s)^{n+1}
+        \end{split}
+    \end{equation}
+    \begin{itemize}
+        \item $g'(s)=-(n+1)(x-s)^{n}$
+        \item $g(x) -g(x_{0})= (x-x)^{n+1} - (x-x_{0})^{n+1}= - (x-x_{0})^{n+1}$
+        \item $g'(c)= -(n+1)(x-c)^{n}$
+    \end{itemize}
+    Si ahora aplicamos el teorema del valor medio, podemos afirmar que:
+    \begin{equation}
+        \begin{split}
+            \exists c \in [x,x_{0}] / \quad \frac{h(x)-h(x_{0})}{g(x)-g(x_{0})} = \frac{h'(c)}{g'(c)}
+        \end{split}
+    \end{equation}
+    Ahora evaluamos e igualamos:
+    \begin{equation}
+	    \begin{split} 
+            \frac{h'(c)}{g'(c)} &= \frac{\frac{f^{n+1}(c)}{n!}(x-c)^{n}}{-(n+1)(x-c)^{n}}\\
+            &= \frac{f^{n+1}(c)}{-n!(n+1)} \\
+            &= -\frac{f^{n+1}(c)}{(n+1)!}
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \begin{split}
+        	\frac{f(x)- P_{n}(f,x_{0})(x)}{-(x-x_{0})^{n+1}} &= -\frac{f^{n+1}(c)}{(n+1)!}
+	\end{split}
+    \end{equation}
+\begin{equation}
+	\begin{split}
+		\boxed{f(x)- P_{n}(f,x_{0})(x) = \frac{f^{n+1}(c)}{(n+1)!}(x-x_{0})^{n+1}}
+	\end{split}
+\end{equation}    
+\end{proof}
+\begin{theorem}
+    Si una función es continua en $[a,b]$ entonces existe un punto:
+    \begin{equation}
+        \begin{split}
+            c \in (a,b) / f(c)(b-a) = \int_{a}^b f(x) \dd{x}
+        \end{split}
+    \end{equation}
+\end{theorem}
+\begin{proof}[Demostración]
+    Sea $f(x)$ como en el enunciado:
+    \begin{itemize}
+        \item Si $f$ es constante en $[a,b]$:
+        \begin{equation}
+            \begin{split}
+                \int _{a}^b f(x) \dd{x} = \int _{a}^b c \dd{x} = f(x)(b-a)
+            \end{split}
+        \end{equation}
+    \end{itemize}
+    \item Si no es constante, sean $M,m$ el valor máximo y mínimo, respectivamente. Sea $g(x) = m$:
+    \item \begin{equation}
+        \begin{split}
+            m \leq f(x) \leq M \implies g(x) \leq f(x)
+        \end{split}
+    \end{equation}
+    Por tanto
+    \begin{equation}
+        \begin{split}
+            \int _{a}^b g(x) \dd{x} \leq \int _{a}^b f(x) \dd{x} \implies m(b-a) \leq \int _{a}^b f(x) \dd{x}
+        \end{split}
+    \end{equation}
+    Y análogamente:
+    \begin{equation}
+        \begin{split}
+            m(b-a) \leq \int _{a}^b f(x) \dd{x} \leq M(b-a)\\
+            m \leq \frac{1}{b-a} \int _{a}^b f(x) \dd{x} \leq M
+        \end{split}
+    \end{equation}
+    Ahora por Weierstrass, sabemos que $f$ alcanza el máximo y el mínimo en $[a,b]$,
+    \begin{equation}
+        \begin{split}
+            \exists c \in (x_{1},x_{2}) \subset [a,b] / f(x_{1})=m \wedge f(x_{2})=M
+        \end{split}
+    \end{equation}
+    Sea $f(c)=C$:
+    \begin{equation}
+        \begin{split}
+            m \leq C \leq M
+        \end{split}
+    \end{equation}
+    Si $C= \frac{1}{b-a} \int _{a}^b f(x) \dd{x} \implies  c \in [a,b]$, por tanto:
+    \begin{equation}
+        \begin{split}
+            f(c)= \frac{1}{b-a} \int _{a}^b f(x) \dd{x}
+        \end{split}
+    \end{equation}
+
+\end{proof}
+\begin{theorem}
+    Sea $f$ una función continua en $[a,b]$, y sea $F(x)= \int _{a}^x f(t) \dd{t} / x \in [a,b] \implies $ F es
+    derivable y
+    \begin{equation}
+        \begin{split}
+            F'(x)=f(x) \forall x \in [a,b]
+        \end{split}
+    \end{equation}
+\end{theorem}
+\begin{proof}[Demostración]
+    \begin{equation}
+        \begin{split}
+            F'(x) = \lim_{h \to 0} \frac{F(x+h) - F(x)}{h} = \lim_{h \to 0} \frac{ \int _{x}^{x+h} f(t) \dd{t}}{h}
+        \end{split}
+    \end{equation}
+    Ahora podemos aplicar el teorema del valor medio para integrales:
+    \begin{equation}
+        \begin{split}
+            \exists c \in [x,x+h] / f(c) \cdot h = \int _{x}^{x+h}f(t) \dd{t}
+        \end{split}
+    \end{equation}
+    Por tanto
+    \begin{equation}
+        \begin{split}
+            F'(x)= \frac{1}{h} \int _{x}^{x+h} f(t) \dd{t} = \lim_{h \to 0} \frac{f(c) \cdot h}{h}=\lim_{h \to 0}f(c)
+            =f(x)
+        \end{split}
+    \end{equation}
+\end{proof}
+
+\end{document}

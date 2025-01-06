@@ -1,0 +1,51 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Sun Dec 01 2024}
+\title{Extrega 1 - Segunda Entrega}
+
+\usepackage{amsmath, amsthm, amsfonts}
+
+\newtheorem*{definicion}{Definición}
+
+\begin{document}
+\maketitle
+\begin{definicion}[Precisión]
+    Definimos la precisión de un estimador $\hat{\theta }$ como la proximidad entre las medidas
+    de una misma muestra. En concreto, se calcula mediante el \textbf{error de muestreo}:
+    \begin{equation}
+        \begin{split}
+            e(\hat{\theta }) = \frac{\sigma }{\sqrt{n}}
+        \end{split}
+    \end{equation}
+    Donde $\sigma $ es la desviación típica del estimador, y $n$ el número de elementos de la
+    muestra.
+\end{definicion}
+\section*{Ejercicios 2, apartado B}
+    Queremos saber qué estimador es más preciso.\\
+    La varianza de los dos estimadores dados es, respectivamente:
+    \begin{equation}
+        \begin{split}
+            var (\hat{\theta }_1) &= \frac{9}{16} \sigma^{2}\\
+            var (\hat{\theta }_2) &= \frac{3}{8}\sigma^{2}
+        \end{split}
+    \end{equation}
+    Podemos calcular el error de muestro de cada estimador mediante la ecuación del error de
+    muestreo:
+    \begin{equation}
+        \begin{split}
+            e(\hat{\theta }_1) &= \frac{\sqrt{var (\hat{\theta }_1)}}{\sqrt{n}} =
+            \frac{1}{2} \frac{3}{4} \sigma = \frac{3}{8}\sigma = 0.375\sigma  \\
+            e(\hat{\theta }_2) &= \frac{\sqrt{var (\hat{\theta }_2)}}{\sqrt{n}}=
+            \frac{1}{2} \frac{\sqrt{3}}{\sqrt{8}} \sigma  = \sqrt{\frac{3}{48}}\sigma
+            \approx 0.30618\sigma 
+        \end{split}
+    \end{equation}
+    Comparando ambos errores:
+    \begin{equation}
+        \begin{split}
+            0.375\sigma &> 0.30618\sigma \\
+            0.375 &> 0.30618
+        \end{split}
+    \end{equation}
+    Esto nos permite llegar a la conclusión de que \textbf{el estimador 1 es más preciso}.
+\end{document}

@@ -1,0 +1,109 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Mon Nov 11 2024}
+\title{Ejercicios Funciones}
+
+\begin{document}
+\maketitle
+\section*{Requisitos para las funciones}
+\begin{itemize}
+    \item El nombre de la función debe ser \textbf{exactamente igual} al mostrado en el enunciado,
+    y debe tener exactamente los mismos parámetros y en el mismo orden.
+    \item Si el enunciado pide un programa que imprima o devuelva un valor debe ser así, no
+    se puede cambiar.
+\end{itemize}
+\pagebreak
+\section{Función que saluda}
+\begin{itemize}
+    \item \textbf{Función}: \verb|saluda(nombre)|
+    \item \textbf{Parámetros}: \verb|nombre|
+\end{itemize}
+Crea una función que dado un parámetro (un nombre), imprima la siguiente cadena de texto:
+\begin{verbatim}
+    >>> ¡Hola {nombre}!
+\end{verbatim}
+\begin{verbatim}
+    >>> saluda("Carlos")
+    ¡Hola Carlos!
+    >>> saluda("Yerali")
+    ¡Hola Yerali!
+\end{verbatim}
+\section{Función que imprima una pirámide}
+\begin{itemize}
+    \item \textbf{Función}: \verb|piramide(anchura)|
+    \item \textbf{Parámetros}: \verb|anchura|
+\end{itemize}
+Esta función debe imprimir una pirámide de \# cuya anchura máxima sea
+el parámetro \verb|anchura|:
+\begin{verbatim}
+    >>> piramide(4)
+    #
+    ##
+    ###
+    ####
+\end{verbatim}
+\pagebreak
+\section{Número repetido}
+\begin{itemize}
+    \item \textbf{Función}: \verb|numero_repetido(cadena, numero)| 
+    \item \textbf{Parámetros}: \verb|cadena|: serie de numeros \textbf{de tipo entero}.
+    \verb|numero|: el número que queremos saber si se repite.
+    \item \textbf{Devuelve}: \verb|True| si se repite el número, \verb|False| si no se repite.
+\end{itemize}
+Crea una función que cuando se le pase un número entero como primer argumento, devuelva \verb|True|
+o \verb|False| si el número está \textbf{2 o más veces} en la cadena original:
+\begin{verbatim}
+    >>> numero_repetido(12345, 5)
+    False
+    >>> numero_repetido(1223, 2)
+    True
+    >>> numero_repetido(1335, 5)
+    False
+\end{verbatim}
+\section{Vocales al revés}
+\begin{itemize}
+    \item \textbf{Función}: \verb|vocales_al_reves(cadena)|
+    \item \textbf{Parámetros}: \verb|candena|: la cadena a analizar
+    \item \textbf{Devuelve}: las vocales que hay en la cadena, pero al revés.
+\end{itemize}
+Crea una función que cuando se le pase una cadena de texto, devuelva las vocales de la cadena, pero al revés. Si
+la cadena no tiene vocales, que devuelva una cadena vacía.
+\begin{verbatim}
+    >>> vocales_al_reves("hola")
+    "ao"
+    >>> vocales_al_reves("pedro")
+    "oe"
+    >>> vocales_al_reves("xyz")
+    ""
+\end{verbatim}
+\pagebreak
+\section{Cadena palíndroma}
+\begin{itemize}
+    \item \textbf{Función}: \verb|es_palindroma(cadena)|
+    \item \textbf{Parámetros}: \verb|cadena|: la cadena a analizar
+    \item \textbf{Devuelve}: \verb|True| si la cadena es palíndroma, y \verb|False| si no lo es.
+\end{itemize}
+Una cadena palíndroma es una cadena que se lee igual que si está al revés. Ejemplos son "ojo", "somos", "seres".
+La función también debería funcionar para números.
+\begin{verbatim}
+    >>> es_palindroma("ojo")
+    True
+    >>> es_palindroma("pan")
+    False
+    >>> es_palindroma(1221)
+    True
+\end{verbatim}
+\section{Hipotenusa}
+\begin{itemize}
+    \item \textbf{Función}: \verb|hipotenusa(cateto_a, cateto_b)|
+    \item \textbf{Parámetros}: los lados del triángulo.
+    \item \textbf{Devuelve}: la longitud de la hipotenusa (no su cuadrado)
+\end{itemize}
+Esta función debe tomar los lados de un triángulo \textbf{rectángulo} y calcular su hipotenusa:
+\begin{verbatim}
+    >>> hipotenusa(3, 4)
+    5.0
+    >>> hipotenusa(3.14, 2.78)
+    4.193804954930546
+\end{verbatim}
+\end{document}

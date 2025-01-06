@@ -1,0 +1,373 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Tue Nov 26 2024}
+\title{Sistema de partículas}
+
+\usepackage{amsmath, amsfonts, physics, amsthm, tikz, empheq}
+
+\newcommand{\boxedeq}[2]{\begin{empheq}[box={\fboxsep=6pt\fbox}]{align}\label{#1}#2\end{empheq}}
+
+\newtheorem{teorema}{Teorema}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+\section{Centro de masas}
+Definimos el centro de masas de un sistema discreto de partículas como
+\begin{equation}
+    \begin{split}
+        \vec{r}_{CM} = \frac{\sum m_{i} \vec{r}_{i}}{\sum m_{i}}
+    \end{split}
+\end{equation}
+Para una distribución continua, tenemos
+\begin{equation}
+    \begin{split}
+        \vec{r}_{CM} = \frac{ \int \vec{r} \dd{m}}{ \int  \dd{m}}
+        = \frac{ \int \rho \vec{r} \dd{V}}{ \int \rho  \dd{V}}
+    \end{split}
+\end{equation}
+donde $\rho $ es la densidad en cada posición.
+\section{Movimiento del centro de masas}
+Si obtenemos la tasa de cambio de la posición respecto al tiempo:
+\begin{equation}
+    \begin{split}
+        \dv{\vec{r}_{CM}}{t} = \dv{t} (\frac{\sum m_{i} \vec{r}_{i}}{\sum m_{i}})
+        = \frac{\sum m_{i} \dv{t}(\vec{r}_{i})}{\sum m_{i}}
+        = \frac{\sum m_{i} \vec{v}_{i}}{\sum m_{i}} = \vec{V}_{CM}
+    \end{split}
+\end{equation}
+\section{Dinámica del centro de masas}
+Definimos el momento total como:
+\begin{equation}
+    \begin{split}
+        \vec{p}_{CM} = \sum m_{i} \vec{v}_{i}
+    \end{split}
+\end{equation}
+Por tanto, si observamos como cambia respecto al tiempo:
+\begin{equation}
+    \begin{split}
+        \dv{t} (\vec{p}_{CM}) = \dv{t}(\sum m_{i} \vec{v}_{i}) = \sum m_{i} \vec{a}_i
+        = \sum \vec{F}_{\text{EXT}}
+    \end{split}
+\end{equation}
+Es decir
+\begin{equation}
+    \begin{split}
+        \dv{t} (\vec{p}_{CM}) = \sum \vec{F}_{\text{EXT}} = M_{T} \vec{a}_{CM}
+    \end{split}
+\end{equation}
+\section{Momento angular}
+Definimos el momento angular \textbf{total} como:
+\begin{equation}
+    \begin{split}
+        \vec{L}_T = \sum \vec{L}_i = \sum m_{i} \vec{r}_i \times \vec{v}_i
+    \end{split}
+\end{equation}
+Y ahora
+\begin{equation}
+    \begin{split}
+        \dv{L_{T}}{t} = \sum \vec{r}_i \times \vec{F}_i = \sum \vec{r}_i \times
+        (\vec{F}_E + \vec{F}_I)
+    \end{split}
+\end{equation}
+Hacemos una distinción entre fuerzas externas $\vec{F}_E$ e internas $\vec{F}_I$:
+\begin{equation}
+    \begin{split}
+        = \sum \vec{r}_i \times \vec{F}_E + \vec{r}_i \times \vec{F}_i = 
+        \vec{\tau }_t + \sum _{i,j} (\vec{r}_i - \vec{r}_j) \times \vec{F}_{ij}
+    \end{split}
+\end{equation}
+Por lo general, si las fuerzas son radiales, el último elemento es $0$:
+\begin{equation}
+    \begin{split}
+        \dv{L_{t}}{t} = \sum  \vec{\tau }
+    \end{split}
+\end{equation}
+\section{Energías}
+Supongamos que tenemos dos partículas siendo interactuadas entre sí, generando las siguientes
+ecuaciones:
+\begin{equation}
+    \begin{split}
+        m_{1} a_{1} &= F_{1} + F_{1,2}\\
+        m_{2} a_{2} &= F_{2} + F_{2,1}
+    \end{split}
+\end{equation}
+Podemos realizar la sustitución $F_{1,2} = -F_{2,1}$, multiplicar todo por $ \dd{r}$, y sumarlas:
+\begin{equation}
+    \begin{split}
+        m_{1} a_{1} \dd{r}_{1} +m_{2} a_{2} \dd{r}_{2} &= F_{1} \dd{r}_{1}+ F_{2} \dd{r}_{2}
+        + F_{1,2}( \dd{r}_{1} - \dd{r}_2)\\
+    \end{split}
+\end{equation}
+Vamos a desarrollar $\vec{a} \dd{\vec{r}}$:
+\begin{equation}
+    \begin{split}
+        \vec{a} \dd{\vec{r}} = \dd{\vec{r}} \dv{v}{t} = v \dd{v}
+    \end{split}
+\end{equation}
+Obteniendo así:
+\begin{equation}
+    \begin{split}
+        m_{1} v_{1} \dd{v_{1}} +m_{2} v_{2} + \dd{v_{2}} = F_{1} \dd{r}_{1}+ F_{2} \dd{r}_{2}
+        + F_{1,2}( \dd{r}_{1} - \dd{r}_2)
+    \end{split}
+\end{equation}
+Podemos integrar a ambos lados para obtener:
+\begin{equation}
+    \begin{split}
+        \Delta T_{1} + \Delta T_{2} = W_{1} + W_{2} + W_{\text{EXT}} 
+    \end{split}
+\end{equation}
+Es decir, que podemos generalizar este principio para afirmar que:
+\begin{equation}
+    \begin{split}
+        \Delta T = W_{\text{INT}} + W_{\text{EXT}} 
+    \end{split}
+\end{equation}
+Si las fuerzas internas son conservativas, obtenemos que:
+\begin{equation}
+    \begin{split}
+        \Delta E = W_{\text{EXT}}
+    \end{split}
+\end{equation}
+\section{Colisiones}
+Hay diferentes tipos de colisiones:
+\begin{itemize}
+    \item Elásticas: se conserva la energía cinética tras la colisión.
+    \item Inelástica: no se conserva.
+\end{itemize}
+Además, definimos la cantidad $Q = \Delta T$, y observamos que:
+\begin{itemize}
+    \item $Q = 0$: se conserva la energía cinética.
+    \item $Q > 0$: se ha ganado energía, colisión endoenergética.
+    \item $Q < 0$: se ha perdido energía, colisión exoenergética.
+\end{itemize}
+\section{Sólido rígido}
+Un sistema de partículas continuas con posiciones relativas constantes. En este caso,
+tenemos una distribución continua de masa:
+\begin{equation}
+    \begin{split}
+        \vec{r}_{CM} =\frac{ \int \vec{r} \dd{m}}{ \int  \dd{m}}
+        = \frac{ \int \rho \vec{r} \dd{V}}{ \int \rho  \dd{V}}
+    \end{split}
+\end{equation}
+\subsection{Rotación de un solído rígido}
+En este caso, todas las partículas tienen la misma velocidad angular $\omega $ a lo largo
+del mismo eje:
+\begin{equation}
+    \begin{split}
+        \vec{v_{i}} = \vec{\omega }\times \vec{r_{i}} = |\omega| |r_{i}| \sin \theta 
+    \end{split}
+\end{equation}
+Un diagrama rápido nos permite ver lo siguiente:
+\begin{center}
+    
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da023861377631871017] 
+\draw    (285.87,113) -- (368.53,113) ;
+%Straight Lines [id:da5768912366645089] 
+\draw    (285.87,113) -- (285.87,253.47) ;
+%Straight Lines [id:da9362620452989547] 
+\draw    (368.53,113) -- (285.87,253.47) ;
+%Shape: Arc [id:dp6275531548125002] 
+\draw  [draw opacity=0] (285.87,223.47) .. controls (290.9,223.47) and (295.65,224.71) .. (299.81,226.9) -- (285.87,253.47) -- cycle ; \draw   (285.87,223.47) .. controls (290.9,223.47) and (295.65,224.71) .. (299.81,226.9) ;  
+%Shape: Circle [id:dp3409622309110498] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (364.73,113) .. controls (364.73,110.9) and (366.43,109.2) .. (368.53,109.2) .. controls (370.63,109.2) and (372.33,110.9) .. (372.33,113) .. controls (372.33,115.1) and (370.63,116.8) .. (368.53,116.8) .. controls (366.43,116.8) and (364.73,115.1) .. (364.73,113) -- cycle ;
+
+% Text Node
+\draw (380,100.07) node [anchor=north west][inner sep=0.75pt]    {$m_{i}$};
+% Text Node
+\draw (344,177.07) node [anchor=north west][inner sep=0.75pt]    {$r_{i}$};
+% Text Node
+\draw (316,82.4) node [anchor=north west][inner sep=0.75pt]    {$R_{i}$};
+% Text Node
+\draw (290.67,198.73) node [anchor=north west][inner sep=0.75pt]    {$\theta $};
+
+
+\end{tikzpicture}
+\end{center}
+\begin{equation}
+    \begin{split}
+        \sin \theta = \frac{R_{i}}{r_{i}}
+    \end{split}
+\end{equation}
+Lo que implica que:
+\begin{equation}
+    \begin{split}
+        \vec{v_{i}}= |\omega| |r_{i}| \sin \theta = |\omega| |r_{i}|\frac{R_{i}}{r_{i}} = |\omega | |R_{i}|
+    \end{split}
+\end{equation}
+Si multiplicamos por la masa de cada partícula, obtenemos que el momento angular $L_{i}$ de
+cada partícula es:
+\begin{equation}
+    \begin{split}
+        L_{i} = m_{i} \omega R_{i}^{2}
+    \end{split}
+\end{equation}
+Para calcular el momento total, sumamos todos los momentos:
+\begin{equation}
+    \begin{split}
+        L_{T}= \sum L_{i} = \sum m_{i} \omega R_{i}^{2} = \omega \sum m_{i} R_{i}^{2}
+    \end{split}
+\end{equation}
+Este último término es el \textbf{momento de inercia}:
+\begin{equation}
+    \begin{split}
+        I = \sum m_{i}R_{i}^{2}
+    \end{split}
+\end{equation}
+Que en distribuciones continuas es:
+\begin{equation}
+    \begin{split}
+        I = \int r^2 \dd{m}= \int r^{2} \rho  \dd{V}
+    \end{split}
+\end{equation}
+Por tanto, el momento angular del sólido es:
+\begin{equation}
+    \begin{split}
+        L = \omega I
+    \end{split}
+\end{equation}
+\begin{teorema}[Teorema de Steiner o de los ejes paralelos]
+    Dados dos ejes paralelos y un sólido en rotación, la relación entre el momento de inercia
+    alrededor del centro de masa $I_{c}$ y alrededor de un eje paralelo $I'$ a una distancia $d$
+    es:
+    \begin{equation}
+        \begin{split}
+            I' = I_{c} + M_{t}d^{2}
+        \end{split}
+    \end{equation}
+\end{teorema}
+\begin{proof}
+    Tenemos el siguiente diagrama de un objeto rotando alrededor de los dos ejes:
+    \begin{center}
+        
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da6531898193555183] 
+\draw    (167,164.6) -- (54,277.6) ;
+%Straight Lines [id:da6246528418972856] 
+\draw    (540,164.6) -- (167,164.6) ;
+%Straight Lines [id:da6099367582335531] 
+\draw    (167,19.6) -- (167,164.6) ;
+%Straight Lines [id:da4820162860689021] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (385,165) -- (272,278) ;
+%Straight Lines [id:da1605885229137145] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (598,165) -- (385,165) ;
+%Straight Lines [id:da3659213855063408] 
+\draw [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ]   (385,20) -- (385,165) ;
+%Straight Lines [id:da15119634463509013] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (167,106.6) -- (386,106.6) ;
+%Shape: Circle [id:dp5309484932224788] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (400.4,238) .. controls (400.4,234.35) and (403.35,231.4) .. (407,231.4) .. controls (410.65,231.4) and (413.6,234.35) .. (413.6,238) .. controls (413.6,241.65) and (410.65,244.6) .. (407,244.6) .. controls (403.35,244.6) and (400.4,241.65) .. (400.4,238) -- cycle ;
+%Straight Lines [id:da522053039709147] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (385,165) -- (407,238) ;
+%Straight Lines [id:da788440458694861] 
+\draw  [dash pattern={on 4.5pt off 4.5pt}]  (167,164.6) -- (407,238) ;
+
+% Text Node
+\draw (145,76.4) node [anchor=north west][inner sep=0.75pt]    {$I_{c}$};
+% Text Node
+\draw (365,69.4) node [anchor=north west][inner sep=0.75pt]    {$I'$};
+% Text Node
+\draw (276,86.4) node [anchor=north west][inner sep=0.75pt]    {$d$};
+% Text Node
+\draw (412,240.4) node [anchor=north west][inner sep=0.75pt]    {$m_{i}$};
+% Text Node
+\draw (403,183.4) node [anchor=north west][inner sep=0.75pt]    {$R'_{i}$};
+% Text Node
+\draw (203,184.4) node [anchor=north west][inner sep=0.75pt]    {$R_{i}$};
+
+
+\end{tikzpicture}
+    \end{center}
+    El momento de inercia a lo largo del eje $I'$ es:
+    \begin{equation}
+        \begin{split}
+            I' = \sum m_{i} r_{i}^{2}
+        \end{split}
+    \end{equation}
+    Observando el diagrama, podemos ver que:
+    \begin{equation}
+        \begin{split}
+            R_{i}^{2} = x^{2}+y^{2}=x_{I'}^{2}+y_{I'}^{2} 
+            = x^{2}_{I}+y_{I}^{2}+2y_{i}d +d^{2} = R_{I}^{2}+2y_{i}d +d^{2}
+        \end{split}
+    \end{equation}
+    Si introducimos esto en nuestra ecuación del momento de intercia paralelo obtenemos:
+    \begin{equation}
+        \begin{split}
+            I' = \sum m_{i}(R_{I}^{2}+2y_{i}d +d^{2})
+        \end{split}
+    \end{equation}
+    El primer término $\sum m_{i} R_{i}^{2} = I_{C}$, el segundo $d^{2} \sum m_{i} = M_{t}d^{2}$.
+    Del tercer término $2d \sum m_{i} y_{Ic}$, es fácilmente reconocible que:
+    \begin{equation}
+        \begin{split}
+            Y_{CM} = \frac{\sum m_{i} y_{ic}}{\sum m_{i}} \implies \sum m_{i} y_{ic} = Y_{CM,c} M_{T}
+        \end{split}
+    \end{equation}
+    Como estamos midiendo la distancia al centro de masas desde el centro de masas:
+    \begin{equation}
+        \begin{split}
+            2d \sum m_{i} y_{Ic} = 0
+        \end{split}
+    \end{equation}
+    Obteniendo así:
+    \begin{equation}
+        \begin{split}
+            I' = I_{c} + M_{t} d^{2}
+        \end{split}
+    \end{equation}
+\end{proof}
+\section{Segunda ley de Newton para rotación}
+Partimos de que
+\begin{equation}
+    \begin{split}
+        \dv{L}{t} = \vec{\tau }
+    \end{split}
+\end{equation}
+A su vez, $\vec{L} = \vec{\omega }I$, por tanto
+\begin{equation}
+    \begin{split}
+        \dv{L}{t} = \alpha I + \omega \dot{I}
+    \end{split}
+\end{equation}
+Si la masa del objeto es constante, y la distancia al eje no cambia, $\dot{I} = 0$, por tanto:
+\begin{equation}
+    \begin{split}
+        \boxed{\vec{\tau } = I \vec{\alpha }}
+    \end{split}
+\end{equation}
+\section{Energía cinética}
+Partimos de la energía cinética de una única partícula:
+\begin{equation}
+    \begin{split}
+        T_{i} = \frac{1}{2} m_{i}v_{i}^{2} = \frac{1}{2} m_{i}(v_{CM}+v_{rel})^{2} = \frac{1}{2}m_{i}(v_{CM}^{2}+2v_{cm}v_{rel}+v_{rel}^{2})
+    \end{split}
+\end{equation}
+Ahora sumamos para obtener la energía cinética total:
+\begin{equation}
+    \begin{split}
+        T_{T} &= \sum \frac{1}{2} m_{i} v_{CM}^{2} + \sum m_{i}v_{cm}v_{rel} + \sum \frac{1}{2}m_{i}v_{rel}^{2}\\
+        &=\frac{1}{2} v_{CM}^{2} \sum m_{i} + \frac{1}{2} \omega^{2} \sum m_{i} r_{i}^{2} + v_{CM} \sum m_{i} v_{rel}\\
+        &=\frac{1}{2} v_{CM}^{2} M_{T} + \frac{1}{2} \omega^{2} I + v_{CM} \sum m_{i} v_{rel}
+    \end{split}
+\end{equation}
+Puesto que estamos midiendo la velocidad del centro de masas respecto a sí mismo, $\sum m_{i} v_{rel} = 0$, por tanto:
+\begin{equation}
+    \begin{split}
+        \boxed{T = \frac{1}{2}M v_{CM}^{2} + \frac{1}{2} \omega^{2} I}
+    \end{split}
+\end{equation}
+\end{document}

@@ -1,0 +1,136 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Wed Dec 11 2024}
+\title{Aplicaciones Lineales}
+
+\usepackage{amsmath, amsfonts}
+
+\newtheorem{defin}{Definición}
+\newtheorem{teor}{Teorema}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+Una correspondencia entre dos conjuntos:\\
+A cada elemento de $A$ le corresponde un único elemento de $B$.\\
+\begin{defin}
+    Una aplicación entre dos EV es lineal si:
+    \begin{equation}
+        \begin{split}
+            f(ku + \alpha v) = kf(u) + \alpha f(v)
+        \end{split}
+    \end{equation}
+    Además, se cumplirá que:
+    \begin{equation}
+        \begin{split}
+            f(\vec{0}) = f(0\cdot \bar{u}) = 0f(\bar{u})= \bar{0}
+        \end{split}
+    \end{equation}
+\end{defin}
+\section{Espacio Dual}
+Conjunto de aplicaciones de un EV a un cuerpo $\mathbb{K}$:
+\begin{equation}
+    \begin{split}
+        V^{*} = \{ w / V \to  \mathbb{K}, w \text{ lineal} \}
+    \end{split}
+\end{equation}
+Una A.L. siempre se puede expresar de forma matricial:
+\begin{equation}
+    \begin{split}
+        Y = AX
+    \end{split}
+\end{equation}
+Donde $Y$ son las coordenadas finales, $X$ las coordenadas originales, y $A$ la matriz asociada
+a la A.L..\\
+$A$ es de orden $m\times n$, y son las imágenes de los vectores de la base canónica.\\
+Si $B = \{ u_{1},\dots,u_{n} \}$, entonces:
+\begin{equation}
+    \begin{split}
+        A = (f(u_{1}), \dots,f(u_{n}))
+    \end{split}
+\end{equation}
+\section{Endomorfismo}
+Una aplicación lineal de un espacio sobre sí mismo.
+\begin{teor}
+    Sea $B_{c}$ la base canónica y $B'$ otra base. Sea $Y=AX$ la expresión de la aplicación respecto
+    a la base canónica y $Y'=A'X'$ respecto a $B'$
+    \begin{equation}
+        \begin{split}
+            A^{-1}=C^{-1}A = [f(B')]_{B'}
+        \end{split}
+    \end{equation}
+    Donde $C$ es la matriz de cambio de base de $B' \to B_{C}$. Esto es como si pasásemos
+    de $B'$ a $B_{c}$, aplicásemos la aplicación, y luego pusiésemos las coordenadas respecto
+    a la base $B'$.
+\end{teor}
+\section{Diagonalización de endomorfismos}
+Como $A'=C^{-1}AC$, se dice que $A'$ y $A$ son matrices semejantes con matriz de paso $C$. Dos matrices
+asociadas a un endomofrismo siempre son semejantes.\\
+Para diagonalizar un endomorfismo, buscamos la base respecto a la cual la matriz del endomorfismo es
+\textbf{diagonal}. Esta base estará formada por los \textbf{autovectores} de la aplicación.
+\begin{defin}
+    Los autovectores $\bar{u}_{i}$ de una aplicación son aquellos que cumplen que:
+    \begin{equation}
+        \begin{split}
+            A \bar{u}_{i} = \lambda_{i} \bar{u}_i / \lambda_{i} \in \mathbb{R}
+        \end{split}
+    \end{equation}
+\end{defin}
+Los coeficientes $\lambda _{i}$ que multiplican a los autovectores son los \textbf{autovalores}.\\
+Además, se cumple que:
+\begin{itemize}
+    \item Si $\bar{u}$ es un autovector de un autovalor, $\alpha \bar{u}$ también lo es.
+\end{itemize}
+Para buscar autovalores, buscamos aquellos que cumplan:
+\begin{equation}
+    \begin{split}
+        A \bar{v} &= \lambda \bar{v}\\
+        (A - I\lambda ) \vec{v} &= \vec{0}
+    \end{split}
+\end{equation}
+Las soluciones $\vec{v}$ de este sistema son el núcleo. Este forma un subespacio vectorial, denominado
+\textbf{autoespacio de $\lambda $}.
+\begin{defin}
+    El autoespacio de un autovalor $\lambda $ es el subespacio de vectores que cumplen que:
+    \begin{equation}
+        \begin{split}
+            (A - I\lambda ) \vec{v} &= \vec{0}
+        \end{split}
+    \end{equation}
+    Para que esto se cumpla para infinitos vectores, el sistema debe ser SCI, y por tanto:
+    \begin{equation}
+        \begin{split}
+            \boxed{\det (A - I\lambda) = 0}
+        \end{split}
+    \end{equation}
+\end{defin}
+\begin{defin}
+    El número de veces que aparece un autovalor en la ecuación característica es su
+    \textbf{multiplicidad algebraica} (m.a.).
+\end{defin}
+\begin{defin}
+    La dimensión del autoespacio de cada autovalor $H_{\lambda }$ es la \textbf{multiplicidad geométrica}
+    de dicho autovalor.
+\end{defin}
+Para cualquier aplicación, se cumple que:
+\begin{equation}
+    \begin{split}
+        \boxed{1 \le m.g. \le m.a. \le n}
+    \end{split}
+\end{equation}
+Donde $n$ es la dimensión del espacio del endomorfismo.\\
+Para que un endomorfismo sea diagonalizable, se debe cumplir que:
+\begin{equation}
+    \begin{split}
+        m.g. = m.a.
+    \end{split}
+\end{equation}
+Podemos unir ambas propiedades para obtener que:
+\begin{itemize}
+    \item Si un autovalor tiene $m.a. = 1 \implies m.g. = 1$
+    \item Si todos los autovalores son simples $(m.a.=1)$, el endomorfismo es diagonalizable.
+    \item La matriz que representa la aplicación estará formada por los autovalores, en el mismo orden que estén los
+    autovectores en la base elegida.
+\end{itemize}
+\end{document}

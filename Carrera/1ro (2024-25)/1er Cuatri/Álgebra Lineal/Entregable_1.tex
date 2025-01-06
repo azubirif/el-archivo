@@ -1,0 +1,183 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Fri Nov 01 2024}
+\title{Entregable 1}
+
+\usepackage{amsmath, amsfonts}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+\section{Ejercicio 1}
+Sea $G = {e, a, b, c}$ un conjunto con la operación $\star$ definida por la siguiente tabla, donde $e$ representa
+el elemento identidad:
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{l|llll}
+    $\star$ & $e$ & $a$ & $b$ & $c$ \\ \hline
+    $e$ & $e$ & $a$ & $b$ &  $c$\\
+    $a$ & $a$ & $e$ & $c$ & $b$ \\
+    $b$ & $b$ & $c$ & $e$ & $a$ \\
+    $c$ & $c$ & $b$ & $a$ & $e$
+    \end{tabular}
+    \end{table}
+\subsection{Determina si $(G,\star)$ es un grupo}
+Vamos a desarrollar las condiciones que debe cumplir cualquier grupo:
+\begin{enumerate}
+    \item $\star$ es asociativa\\
+    Esto se puede comprobar realizando dos operaciones:
+    \begin{align}
+        (a\star b)\star c = c\star c = e
+    \end{align}
+    \begin{align}
+    a \star (b\star c) = a\star a = e
+    \end{align}
+    Como ambos resultados son iguales, podemos confirmar que es asociativa.
+    \item Existe el elemento neutro respecto a $\star$\\
+    Esto se puede comprobar observando la tabla, donde el elemento neutro es $e$:
+    \begin{align}
+        a\star e &= a\\ b \star e &= b \\ c \star e &= c
+    \end{align}
+    \item Existe el inverso para cada elemento\\
+    Gracias a la tabla, se observa rápidamente que el inverso de cada elemento es el propio elemento:
+    \begin{align}
+    a\star a &= e\\ b\star b &= e \\c\star c &= e
+    \end{align}
+\end{enumerate}
+\subsection{$(G,\star)$ es abeliano}
+Esto es algo fácilmente observable, viendo que la tabla es simétrica respecto a la diagonal:
+\begin{align}
+    &a\star b = b\star a = c\\
+    &a \star c = c\star a = b\\
+    &c \star b = b \star c = a
+\end{align}
+\pagebreak
+\subsection{Determina si $H=\{ e,a \}$ es un subgrupo de $G$.}
+Estos elementos forman la tabla
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{l|ll}
+    $\star$ & e & a \\ \hline
+    e                    & e & a \\
+    a                    & a & e
+    \end{tabular}
+\end{table}\\
+De donde podemos comprobar que es
+\begin{itemize}
+    \item Asociativo: $(a\star e) \star a = a\star a = e$
+    \item Existe el neutro, siendo $e$
+    \item Existe el invero: $a\star a = e\star e = e$
+\end{itemize}
+\pagebreak
+\section{Ejercicio 2}
+Si cierto vector $\vec{u}$ se puede expresar como combinación lineal de los vectores $\vec{v}_{1}$,
+$\vec{v}_{2}$, $\vec{v}_{3}$ y, éstos satisfacen:
+\begin{itemize}
+    \item $\vec{v}_{1} = \vec{w}_{1}+4 \vec{w}_{2}- \vec{w}_{3}$
+    \item $\vec{v}_{2} = \vec{w}_{2} - \vec{w}_{3}$
+    \item $\vec{v}_{3} = -\vec{w}_{1} - \vec{w}_{2} + \vec{w}_{3}$
+\end{itemize}
+\subsection{Expresa $\vec{u}$ como CL de $\vec{w}_{1}$, $\vec{w}_{2}$, y $\vec{w}_{3}$}
+\begin{equation}
+    \begin{split}
+        \bar{u} &= a \vec{v}_{1} + b \vec{v}_{2} + c \vec{v}_{3}\\ &= a(\vec{w}_{1}+4 \vec{w}_{2}- \vec{w}_{3})
+        + b(\vec{w}_{2} - \vec{w}_{3}) + c(-\vec{w}_{1} - \vec{w}_{2} + \vec{w}_{3})\\
+        &= \vec{w}_{1}(a-c) +\vec{w}_{2}(4a+b-c) +\vec{w}_{3} (-a-b+c)
+    \end{split}
+\end{equation}
+\subsection{Si $\vec{v}_{1}$, $\vec{v}_{2}$, $\vec{v}_{3}$ son LI, ¿qué podemos decir de $\vec{w}_{1}$, $\vec{w}_{2}$, y $\vec{w}_{3}$?}
+Si $\vec{v}_{1}$, $\vec{v}_{2}$, $\vec{v}_{3}$ son LI, significa que la única solución al sistema
+\begin{equation}
+    \begin{split}
+        a \vec{v}_{1} + b \vec{v}_{2} + c \vec{v}_{3} = \vec{0}
+    \end{split}
+\end{equation}
+Es $a=b=c=0$.\\
+Lo que implica que el sistema
+\begin{equation}
+    \begin{split}
+        S = \{ \vec{v}_{1}, \vec{v}_{2}, \vec{v}_{3} \} 
+        = \{ \vec{w}_{1}+4 \vec{w}_{2}- \vec{w}_{3}, \vec{w}_{2} - \vec{w}_{3}, -\vec{w}_{1} - \vec{w}_{2} + \vec{w}_{3} \}
+    \end{split}
+\end{equation}
+Es un sistema libre, lo que implica que
+\begin{equation}
+    \begin{split}
+        <S> = \vec{0} = \vec{w}_{1}(a-c) +\vec{w}_{2}(4a+b-c) +\vec{w}_{3} (-a-b+c) \implies a=b=c=0
+    \end{split}
+\end{equation}
+La variedad lineal generada por $\vec{w}_{1}$, $\vec{w}_{2}$, y $\vec{w}_{3}$ es
+\begin{equation}
+    \begin{split}
+        a \vec{w}_{1} + b \vec{w}_{2} + c \vec{w}_{3}
+    \end{split}
+\end{equation}
+Si son LI, entonces la única solución a
+\begin{equation}
+    \begin{split}
+        a \vec{w}_{1} + b \vec{w}_{2} + c \vec{w}_{3} = \vec{0}
+    \end{split}
+\end{equation}
+es $a=b=c=0$. Podemos igualarlo a la variedad lineal generada por $\vec{v}_{1}$, $\vec{v}_{2}$, $\vec{v}_{3}$ ya que
+si son LI, tendrán las mismas soluciones al igualarlo a $\vec{0}$.
+\begin{equation}
+    \begin{split}
+        a \vec{w}_{1} + b \vec{w}_{2} + c \vec{w}_{3} = \vec{w}_{1}(a-c) +\vec{w}_{2}(4a+b-c) +\vec{w}_{3} (-a-b+c)
+    \end{split}
+\end{equation}
+Esto genera el sistema
+\begin{equation}
+    \begin{split}
+        a&=a-c\\
+        b &= 4a+b-c\\
+        c &= -a-b+c
+    \end{split}
+\end{equation}
+Solucionando el sistema podemos obtener que $a=b=c=0$, que implica que los vectores son LI.
+\pagebreak
+\section{Ejercicio 3}
+Determina los valores de $k$ para los cuales el conjunto de vectores $S = \{1 + x, x + x^{2} , 2 - x + kx^{2}\}$
+forma un sistema libre o ligado en los siguientes casos:\\
+$S$ no es base en ninguno de los casos, ya que tiene $3$ elementos, y para $\mathbb{R}_{3}[x]$ debe tener $4$, y
+para $\mathbb{R}_{4}[x]$ debe tener 5.\\
+Tampoco puede ser sistema generador en ninguno de los casos, ya que $x^{3} \not \in S \wedge x^{4} \not \in S$.\\
+Para ver si $S$ es libre o ligado, podemos analizar el sistema generado al igualar su variedad lineal a $\vec{0}$:
+\begin{equation}
+    \begin{split}
+        <S> = a(1+x) +b(x+x^{2}) +c(2-x+kx^{2}) = x^{2}(a+b-c) +x(b+kc) +a+2c = 0
+    \end{split}
+\end{equation}
+Esto genera el sistema
+\begin{equation}
+    \begin{split}
+        \left.\begin{matrix}
+            a+b-c=0 \\
+            b+kc=0 \\
+            a+2c=0
+            \end{matrix}\right\}A' = \begin{pmatrix}
+            1 & 1 & -1 & | & 0 \\
+            0 & 1 & k & | & 0 \\
+            1 & 0 & 2 & | & 0 \\
+            \end{pmatrix}
+    \end{split}
+\end{equation}
+Si calculamos el determinante, obtenemos que:
+\begin{equation}
+    \begin{split}
+        |A| = \begin{vmatrix}
+            1 & 1 & -1\\
+            0 & 1 & k\\
+            1 & 0 & 2
+        \end{vmatrix} =2+k -(-1)=3+k
+    \end{split}
+\end{equation}
+Si $|A|=0 \implies 3+k =0 \implies k = -3$. Por tanto
+\begin{equation}
+    \begin{split}
+        k \neq -3 \implies rg(A) = 3 \implies \text{S es libre}\\
+        k = 3 \implies rg(A) = 2 \implies \text{S es ligado}
+    \end{split}
+\end{equation}
+Esto se cumplirá tanto para $\mathbb{R}_{3}[x]$ como para $\mathbb{R}_{4}[x]$.
+\end{document}

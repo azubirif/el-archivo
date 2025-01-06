@@ -1,0 +1,84 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Mon Oct 14 2024}
+\title{Estructuras Álgebraicas}
+
+\usepackage{amsmath, amsthm, amsfonts}
+
+\newtheorem{caracteristica}{Definición}
+\newtheorem{caracteristica primo}{Teorema}
+
+\begin{document}
+\maketitle
+\section{Grupos}
+Se define un grupo siguiente la siguiente notación
+\begin{equation}
+    \begin{split}
+        (\mathbb{K}, +)
+    \end{split}
+\end{equation}
+Donde $\mathbb{K}$ es un conjunto y $+$ es una operación entre elementos de dicho conjunto (no 
+necesáriamente la suma). Estos elementos forman un grupo sí:
+\begin{itemize}
+    \item La operación es asociativa: $(a+b)+c=a+(b+c)$.
+    \item Existe el elemento neutro con respecto a dicha operación en el conjunto:
+    $\exists e \in \mathbb{K} : x+e=x \forall x \in \mathbb{K}$.
+    \item Existe el inverso para todo elemento: $\forall x \in \mathbb{K} \exists x^{-1} : x+x^{-1} = e$ 
+\end{itemize}
+Además, este grupo puede ser \textbf{abeliano} si la operación es \textbf{conmutativa}: $a+b=b+a$.
+\section{Anillos}
+Un anillo está formado por un conjunto $\mathbb{K}$ y dos operaciones $+, \cdot $. Las condiciones
+para ser un anillo son:
+\begin{itemize}
+    \item $(\mathbb{K}, +)$ forman un grupo abeliano.
+    \item $ \cdot $ es una operación asociativa.
+    \item $ \cdot $ es distributiva con respecto a $+$.
+\end{itemize}
+Además, este anillo puede ser:
+\begin{itemize}
+    \item Conmutativo si $ \cdot $ es conmutativa.
+    \item Unitario si existe el elemento unitario respecto a $ \cdot $: $\exists u \in \mathbb{K} :
+    u \cdot x= x \cdot u = x\forall x \in \mathbb{K}$. 
+\end{itemize}
+\section{Cuerpos}
+Un anillo $(\mathbb{K}; +, \cdot )$ será un cuerpo si:
+\begin{itemize}
+    \item Es un anillo unitario.
+    \item Existe un único elemento inverso respecto a $ \cdot $ para cada elemento: $\forall x \in
+    \mathbb{K} \exists \! x^{-1} \in \mathbb{K} : x \cdot  x^{-1} = u$ 
+\end{itemize}
+Sin embargo, podemos resumir estas condiciones en:
+\begin{itemize}
+    \item $(\mathbb{K}; + )$ es un grupo abeliano.
+    \item $(\mathbb{K} \setminus \{ 0 \}; \cdot )$ es un grupo abeliano (sin el $0$ porque no tiene inverso).
+    \item $ \cdot $ es distributivo respecto a $+$. 
+\end{itemize}
+\section{Cuerpos de módulo $n$}
+Estos cuerpos se caracterizan por la siguiente notación:
+\begin{equation}
+    \begin{split}
+        \mathbb{K}_n
+    \end{split}
+\end{equation}
+Donde $n$ es el número de elementos del cuerpo. Hablando vulgarmente, estos cuerpos se comportan como
+un reloj respecto a sus operaciones. Por ejemplo, para $\mathbb{K}_2$, teniendo los elementos 
+$\{0, 1 \}$, la suma de $1+1 \neq 2$, sino que $1+1=0$. Sería el equivalente a "dar la vuelta".
+\begin{caracteristica}
+    Si $\exists n \in \mathbb{Z} : n\cdot 1=0$, se dice que tiene característica, $m$, siendo
+    $m$ el menor entero $/ m\cdot 1=0$.
+\end{caracteristica}
+\begin{caracteristica primo}
+    Si el subíndice $n$ no es primo, entonces no es un cuerpo.
+\end{caracteristica primo}
+\begin{proof}[Demostración]
+    Supongamos que $n=p\cdot q / p,q \neq 1 \wedge p,q<n$. Entonces
+    \begin{equation}
+        \begin{split}
+            n\cdot 1=(p\cdot q)\cdot 1=(p\cdot 1)(q\cdot 1)=0 \implies p\cdot 1=0 \vee q\cdot 1=0
+        \end{split}
+    \end{equation}
+    Lo que implica que la característica es $p$ o $q$. \#\\
+    Por tanto $n$ debe ser primo.\\
+    QED
+\end{proof}
+\end{document}

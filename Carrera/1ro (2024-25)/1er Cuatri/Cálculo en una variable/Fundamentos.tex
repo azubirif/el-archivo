@@ -1,0 +1,43 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\date{Thu Nov 21 2024}
+\title{Fundamentos}
+
+\usepackage{amsmath, amsthm, amsfonts}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+
+\section{Conjuntos}
+\subsection{Cota superior}
+Sea $A$ un subconjunto de $\mathbb{R}$. Se dice que $A$ está acotado superiormente si existe un
+subconjunto $M \subset \mathbb{R}:$
+\begin{equation}
+    \begin{split}
+        \forall k \in M, x \in A, k \geq x
+    \end{split}
+\end{equation}
+Es decir, que cualquier elemento perteneciente a $M$ es mayor que cualquier elemento de $A$.
+\subsection{Cota inferior}
+Similarmente, se dice que un subconjunto $A$ está acotado inferiormente si:
+\begin{equation}
+    \begin{split}
+        \forall k \in M, x \in A, x \geq k
+    \end{split}
+\end{equation}
+\begin{proof}[Supremo]
+    El supremo de un subconjunto $A$ es el valor más pequeño del conjunto de cotas superiores.
+\end{proof}
+\begin{proof}[Ínfimo]
+    El ínfimo de un subconjunto $A$ es el valor más grande del conjunto de cotas inferiores.
+\end{proof}
+\begin{proof}[Máximo]
+    Es el valor más pequeño del conjunto que \textbf{también} pertenece al conjunto de
+    cotas superiores.
+\end{proof}
+\begin{proof}[Mínimo]
+    Es el valor más grande del conjunto que, además, pertenece al conjunto de cotas inferiores.
+\end{proof}
+\end{document}
