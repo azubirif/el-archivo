@@ -67,6 +67,32 @@ head(cd2, 5)
 Empezamos con un análisis descriptivo:
 ```{r}
 boxplot(cd2$price ~ cd2$origin, xlab="Origen", ylab="Precio")
-# 1: America, 2: Europa, 3: Japón
+# 1: America
+# 2: Europa 
+# 3: Japón
 ```
+Vamos a ver si la diferencia de precios es significativa.
+Tenemos que crear tres variables binarias, cada una representando el origen del vehículo.
+```{r}
+cd2$o2 = (cd2$origin==2)
+cd2$o3 = (cd2$origin==3)
+m = lm(price ~ mpg + displace + accel + weight + o2 + o3, data = cd2)
+summary(m)
+```
+Aquí podemos ver que todas las variables son significativas.
+Vamos a hacer la diagnosis del modelo:
+```{r}
+par(mfrow=c(2,2))
+plot(m)
+```
+Como se puede observar, es lineal, normal, y homocedástica.
 
+Para hacer el test de normalidad de los residuos:
+```{r}
+library(nortest)
+pearson.test(m$residuals)
+```
+Podemos verlo gráficamente:
+```{r}
+hist(m$residuals, xlab="Residuos", ylab="Densidad")
+```
