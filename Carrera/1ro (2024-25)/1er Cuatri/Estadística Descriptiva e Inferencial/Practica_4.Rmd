@@ -1,0 +1,72 @@
+---
+title: "Practica 4"
+output: pdf_document
+date: "2025-01-08"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(readxl)
+CarData = read_excel("~/Descargas/CarData.xlsx")
+head(CarData, 5)
+```
+
+# Gráficos
+Para ver las relaciones entre variables:
+```{r}
+plot(CarData)
+```
+En el eje $x$ tenemos el precio, y en el $y$ tenemos el resto de las variables.
+Como tenemos un par de datos atípicos, vamos a eliminar los que superen los $10000\$$.
+```{r}
+CarData = CarData[CarData$price<10000,]
+```
+# Modelo
+```{r}
+m = lm(price ~ mpg + cylinders + displace + horsepower + accel + weight, data=CarData)
+summary(m)
+```
+Este modelo tiene una $R^2=0.2309$. La variable $cylinders$ tiene el $p-$valor más alto, por lo que la descartamos:
+```{r}
+m = lm(price ~ mpg + displace + horsepower + accel + weight, data=CarData)
+summary(m)
+```
+$horsepower$ y $accel$ no son significativas, por lo que podemos descartar $horsepower$
+```{r}
+m = lm(price ~ mpg + displace + accel + weight, data=CarData)
+summary(m)
+```
+Ahora todas las variables son significativas. Con esto, podemos estimar el precio de un coche. Debido a la $R^2$, este modelo solo puede explicar el $16.72\%$ de los precios.
+
+# Diagnosis del modelo
+```{r}
+par(mfrow=c(2,2))
+plot(m)
+```
+- $\verb|Residuals vs Fitted|$: (Linealidad) Observamos la linealidad. Debe ser aleatorio.
+- $\verb|Q-Q Residuals|$: (Normalidad) Muestra los cuantiles de una distribución normal. Debe seguir una línea.
+- $\verb|Scale-Location|$: (Homocedasticidad) Gráfico de residuos. Debe ser aleatorio.
+- $\verb|Residuals vs Leverage|$: Los residuos que tienen mucha influencia.
+Por tanto, nuestro modelo cumple las hipótesis.
+```{r}
+m
+```
+Con este modelo, deducimos que:
+- El número de cilindros y de caballos no afecta.
+- Los coches que menos consumen son más caros.
+Vamos a intentar mejorar el modelo introduciendo la variable $origen$.
+
+```{r}
+cd2 = read_excel("~/Descargas/CarData2.xlsx")
+cd2 = cd2[cd2$price<10000,]
+head(cd2, 5)
+```
+Empezamos con un análisis descriptivo:
+```{r}
+boxplot(cd2$price ~ cd2$origin, xlab="Origen", ylab="Precio")
+# 1: America, 2: Europa, 3: Japón
+```
+
