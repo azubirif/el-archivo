@@ -1,0 +1,81 @@
+---
+title: "Práctica 5"
+author: "Alejandro Zubiri"
+date: "2025-01-10"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Cargamos los datos
+```{r}
+library(readxl)
+p = read_excel("~/Descargas/Pares.xlsx")
+```
+Queremos hacer un análisis de regresión. Vamos a analizar las variables:
+```{r}
+plot(p$X1, p$Y1)
+```
+Parece que tienen una relación lineal.
+```{r}
+plot(p$X2, p$Y2)
+```
+Debido a que parece una función exponencial:
+```{r}
+plot(p$X2, log(p$Y2))
+```
+Observamos el resto de las variables:
+```{r}
+plot(p$X3, p$Y3)
+```
+Parece una función de raíz:
+```{r}
+plot(p$X3, (p$Y3)^2)
+```
+Ahora es mucho más lineal, pero no es homocedástico.
+```{r}
+plot(log(p$X3),p$Y3)
+```
+
+```{r}
+plot(p$X4, p$Y4)
+```
+Esto no es lineal ni homocedástico.
+```{r}
+plot(log(p$X4), log(p$Y4))
+```
+
+```{r}
+plot(p$X5, p$Y5)
+```
+```{r}
+plot((p$X5), sqrt(p$Y5))
+```
+A por los últimos pares:
+```{r}
+plot((p$X6), (p$Y6))
+```
+```{r}
+plot((p$X6), 1/(p$Y6))
+```
+Vamos a hacer cada regresión:
+```{r}
+m1 = lm(p$Y1 ~ p$X1)
+m2 = lm(log(p$Y2) ~ p$X2)
+m3 = lm(p$Y3 ~ log(p$X3))
+m4 = lm(log(p$Y4) ~ log(p$X4))
+m5 = lm(sqrt(p$Y5) ~ p$X5)
+m6 = lm(1/p$Y6 ~ p$X6)
+```
+
+```{r}
+m1
+m2
+m3
+m4
+m5
+m6
+```
+Si quisiéramos realizar predicciones, tendríamos que deshacer el cambio posteriormente.
+
