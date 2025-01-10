@@ -1,0 +1,90 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\title{Interpolación Polinómica}
+
+\usepackage{amsmath, physics, amsthm, amsfonts}
+
+\newtheorem{defi}{Definición}
+\newtheorem{teorema}{Teorema}
+
+\begin{document}
+\maketitle
+\section{Joseph-Louis Lagrange}
+El físico y matemático definió que, dados $n+1$ puntos, y sabiendo sus imágenes, queremos un polinomio de grado $\leq n$ que proporcione dichos valores.
+\begin{defi}
+	Definimos los puntos dados como \textbf{nodos de interpolación}.
+\end{defi}
+\section{Método de los coeficientes indeterminados}
+Para ello, vamos a definir $n$ ecuaciones:
+\begin{equation}
+	\begin{split}
+		a_0 +a_1x_1+\dots+a_nx_1^n&=f(x_1)\\
+		a_0+a_1x_2+\dots + a_nx_2^n &= f(x_2)\\
+		\dots\\
+		a_0+a_1x_n\dots a_nx_n^n &= f(x_n)\\
+	\end{split}
+\end{equation}
+\section{Polinomio interpolador de Lagrange}
+\begin{defi}
+	Definimos como $L_i(x)$ el polinomio de grado $n$ a las bases polinómicas de Lagrange.
+	\begin{equation}
+		\begin{split}
+			L_i(x)= \prod_{j=0, j \neq i}^n \frac{x-x_i}{x_i-x_j}
+		\end{split}
+	\end{equation}
+\end{defi}
+Ahora, definimos el polinomio de Lagrange como:
+\begin{equation}
+	\begin{split}
+		P(x)=\sum_{i=0}^n f(x_i)L_i(x)
+	\end{split}
+\end{equation}
+\section{Cotas de error}
+Son la diferencia (error) entre $f(x)$ (la función real) y $P(x)$
+(el polinomio).
+\begin{teorema}
+	Sea $f$ con $n > 0$ derivadas continuas en $[a,b]/\exists f^{n+1)}(x)$ en $(a,b)$ y sean $x_0, x_1,\dots,x_n \in [a,b]$ y 
+	$x_i \neq x_j$ y $P(x)$ el polinomio interpolador de esos puntos.
+	Para cada $x \in [a,b] \exists \xi / min(x_0,\dots,x_n) < \xi < max(x_0,\dots,x_n)/$
+	\begin{equation}
+		\begin{split}
+			f(x)-P(x) = \frac{(x-x_0)(x-x_1)\dots(x-x_n)}{(n+1)!}f^{n+1)}(\xi)
+		\end{split}
+	\end{equation}
+\end{teorema}
+\begin{proof}[Demostración]
+	$x \in [a,b]$ si $\exists n \geq i \geq 0, x_{i} = x \implies $ se cumple siempre (ya que hemos definido el polinomio como tal).
+	Si $x \neq x_{i} \forall i \in \mathbb{N} \implies
+	M(x) = \frac{f(x)-P(x)}{(x-x_{0})\dots(x-x_{n)}}$
+	\begin{equation}
+		\begin{split}
+			\exists \xi \in [a,b] / f^{n+1)}(\xi)=M(n+1)!
+		\end{split}
+	\end{equation}
+	Sea $g(t)=f(t)-P(t) - M(t-x_{0})\dots (t-x_{n})$
+	\begin{equation}
+		\begin{split}
+			g^{n+1)}=f^{n+1)}(t)-P^{n+1)}(t)-M(n+1)!
+		\end{split}
+	\end{equation}
+	Como el grado de $P(t)$ es $\leq n$, esta derivada es $0$.
+	\begin{equation}
+		\begin{split}
+			= f^{n+1)}-M(n+1)!
+		\end{split}
+	\end{equation}
+	Ahora queremos saber si $\exists t \in[a,b] / g^{n+1)}(t)=0$\\
+	Si $x=t$:
+	\begin{equation}
+		\begin{split}
+			g(t)&=f(t)-P(t)- \frac{f(t)-P(t)}{(t-x_{0})\dots(t-x_{n})}
+			(t-x_{0})\dots(t-x_{n})\\
+			    &=0
+		\end{split}
+	\end{equation}
+	Por otro lado, $g(t)=0 \implies x=x_{0},x_{n}$, es decir, los nodos.\\
+	Por tanto, $g(t)$ tiene $n+2$ raíces distintas, y $g'(t)$ tiene $n+1$ raíces,
+	así que $g^{n+1)}(t)$ tiene una raíz. Hemos llegado a la conclusión deseada. 
+\end{proof}
+
+\end{document}

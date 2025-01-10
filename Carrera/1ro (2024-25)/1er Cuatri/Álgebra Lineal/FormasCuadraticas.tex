@@ -1,0 +1,82 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\title{Formas Cuadráticas}
+
+\usepackage{amsmath, amsfonts, amsthm}
+
+\newtheorem{defi}{Definición}
+
+\begin{document}
+\maketitle
+Una forma cuadrática es una función $Q: \mathbb{R}^{n} \to \mathbb{R} /
+Q = \sum_{i} \sum_{j}a_{ij} \in \mathbb{R}$ con términos de grado $2$. Un ejemplo es:
+\begin{equation}
+	\begin{split}
+		Q: \mathbb{R}^{2} \to \mathbb{R} / Q(x,y)=x^{2}-y^{2}+3xy
+	\end{split}
+\end{equation}
+\section{Matriz asociada}
+Sea $Q$ una forma cuadrática y $B_{c}$ la base canónica de $\mathbb{R}^{n}$. Existe
+una matriz simétrica de orden $n$ tal que:
+\begin{equation}
+	\begin{split}
+		Q(\vec{v}) = \vec{v}^{T}A \vec{v}
+	\end{split}
+\end{equation}
+Donde $\vec{v}$ son las coordenadas de un vector de $\mathbb{B}_{c}$. La matriz
+$A$ es la matriz asociada.\\
+Para calcular esta matriz, a cada variable le corresponde una fila y columna
+(a $x$ le corresponde la primera fila y colunma, a $y$ la segunda fila y colunma, etc).
+\begin{itemize}
+	\item Los elementos de la diagonal corresponden a los coeficientes de variables
+		al cuadrado $(x_{ii}^{2}$.
+	\item El resto de coeficientes son donde cortan cada variable, y son la mitad
+		del coeficiente que los acompaña.
+\end{itemize}
+\section{Signo}
+Una forma cuadrática será:
+\begin{itemize}
+	\item Nula si $Q=0 \forall \vec{v}$.
+	\item Definida positiva si $Q > 0 \forall \vec{v}$.
+	\item Semidefinida positiva si $Q \geq 0 \forall \vec{v}$.
+	\item Definida negativa si $Q < 0 \forall \vec{v}$.
+	\item Semidefinida negativa si $Q \leq 0 \forall \vec{v}$.
+	\item Indefinida si $Q$ alcanza todo tipo de valores. 
+\end{itemize}
+\subsection{Cálculo del signo}
+\subsubsection{Por autovalores}
+Sacando los autovalores $\lambda$ de la matriz asociada:
+\begin{itemize}
+	\item $Q$ es DP si $\lambda_{i} > 0 \forall i$
+	\item $Q$ es SDP si $\lambda_{i} \geq 0 \forall i$
+	\item $Q$ es DN si $\lambda_{i} < 0 \forall i$
+	\item $Q$ es SDN si $\lambda_{i} \leq 0 \forall i$
+	\item $Q$ es IND si $\lambda_{i}$ toma tanto valores
+		positivos como negativos.
+\end{itemize}
+\subsubsection{Por la matriz asociada}
+Denotamos por $\Delta_{k}$ el $k-$ésimo menor principal de la
+matriz asociada. Un menor principal siempre contiene el primer
+elemento.
+\begin{itemize}
+	\item DP: $\Delta_{k} > 0 \forall k$
+	\item DN: $\Delta_{k} < 0 \forall k$
+	\item Si $\Delta_{n} \neq 0$ y no estamos en los
+		casos anteriores, $Q$ es IND.
+	\item $\Delta_{n}=0$ y $\Delta_{k}>0$, es SDP.
+	\item $\Delta_{n}=0$ y $(-1)^{k}\Delta_{k} >0$, es SDN.  
+\end{itemize}
+\section{Cambio de base}
+Sea $A'$ la matriz respecto a $\mathbb{B}'$.
+\begin{equation}
+	\begin{split}
+		A'=(\mathbb{B}')^{T}A \mathbb{B}'
+	\end{split}
+\end{equation}
+Y, sea $x'=[u]_{B'}$
+\begin{equation}
+	\begin{split}
+		Q(u)=(x')^{T}A'X'
+	\end{split}
+\end{equation}
+\end{document}
