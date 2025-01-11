@@ -1,0 +1,130 @@
+---
+title: "Trabajo Estadística"
+author: "Alejandro Zubiri Funes"
+date: "2024-12-21"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+Cargamos la librería para el modelo de regresión:
+```{r}
+library(rlang)
+library(readxl)
+library(summarytools)
+DatosProyectoModificados = read_excel("~/Documentos/GitHub/el-archivo/Carrera/1ro (2024-25)/1er Cuatri/Estadística Descriptiva e Inferencial/Proyecto/DatosProyectoModificados.xlsx")
+```
+Preparamos las variables:
+```{r}
+price = as.numeric(DatosProyectoModificados$Price_euros)
+org = format(DatosProyectoModificados$Company)
+inch = as.numeric(DatosProyectoModificados$Inches)
+ram = as.numeric(DatosProyectoModificados$Ram)
+cpu = format(DatosProyectoModificados$CPU_company)
+gpu = format(DatosProyectoModificados$GPU_company)
+```
+# Estudio de correlación
+Realizamos el coeficiente de correlación entre las diferentes variables y la principal:
+```{r}
+corr_inch = cor(price, inch)
+corr_ram = cor(price, ram)
+```
+
+
+# Estudio descriptivo
+Realizamos un histograma con los precios:
+```{r}
+hist(price, xlab = "Precio", ylab = "Frecuencia", breaks = c(8))
+```
+Podemos ver que el gráfico presenta bastante asimetría.
+Analizando la media y la varianza:
+```{r}
+mu = mean(price)
+sigma = var(price)
+coe_var = sqrt(sigma) / mu
+```
+Obteniendo una media de $\bar{x}=$ `r mu` y varianza de $S^2=$ `r sigma`.
+Si calculamos el coeficiente de variación para estudiar la representatividad de la media, obtenemos que este es $CV = $ `r coe_var`, por lo que la media no es demasiado representativa.
+```{r}
+descr(price)
+```
+
+También podemos realizar el diagrama de caja:
+```{r}
+par(mfrow=c(2,2))
+boxplot(price, main="Precio")
+boxplot(ram, main ="Memoria Ram")
+boxplot(inch, main ="Tamaño pantalla")
+```
+Se pueden observar varios datos atípicos, además de cierta asimetría en los precios. Si analizamos la concentración, obtenemos un índice de gini de $I_G=0.2748$
+
+# Regresión múltiple
+Creamos el modelo
+Primero, preparamos las variables cualitativas. En este caso, tenemos la compañía (Apple, Dell, HP), la marca de la CPU (AMD, Intel), y la compañía de la GPU (AMD, Intel, Nvidia). Vamos a definir la compañía base como 'Dell', la CPU base como 'Intel', y la GPU base como 'Nvidia'.
+```{r}
+# Compañía
+o2 = org=="Apple" # Marca Apple
+o3 = org=="Dell" # Marca Dell
+
+# CPU
+c2 = cpu=="AMD" # Marca AMD
+
+# GPU
+g2 = gpu=="AMD" # Marca AMD
+g3 = gpu=="Intel" # Marca Intel
+```
+Y ahora creamos el modelo:
+```{r}
+m1 = lm(price ~ inch + ram + o2 + o3 + c2 + g2 + g3, data = dpm)
+summary(m1)
+```
+Hemos encontrado variables que tienen correlación entre sí, por lo que vamos a analizar cuales son y a eliminarlas del modelo:
+```{r}
+m2 = lm(price ~ inch + ram + o2, data = dpm)
+summary(m2)
+```
+Con esto, una variable no es significativa. Si eliminamos `o2`:
+```{r}
+m3 <- lm(price ~ inch + ram, data = dpm)
+summary(m3)
+```
+Vemos que todas las variables son significativas, y podemos pasar a las hipótesis del modelo.
+```{r}
+plot(m3)
+```
+- Linealidad: se puede observar en el primer diagrama bastante aleatoriedad, por lo que cumple esta hipótesis.
+- Normalidad: algunos puntos se alejan bastante de la lína, por lo que no podemos asumir que sea normal.
+- Homocedasticidad: el gráfico de residuos también presenta bastante aleatoriedad, ya que no termina de asemejarse a una línea.
+```{r}
+hist(m3$residuals)
+```
+Claramente no sigue una distribución normal, por lo que el modelo no cumple todas las hipótesis.
+```{r}
+plot(m3$residuals)
+```
+Debido a que no cumple la hipótesis de normalidad, vamos a transformar los datos hasta que lo cumpla
+```{r}
+library(nortest)
+m3 = lm(log(price) ~ log(inch) + log(ram), data = dpm)
+hist(m3$residuals)
+pearson.test(m3$residuals)
+```
+
+```{r}
+summary(m3)
+```
+```{r}
+m3 = lm(log(price) ~ log(inch) + log(ram), data = dpm)
+summary(m3)
+```
+Este modelo cumple con las hipótesis, y ahor apodemos trabajar con él.
+```{r}
+par(mfrow=c(2,2))
+plot(m3)
+```
+```{r}
+library(car)
+durbinWatsonTest(m3)
+```
+
