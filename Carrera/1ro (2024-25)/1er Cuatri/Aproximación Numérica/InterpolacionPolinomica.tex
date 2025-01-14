@@ -86,5 +86,58 @@ Son la diferencia (error) entre $f(x)$ (la función real) y $P(x)$
 	Por tanto, $g(t)$ tiene $n+2$ raíces distintas, y $g'(t)$ tiene $n+1$ raíces,
 	así que $g^{n+1)}(t)$ tiene una raíz. Hemos llegado a la conclusión deseada. 
 \end{proof}
-
+\section{Método de Newton}
+Vamos a empezar definiendo un $P_{0} / \delta (P_{0}) \leq 0 / P_{0}(x)= f(x_{0}) \forall x$. Luego
+\begin{equation}
+	\begin{split}
+		P_{1}(x) / \delta(P_{1}) \leq 1 / P_{1}(x_{0})=f(x_{0}), P_{1}(x_{1})= f(x_{1})
+	\end{split}
+\end{equation}
+Y así hasta
+\begin{equation}
+	\begin{split}
+		P_{n}(x) / \delta(P_{n}(x)) \leq n / P_{n}(x_{0}) = f(x_{0}),P_{n}(x_{1})=f(x_{1}),\dots P_{n}(x_{n})=f(x_{n})
+	\end{split}
+\end{equation}
+\subsection{Construcción}
+Tenemos que $P_{0}(x)=f(x_{0})$. Luego:
+\begin{equation}
+	\begin{split}
+		P_{1}(x)=f(x_{0})+Q_{1}(x) \implies
+		Q_{1}(x_{0})=0
+	\end{split}
+\end{equation}
+Como $\delta(Q_{n}) \leq n$, será de la forma:
+\begin{equation}
+	\begin{split}
+		Q_{n}(x)=c_{n}(x-x_{0})\dots (x-x_{n})
+	\end{split}
+\end{equation}
+Para construirlo, utilizaremos el método de diferencias
+divididas.
+\subsection{Método de diferencias divididas}
+Sean $n+1$ puntos $x_{0},\dots ,x_{n} / n > 0$ diferentes entre sí
+y $f(x)$ definida en esos puntos. Vamos a llamar diferencia dividida de $f$ en los puntos
+como $f[x_{0},\dots ,x_{n}]$ al coeficiente en el desarrollo de
+potencias de $x$ en el $PIN$. El número $n$ es el orden de la diferencia dividida.
+\begin{equation}
+	\begin{split}
+		P(x)=f[x_{0}]+f[x_{0},x_{1}](x-x_{0}
+		+ f[x_{0},\dots x_{n}](x-x_{0})\dots (x-x_{n})
+	\end{split}
+\end{equation}
+Tal que
+\begin{equation}
+	\begin{split}
+		f[x_{0},\dots x_{n}] =
+		\frac{f[x_{1},\dots, x_{n}]-
+		f[x_{0},\dots, x_{n-1}]}{x_{n}-x_{0}}
+	\end{split}
+\end{equation}
+Así hasta llegar a:
+\begin{equation}
+	\begin{split}
+		f[x]=f(x)
+	\end{split}
+\end{equation}
 \end{document}
