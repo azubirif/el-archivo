@@ -1,0 +1,36 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\title{Integrales}
+
+\renewcommand*\contentsname{Índice}
+
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath, physics, amsthm, amsfonts}
+
+\newtheorem{teorema}{Teorema}
+\newtheorem{defin}{Definición}
+
+\newcommand{\R}{\mathbb{R}}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+\section{Método de Hermite}
+Supongamos que tenemos una integral de la forma:
+\begin{equation}
+	\begin{split}
+		\int \frac{p(x)}{q(x)}
+	\end{split}
+\end{equation}
+Queremos llegar a lo siguiente
+\begin{equation}
+	\begin{split}
+		\int \frac{p(x)}{q(x)} = \frac{p_{1}(x)}{q_{1}(x)}=
+		\int \frac{p_{2}(x)}{q_{2}(x)} \dd{x}
+	\end{split}
+\end{equation}
+Siendo $q_{1}(x) = mcd(q(x), q'(x))$ y $q_{2}(x)= \frac{q(x)}{q_{1}(x)}$.
+Luego, derivaremos la expresión entera y tendremos un sistema de ecuaciones que
+podremos resolver.
+\end{document}
