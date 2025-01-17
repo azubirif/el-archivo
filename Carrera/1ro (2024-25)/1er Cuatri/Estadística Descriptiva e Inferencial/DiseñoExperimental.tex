@@ -1,0 +1,157 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\title{Introducción al diseño experimental}
+
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath, amsthm, amsfonts}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyfoot[R]{Página \thepage}
+\fancyfoot[L]{Alejandro Zubiri}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+
+\section{Introducción}
+Cuando realizamos un experimento varias veces, se suelen producir variaciones, que se conocen como \textbf{ruido}.
+Las posibles fuentes de error son:
+\begin{itemize}
+	\item Error experimental: factores tanto conocidos como desconocidos.
+	\item Confusión entre correlación y causalidad.
+	\item Complejidad de los elementos estudiados.
+\end{itemize}
+Cuando realizamos experimentos, queremos los métodos estadísticos que minimicen
+este error.
+\section{Tipos de variabilidad}
+\subsection{Sistemática planificada}
+\begin{itemize}
+	\item Planificada por el experimentador.
+	\item Por las condiciones del experimento.
+\end{itemize}
+\subsection{Sistemática no planificada}
+Debido a causas externas desconocidas que producen resultados sesgados.
+\section{Definiciones}
+\subsection{Unidad experimental}
+Objetos, individuos, espacio o tiempo en los que se experimenta.
+\subsection{Variable de interés}
+Lo que se desea estudiar.
+\subsection{Observación experimental}
+Cada medición que realizamos.
+\subsection{Tamaño del experimento}
+Número total de observaciones recogidas.
+\subsection{Factores}
+Variables independientes que pueden influir en los resultados.
+\subsection{Niveles}
+Cada uno de los resultados de un factor.
+\subsection{Tratamiento}
+Como se combinan los diferentes niveles de un factor.
+\section{Básicos del diseño experimental}
+\subsection{Aleatorización}
+Tiene el objetivo de evitar el sesgo en el experimento. Se asignan al azar los tratamientos.
+También se evita la dependencia de las observaciones.
+\subsection{Bloqueo}
+Se dividen las unidades experimentales en grupos llamados \textbf{bloques}. Las
+observaciones de cada bloque deben tener condiciones experimentales similares.
+\subsection{Factorización}
+Cruzamiento de los niveles de todos los factores de tratamiento en todas las
+combinaciones posibles. Permite detectar la existencia de interacciones entre
+tratamientos. Además, es mucho más eficiente.
+\subsection{Diseño Experimental}
+Regla con la que se determina la asignación de las unidades experimentales:
+\begin{itemize}
+	\item Completamente aleatorizado.
+	\item Factor bloque.
+	\item Factorial a dos niveles.
+\end{itemize}
+\section{Diseño completamente aleatorizado}
+Los tamaños muestrales no tienen por qué ser iguales, aunque tiene ventajas:
+\begin{itemize}
+	\item Asegura que cada tratamiento contribuye igual.
+	\item Reduce problemas derivados de incumplimiento de hipótesis.
+	\item Incrementa la potencia del test.
+\end{itemize}
+Realizamos la siguiente pregunta: ¿Son todas las medias iguales?\\
+Las observaciones del tratamiento $j$  provienen de una población común $\mu$,
+un efecto del tratamiento $A_{j}$ y un error aleatorio $e_{ij}$.
+\begin{equation}
+	\begin{split}
+		y_{ij}=\mu + A_{i} + e_{ij}
+	\end{split}
+\end{equation}
+\section{Análisis de la varianza}
+Queremos saber si cada factor tiene un efecto significativo sobre $Y$, o si hay
+dependencia entre factores.
+\subsection{Condiciones}
+\begin{itemize}
+	\item Independencia: tamaño total de la muestra $< 10\%$.
+	\item Normalidad: La variable cuantitativa se distribuye normalmente en cada
+		grupo.
+	\item Homocedasticidad: varianza constante entre grupos.
+\end{itemize}
+Tenemos las siguientes tipos de varianza:
+\begin{itemize}
+	\item Suma de cuadrados total $(SCT)$
+	\item Suma de cuadrados del tratamiento $(SCTr)$
+	\item Suma de cuadrados residual $(SCR)$ 
+\end{itemize}
+Se cumple que:
+\begin{equation}
+	\begin{split}
+		SCT = SCTr + SCR
+	\end{split}
+\end{equation}
+\begin{itemize}
+	\item SCT: variabilidad total de los datos:
+\begin{equation}
+	\begin{split}
+		SCT = \sum_{i}\sum_{j} (y_{ij}-\bar{y})^{2}
+	\end{split}
+\end{equation}
+	\item SCTr: variabilidad de los datos asociada al efector del factor sobre
+		la media, ponderado por el número de observaciones:
+\begin{equation}
+	\begin{split}
+		SCTr = \sum_{i}(\bar{y_{i}}-\bar{y})^{2}n_{i}
+	\end{split}
+\end{equation}
+	\item SCR: variabilidad no debida a la variable factor. Es la suma de los
+		cuadrados dentro de los grupos:
+\begin{equation}
+	\begin{split}
+		SCR = \sum_{i}\sum_{j}(y_{ij}-\bar{y}_{i})^{2}=SCT-SCTr
+	\end{split}
+\end{equation}
+\end{itemize}
+Ahora, podemos analizar cada grupo
+\begin{table}[h]
+	\centering
+	\begin{tabular}{c | c | c|c}
+		Variabilidad & Suma de cuadrados & Grados de libertad & Cuadrados medios\\
+		\hline
+		Intergrupo & SCTr & $k-1$ & $CMTr = \frac{SCTr}{k-1}$ \\
+		Intragrupos & SCR & $n-1$ & $CMR = \frac{SCR}{n-k}$ \\
+		Total & SCT & $n-1$ & $CMT = \frac{SCT}{n-1}$  
+	\end{tabular}
+\end{table}
+Además, se cumple que:
+\begin{equation}
+	\begin{split}
+		\frac{intervarianza}{intravarianza} = \frac{s^{2}_{Tr}}{s^{2}_{R}}
+		\approx F_{k-1,n-k}
+	\end{split}
+\end{equation}
+Siendo $F$ la $F$ de Fischer. Si se cumple que:
+\begin{equation}
+	\begin{split}
+		\frac{s^{2}_{Tr}}{s^{2}_{r}} > F_{k-1,n-k}
+	\end{split}
+\end{equation}
+\begin{centering}
+	\huge Rechazamos la igualdad de medias.	
+\end{centering}
+
+\end{document}
+
