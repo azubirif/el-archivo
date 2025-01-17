@@ -1,0 +1,119 @@
+---
+title: "Práctiac 5"
+author: "Alejandro Zubiri Funes"
+date: "2025-01-17"
+output: pdf_document
+---
+```{r}
+library(readxl)
+datos = read_excel("~/Descargas/Regresion_2.xlsx")
+```
+# Introducción
+Queremos detectar datos colineales
+Empezamos con el primer modelo:
+```{r}
+cata = datos[,1:4]
+plot(cata)
+```
+Pinta regulero por parte de la mayoría de las variables.
+Creamos cada modelo:
+```{r}
+summary(lm(Sabor ~ Acetico, data = cata))
+summary(lm(Sabor ~ H2S, data = cata))
+summary(lm(Sabor ~ Lactico, data = cata))
+```
+Parece que las variables son significativas (al menos de forma individual).
+Ahora pasamos a las regresiones dobles:
+```{r}
+summary(lm(Sabor ~ Acetico + H2S, data = cata))
+```
+Acétido y H2S son lineales (dan la misma información).
+```{r}
+summary(lm(Sabor ~ Acetico + Lactico, data = cata))
+```
+De nuevo, acético no es significativa.
+```{r}
+summary(lm(Sabor ~ Lactico + H2S, data = cata))
+```
+Y ahora son todas significativas, por lo que este es el mejor modelo.
+
+La forma de ver que dos variables comparten información es que la suma de la $R^2$ de ambas no coincide con la $R^2$ del modelo conjunto.
+$$
+R^2(Lactico) + R^2(H_2S) \neq R^2(Lactico + H_2S)
+$$
+```{r}
+m1 = lm(Sabor ~ Acetico + H2S + Lactico, data=cata)
+summary(m1)
+```
+Acético no es significativa porque comparte información con las otras variables.
+```{r}
+m1 = lm(Sabor ~ Lactico + H2S, data = cata)
+summary(m1)
+```
+Ahora podemos pasar a la diagnosis del modelo.
+```{r}
+par(mfrow=(c(2,2)))
+plot(m1)
+```
+Este modelo explica el $54.12\%$ de la variabilidad de los datos.
+
+# Segundo Modelo
+```{r}
+d = datos[,5:8]
+plot(data)
+```
+## Modelos individuales
+Tiene buena pinta con los beneficios, pero no con el resto.
+```{r}
+summary(lm(`Ratio Global` ~ Beneficios, data = d))
+```
+Se observa buena dependencia respecto a beneficios.
+```{r}
+summary(lm(`Ratio Global` ~ Clientes, data = d))
+```
+Parece que también hay buena dependencia.
+```{r}
+summary(lm(`Ratio Global` ~ `Tasa de inversion`, data = d))
+```
+También hay significancia.
+```{r}
+r = d$`Ratio Global`
+b = d$Beneficios
+c = d$Clientes
+t = d$`Tasa de inversion`
+```
+## Modelos dobles
+```{r}
+summary(lm(r ~ b + c, data = d))
+```
+Aquí Clientes no es significativa
+```{r}
+summary(lm(r ~ b + t, data = d))
+```
+Aquí todas son significativas
+```{r}
+summary(lm(r ~ c + t, data = d))
+```
+Y aquí también lo son.
+
+```{r}
+summary(lm(r ~ b + c + t, data = d))
+```
+Como era esperado, Clientes no es significativa, ya que comparte información con Beneficios. El mejor modelo, por tanto, es:
+```{r}
+m = lm(r ~ b + t, data = d)
+summary(m)
+```
+Con un $R^2=0.9279$.
+```{r}
+par(mfrow = c(2,2))
+plot(m)
+hist(m$residuals)
+```
+Cumple las hipótesis y el modelo es correcto.
+## Conclusiones
+- Beneficios y Clientes con colineales.
+- El mejor modelo está formado por
+$$
+\text{Ratio Global} = 0.18554 + 0.83644\cdot \text{Beneficios} + 0.12223\cdot \text{Tasa de inversión}
+$$
