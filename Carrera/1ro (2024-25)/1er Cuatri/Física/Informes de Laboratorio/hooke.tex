@@ -1,0 +1,63 @@
+\documentclass{article}
+\author{Alejandro Zubiri}
+\title{hooke}
+
+\renewcommand*\contentsname{Índice}
+
+\usepackage[margin=1.1in]{geometry}
+\usepackage{amsmath, physics, amsthm, amsfonts}
+
+\newtheorem{teorema}{Teorema}
+\newtheorem{defin}{Definición}
+
+\newcommand{\R}{\mathbb{R}}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\pagebreak
+\section{Introducción}
+Se va a estudiar como pruebas experimentales acerca de la ley de Hooke concuerdan con la teoría. Para ello, se han hecho diferentes experimentos, donde se estudiaban diferentes movimientos, muelles, y pesas.
+\section{Teoría}
+La ley de Hooke afirma que la fuerza ejercida por un muelle de constante elástica $K$, sobre un objeto alejado una distancia $\Delta \vec{r}$ de la posición de equilibrio del muelle viene dada por la ecuación:
+\begin{equation}
+	\begin{split}
+		\boxed{\vec{F} = -k\Delta \vec{r}}
+	\end{split}
+\end{equation}
+Para una dimensión, y sobre un objeto cuya única forma es el muelle, se obteniene la siguiente EDO:
+\begin{equation}
+	\begin{split}
+		m\dv[2]{x}{t}=-kx
+	\end{split}
+\end{equation}
+Que tiene como solución:
+\begin{equation}
+	\begin{split}
+		x(t)=A\sin (\sqrt{\frac{k}{m}}t)
+	\end{split}
+\end{equation}
+\section{Material y procedimiento}
+\begin{itemize}
+\item Dos muelles de diferentes constantes elásticas.
+\item Dos punteros de plástico para medir la posición.
+\item Una regla milimetrada.
+\item Una barra soporte que sujetará los muelles.
+\item Base reguladora donde se apoyaría la barra soporte.
+\item Horquilla de donde colgar los muelles.
+\item Balanza de donde medir las pesas antes de colgarlas.
+\item Cronómetro para medir los períodos de los movimientos.
+\item Una serie de pesas y porta-pesas.
+\end{itemize}
+\section{Procedimiento}
+Para confirmar la ley de Robert Hooke, se han realizado dos tipos de experimentos. El primero ha consistido en colgar un muelle, y desde la punta, colgar una pesa de masa $m$. Se estudiará la elongación $\Delta y$ del muelle respecto a su posición de equilibrio. Para la segunda parte del experimento, desde la posición de equilibrio, se estiró (hacia arriba o hacia abajo) una distancia $A$. Luego, se observó el tiempo que tardaba la pesa en realizar 10 oscilaciones (para mayor precisión) y se dividió entre $ 10 $ para obtener el período de una oscilación individual.
+\subsection{Pesa colgada de muelle}
+Este primer experimento otorgó los siguientes resultados:
+\begin{table}[h]
+	\centering
+
+	\begin{tabular}{c | c | c | c | c | c}
+		
+	\end{tabular}
+\end{table}
+\end{document}_
