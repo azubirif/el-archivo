@@ -1,0 +1,220 @@
+%! TEX root = Topologia.tex
+
+\documentclass{../Topologia.tex}
+
+\begin{document}
+
+\section{Nociones básicas}
+Cuando definimos algo, tiene que estar definido de forma que cualquier persona
+esté de acuerdo con dicha definición.
+\begin{defin}
+	Un conjunto se puede definir por su \textbf{extensión}, mencionando todos
+	sus elementos, o por \textbf{compresión}, defininiendo la regla que todos
+	los elementos del conjunto deben cumplir.
+	\begin{itemize}
+		\item Extensión:\\
+			\begin{equation}
+				\begin{split}
+					S = \{ 1,2,3,\dots  \}
+				\end{split}
+			\end{equation}
+		\item Comprensión:\\
+			\begin{equation}
+				\begin{split}
+					S = \{ x \in \mathbb{N} \}
+				\end{split}
+			\end{equation}
+	\end{itemize}
+	Denotamos los conjuntos por letras mayúsculas, y sus elementos por letras
+	minúsculas.\\
+	Si $x$ es un elemento del conjunto $S$, decimos que $a \in S$, y si no
+	pertenece, $a \notin S$
+\end{defin}
+\begin{defin}
+	El \textbf{cardinal} de un conjunto es el número de elementos del conjunto,
+	denotado por $\#S$. 
+\end{defin}
+Dados dos conjuntos $A$ y $B$, decimos que $A$ es un subconjunto de $B$ si y solo
+si
+\begin{equation}
+	\begin{split}
+		\forall x \in A, x \in B \implies A \subset B
+	\end{split}
+\end{equation}
+Sino, decimos que $A \not\subset B$.
+\begin{defin}
+	Decimos que $A$ es subconjunto de $B$ si
+	\begin{equation}
+		\begin{split}
+			A \subset B \iff (a \in A \implies a \in B)
+		\end{split}
+	\end{equation}
+\end{defin}
+Un ejemplo de conjuntos es el conjunto vacío:
+\begin{equation}
+	\begin{split}
+		\phi / \# \phi = 0
+	\end{split}
+\end{equation}
+\begin{defin}
+	Decimos que dos conjuntos $A$ y $B$ son iguales si y solo si
+	\begin{equation}
+		\begin{split}
+			A \subset B \wedge B \subset A
+		\end{split}
+	\end{equation}
+\end{defin}
+\subsection{Operaciones con conjuntos}
+\begin{defin}
+	La unión $S$ de dos conjuntos $A$ y $B$ es
+	\begin{equation}
+		\begin{split}
+			S = A \cup B = \{x / x \in A \vee x \in B \}
+		\end{split}
+	\end{equation}
+\end{defin}
+\begin{defin}
+	La intersección $S$ de dos conjuntos $A$ y $B$ es
+	\begin{equation}
+		\begin{split}
+			S = A \cap B = \{ x / x \in A \wedge x \in B \}
+		\end{split}
+	\end{equation}
+\end{defin}
+\begin{defin}
+	Definimos la diferencia $S$ de $A$ menos $B$ tal que
+	\begin{equation}
+		\begin{split}
+			S = A - B = \{ x / x \in A \wedge x \notin B  \}
+		\end{split}
+	\end{equation}
+\end{defin}
+\begin{defin}
+	La diferencia simétrica entre $E$ y $A$ es
+	\begin{equation}
+		\begin{split}
+			A \Delta B = (A-B)\cup (B-A)
+		\end{split}
+	\end{equation}
+\end{defin}
+
+\begin{defin}
+	Definimos el complemento $S^{c}$ de un conjunto $S$ como
+	\begin{equation}
+		\begin{split}
+			S \cup S^{c} &= E\\
+			S \cap S^{c} &= \phi
+		\end{split}
+	\end{equation}
+	Siendo $E$ el conjunto total. 
+\end{defin}
+\section{Tablas de verdad}
+Una tabla de verdad nos permite analizar como se comportan dos proposiciones:
+\begin{table}[h]
+	\centering
+
+	\begin{tabular}{c|c|c|c}
+		$p$ & $q$ & $p\vee q$\\
+		\hline
+		$V$ & $V$ & $V$\\
+		$V$ & $F$ & $V$\\
+		$F$ & $V$ & $V$\\
+		$F$ & $F$ & $F$\\  
+	\end{tabular}
+\end{table}
+\begin{table}[h]
+	\centering
+
+	\begin{tabular}{c|c|c}
+		$p$ & $q$ & $p\wedge q$\\
+		\hline
+		$V$ & $F$ &$F$\\
+		$F$&$V$&$F$\\
+		$F$ & $F$ & $F$\\
+		$V$ & $V$ & $V$
+	\end{tabular}
+\end{table}
+\begin{table}[h]
+	\centering
+
+	\begin{tabular}{c|c|c}
+		$p$ & $q$ & $p \implies q$\\
+		\hline
+		$V$ & $V$ & $V$\\
+		$V$&$F$&$F$\\
+		$F$&$V$&$V$\\
+		$F$&$F$&$V$
+		
+	\end{tabular}
+\end{table}
+Se puede deducir que $p \implies q \iff \neg p \vee q$
+\begin{defin}
+	Sea $S\subset \R$, una función $f:S\to \R$ es continua en $a\subset S$ si:
+	\begin{equation}
+		\begin{split}
+			\forall \varepsilon > 0 \exists \delta > 0 /
+			|f(x)-f(a)|<\varepsilon \implies |x-a| < \delta
+		\end{split}
+	\end{equation}
+\end{defin}
+\begin{defin}
+	Sea $S \subset \R$. $S$ es abierto si:
+	\begin{equation}
+		\begin{split}
+			\forall x \in S \exists I \subset S / I =
+			(x-\delta, x+\delta) / \delta > 0
+		\end{split}
+	\end{equation}
+\end{defin}
+\begin{prop}
+	La unión de abiertos es un abierto.
+\end{prop}
+\begin{proof}[Demostración]
+	Sea $S_{i}$ cada conjunto abierto. Sabemos que
+	\begin{equation}
+		\begin{split}
+			\forall x \in S_{i} \exists \delta > 0 / (x-\delta, x+\delta) \subset S
+		\end{split}
+	\end{equation}
+	Sea $U$ la unión de los conjuntos:
+	\begin{equation}
+		\begin{split}
+			U = S_{1} \cup S_{2}\dots \cup S_{n} = 
+			\{ x / x \in S_{1} \vee \dots \vee x \in S_{n} \}
+		\end{split}
+	\end{equation}
+	Sabemos que para cada punto $x \exists \delta > 0 / (x-\delta,x+\delta) \in S_{i}$.
+	Por tanto, estos subintervalos estarán contenidos en la unión, y por tanto
+	esta es abierta.
+\end{proof}
+\begin{prop}
+	La intersección finita de abiertos es abierta
+\end{prop}
+\begin{proof}[Demostración]
+	Vamos a definir dos casos:
+	\begin{itemize}
+		\item \textbf{Caso 1}: La intersección es $\emptyset$. 
+		Como sabemos que $\emptyset$ es abierto, se cumple.
+		\item \textbf{Caso 2}: La intersección noe es $\emptyset$
+		La intersección estará formada por una serie de conjuntos no nulos que
+		sabemos que contienen intervalos abiertos $\forall x$. Sea $\delta
+		 / \delta = min(\delta_{1}, \dots ,\delta_{n})$. Como este $\delta$
+		 es el más pequeño, estará contenido en todos los abiertos para
+		 todos los puntos, y por tanto lo estará también en la intersección.
+	\end{itemize}
+\end{proof}
+\subsection{Continuidad por conjuntos abiertos}
+Vamos a definir el concepto de preimagen:
+\begin{defin}
+	Sea $f:D \to C$ una función y $S\subset C$. La preimagen de $S$ bajo $f$,
+	escrita como $f^{-1}(S)$ es el subconjunto de $D$ definido como:
+	\begin{equation}
+		\begin{split}
+			f^{-1}(S) = \{ x \in D / f(x) \in S \}
+		\end{split}
+	\end{equation}
+\end{defin}
+
+Sea $f:S \to T / U,V \subset T$
+
+\end{document}
