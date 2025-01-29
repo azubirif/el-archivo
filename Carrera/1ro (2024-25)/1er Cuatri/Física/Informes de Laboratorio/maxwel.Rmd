@@ -2,12 +2,23 @@
 title: "Informe de laboratirio - Rueda de Maxwell"
 author: "Alejandro Zubiri Funes"
 date: "2025-01-25"
+header-includes:
+   - \renewcommand{\contentsname}{Contenidos}
 output: pdf_document
 ---
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
 ```{r include=FALSE}
 library(readODS)
 datos = read_ods("~/Documentos/GitHub/el-archivo/Carrera/1ro (2024-25)/1er Cuatri/Física/Informes de Laboratorio/Medidas Datos Rueda de Maxwell.ods")
+altura = as.numeric(datos$...7)
+tcaida = as.numeric(datos$...8)
+tpaso = as.numeric(datos$...10)
 ```
+\tableofcontents
+\newpage
 
 # Intro
 La rueda de Maxwell se trata de un dispositivo formado por un cilindro, una varilla que atraviesa su centro de forma perpendicular. Desde cada extremo de la varilla se encuentran dos hilos de igual longitud, de los cuales se van a enrollar la varilla para luego dejar que esta caiga, y observar su movimiento.
@@ -27,7 +38,11 @@ Nos interesa analizar la energía que tiene en los dos siguientes puntos:
 ![Rueda de Maxwell antes y después de dejarse caer](maxwell1.png)
 
 </center>
-A la izquierda se puede ver la rueda, completamente enrollada, donde solo tiene energía potencial siendo esta $E=0$. En la segunda figura, se ha dejado caer la rueda hasta que se desenrolla completamente, y tiene energía puramente cinética, más una contribución negativa de la potencial. Al ser un sólido rígido, esta energía es $E= \frac{1}{2}mv^2 + \frac{1}{2}\omega^2 I -mgh$.\hline\break
+A la izquierda se puede ver la rueda, completamente enrollada, donde solo tiene energía potencial siendo esta $E=0$. En la segunda figura, se ha dejado caer la rueda hasta que se desenrolla completamente, y tiene energía puramente cinética, más una contribución negativa de la potencial. Al ser un sólido rígido, esta energía es 
+$$
+E= \frac{1}{2}mv^2 + \frac{1}{2}\omega^2 I -mgh
+$$
+
 Puesto que el objeto solo puede moverse mediante el desenrolle de las cuerdas, este solo puede rodar sin deslizar, y por tanto, se cumple la ecuación:
 $$
 \vec{v} = \vec{\omega} \times \vec{r}
@@ -46,7 +61,7 @@ I = 2m( \frac{r}{v})^2(gh - \frac{v^2}{2})
 $$
 Además, de las expresiones anteriores, podemos obtener la energía cinética de traslación, de rotación, y la potencial, en función del tiempo:
 $$
-T_T= \frac{1}{2}m(\left \frac{mgt}{m + \frac{I}{r^2}}\right)^2
+T_T= \frac{1}{2}m(\frac{mgt}{m + \frac{I}{r^2}})^2
 $$
 $$
 T_R = \frac{1}{2} \frac{I^2}{r^2}( \frac{mgt}{m+ \frac{I}{r^2}})^2
@@ -91,16 +106,22 @@ $$
 v \approx \frac{2r}{t'}
 $$
 Obteniendo así los siguientes resultados:
-```{r}
+<center>
+```{r echo=FALSE}
 plot(2*0.0025 / as.numeric(datos$...4), as.numeric(datos$...4), data = datos, ylab="Velocidad (m/s)", xlab ="Tiempo de paso (s)")
 ```
+</center>
 También podemos representar $v$ contra $t$, obteniendo así:
-```{r}
-plot(as.numeric(datos$...8), 0.012 / as.numeric(datos$...10), data = datos)
+<center>
+```{r echo=FALSE}
+plot(as.numeric(datos$...8), 0.012 / as.numeric(datos$...10), data = datos, xlab="Tiempo de caída (s)", ylab="Velodiad (m/s)")
 m_vt = lm(0.012 / as.numeric(datos$...10) ~ as.numeric(datos$...8), data = datos)
 abline(m_vt)
 ```
-Mediante la recta, podemos observar una clara dependencia lineal entre la velocidad instantánea y el tiempo de caída. En concreto, el coeficiente de correlación es $R^2 = 0.8607$, por lo que es capaz de explicar el $86.97\%$ de la variabilidad de los datos.\hline\break
+</center>
+Mediante la recta, podemos observar una clara dependencia lineal entre la velocidad instantánea y el tiempo de caída. En concreto, el coeficiente de correlación es $R^2 = 0.8607$, por lo que es capaz de explicar el $86.97\%$ de la variabilidad de los datos.
+\break
+
 Precisamente la pendiente de esta recta será la aceleración del objeto. Esta aceleración resulta ser:
 $$
 \boxed{a = 0.061246 ~ ( \frac{m}{s^2})}
@@ -109,9 +130,9 @@ Ahora ya podemos calcular el momento de inercia:
 $$
 I = \frac{mr^2}{a}(g-a)
 $$
-Antes de calcular el momento de inercia, vamos a deducir su error:\hline\break
-- Error en la masa: $\Delta m = 0.005$\hline\break
-- Error en el radio: $\Delta r= 0.005$\hline\break
+Antes de calcular el momento de inercia, vamos a deducir su error:\break
+ - Error en la masa: $\Delta m = 0.005$\break
+ - Error en el radio: $\Delta r= 0.005$\break
 Obteniendo así que:
 $$
 \Delta I = \frac{r}{a}(g-a)(2m\Delta r + r\Delta m) =0.0047989~( kg\cdot m^2)
@@ -124,9 +145,47 @@ $$
 \boxed{I = 0.003 \pm 0.005~( kg\cdot m^2)}
 $$
 Podemos dar paso a las diferentes energías, y a ver como estas se combinan en un único gráfico respecto al tiempo:
-```{r}
-
+<center>
+```{r echo=FALSE}
+a = 0.061246
+I = 0.003
+par(mfrow=c(2,2))
+plot(tcaida, 0.5*0.5*(a*tcaida)^2, data=datos, ylab = "E_T", xlab = "Tiempo de caída (s)", main="Energía de traslación")
+plot(tcaida, 0.5*(I / 0.006)^2*(a*tcaida)^2, data = datos, ylab= "E_R", xlab="Tiempo de caída (s)", main="Energía de rotación")
+plot(tcaida, -0.5*9.8*0.5*a*tcaida^2, data = datos, ylab = "U", xlab = "Tiempo de caída (s)", main="Energía potencial")
 ```
+</center>
+También podemos representar las diferentes energía cinéticas respecto a $v^2$:
+<center>
+```{r echo=FALSE}
+par(mfrow=c(1,2))
+E_T = 0.5*0.5*(a*tcaida)^2
+v2 = (2*0.006/tpaso)^2
+m_TTv2 = lm(E_T ~ v2, data = datos)
+plot((2*0.006/tpaso)^2, 0.5*0.5*(a*tcaida)^2, data = datos, ylab="E_T", xlab="v²", main="T de traslación")
+abline(m_TTv2)
+E_R = 0.5*(I / 0.006)^2*(a*tcaida)^2
+m_TRv2 = lm(E_R ~ v2, data = datos)
+plot((2*0.006/tpaso)^2, E_R, data = datos, ylab="E_R", xlab="v²", main="T de rotación")
+abline(m_TRv2)
+```
+</center>
+Puesto que la estamos planteando
+$$
+\frac{1}{2}mv^2 \sim v^2
+$$
+
+Lo esperado era ver una relación lineal, y así ha sido.\break
+\newpage
 
 # Discusión
+Finalmente, hemos podido comprobar que: \break
+- Se ha conservado la energía, y se ha observado su dependencia respecto a la velocidad. \break
+- Se ha calculado exitósamente tanto su aceleración como su momento de inercia. \break
+Sin embargo, es importante tener en cuenta que tanto los posibles errores en la medición como el pequeño tamaño de las medidas han podido generar complicaciones a la hora de llegar a los resultados deseados. \break
+\newpage
+
 # Conclusiones
+Gracias a este relativamente simple experimento, se han podido comprobar leyes tan relevantes como la de la conservación de la energía, que permite simplificar el cálculo de muchísimas situaciones, y que es relevante en formulaciones de la mecánica más complejas como la mecánica Lagrangiana o la Hamiltoniana (formulaciones que a día de hoy son centrales en campos como la física de partículas), además del cálculo del momento de inercia de un objeto, que permite predecir como van a actuar diferentes objetos una vez estos se alejan de la fantasía por excelencia de un físico (partículas puntuales). \break
+ \break
+Como dato curioso, la rueda de Maxwell no fue inventada por James Clerk Maxwell, sino que simplemente se le atribuye a su nombre. A día de hoy, no queda demasiado claro quién la desarrolló por primera vez, ni por qué se le atribuye a su nombre.

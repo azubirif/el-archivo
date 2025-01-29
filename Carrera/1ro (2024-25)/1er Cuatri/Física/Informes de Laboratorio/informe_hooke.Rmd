@@ -3,13 +3,19 @@ title: "Informe de laboratorio - Ley de Hooke"
 author: "Alejandro Zubiri Funes"
 header-includes:
    - \usepackage{physics}
+   - \renewcommand{\contentsname}{Contenidos}
 date: "2025-01-25"
 output: pdf_document
 ---
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
 ```{r include=FALSE}
 library(readODS)
 datos = read_ods("~/Documentos/GitHub/el-archivo/Carrera/1ro (2024-25)/1er Cuatri/Física/Informes de Laboratorio/Medidas Datos Ley de Hooke.ods")
 ```
+\tableofcontents
+\newpage
 
 # Introducción
 Se va a estudiar como pruebas experimentales acerca de la ley de Hooke concuerdan con la teoría. Para ello, se han hecho diferentes experimentos, donde se estudiaban diferentes movimientos, muelles, y pesas.
@@ -39,6 +45,8 @@ Y por tanto, el período de esta es:
 $$
 T = 2\pi\sqrt{\frac{m}{k}}
 $$
+\pagebreak
+
 # Material y procedimiento
 El material necesario para el experimento ha sido:
 - Dos muelles de diferentes constantes elásticas.
@@ -92,6 +100,7 @@ muelle1
 muelle2
 muelle3
 ```
+\pagebreak
 
 # Resultados
 Para cada uno de los muelles, podemos crear una recta de regresión para ver la dependencia entre el desplazamiento y la masa. Según la ley de Hooke, esta dependencia debería ser lineal.
@@ -116,29 +125,22 @@ $$
 Es decir, la pendiente de nuestras rectas de regresión deberían ser igual a $\frac{g}{k}$.
 
 ### Cálculo de errores
-Antes de proceder con el cálculo de las constantes, es necesaria una meditación sobre los errores. Los errores (o precisión) a causa de los instrumentos de medición son los siguientes:
-- Tiempo: $\Delta t = 0.01~(s)$
-- Distancia: $\Delta y = 0.5~ (mm)$
-- Masa: $\Delta m = 0.005~ (kg)$
-Por tanto, vamos a pasar a calcular los errores de las diferentes cantidades medidas. Para empezar, la constante en función de la masa y el desplazamiento es:
+Antes de proceder con el cálculo de las constantes, es necesaria una meditación sobre el error de la constante. Puesto que los únicos parámetros don $y$ y $m$, el error de la constante será:
 $$
-k = \frac{mg}{y}
+\Delta k = \frac{g}{y}\Delta m + \frac{mg}{y^2}\Delta y
 $$
-Y por tanto
-$$
-\Delta k = |\frac{\partial k}{\partial m}|\Delta m + |\frac{\partial k}{\partial y}|\Delta y = \frac{g}{y}\Delta m +\frac{mg}{y^2}\Delta y = \frac{g}{y}(\Delta m + \frac{m}{y}\Delta y)
-$$
+(Nota para el corrector: puesto que $m$ e $y$ son parámetros en sí mismos que cambian con cada muestra, no supe como calcular el error total de la constante, por lo que lo dejé en función de los diferentes parámetros.)
 Como sabemos que $g = 9.81 ms^{-2}$, solo necesitaríamos despejar $ k$. Como tenemos una relación lineal, tomando los modelos anteriores:
 
 Obtenemos las siguientes constantes:
 $$
-k_1 = \frac{g}{m_1} = 0.0191 (\frac{N}{mm}) = 19.155 ~(\frac{N}{m})
+k_1 = \frac{g}{m_1} = 0.0191 + \Delta k ~(\frac{N}{mm}) = 19.155 + \Delta k ~(\frac{N}{m})
 $$
 $$
-k_2 = \frac{g}{m_2} = 0.00289 (\frac{N}{mm}) = 2.8908 ~(\frac{N}{m})
+k_2 = \frac{g}{m_2} = 0.00289 + \Delta k ~(\frac{N}{mm}) = 2.8908 + \Delta k ~(\frac{N}{m})
 $$
 $$
-k_3 = \frac{g}{m_3} = 0.002525 (\frac{N}{mm}) = 2.5277~ (\frac{N}{m})
+k_3 = \frac{g}{m_3} = 0.002525 + \Delta k ~(\frac{N}{mm}) = 2.5277 + \Delta k~ (\frac{N}{m})
 $$
 Es decir, que podemos confirmar, mediante experimentos, que la ley de Hooke es consistente y capaz de recrear las observaciones.
 
@@ -146,9 +148,9 @@ Es decir, que podemos confirmar, mediante experimentos, que la ley de Hooke es c
 
 Respecto a los períodos de las oscilaciones, se espera que la dependencia entre el período $T$ y la masa $m$ venga dada por $T \sim \sqrt{m}$. Si realizamos un gráfico de dispersión con el período en el eje $Y$ y la raíz cuadrada de la masa en ej ele $X$, obtenemos:
 ```{r echo=FALSE}
-plot(datos$`Período (s)...5`, sqrt(datos$`Masa (kg)...2`), data = datos)
-plot(datos$`Período (s)...13`, sqrt(datos$`Masa (kg)...10`), data = datos)
-plot(datos$`Período (s)...18`, sqrt(datos$`Masa (kg)...15`), data=datos)
+plot(datos$`Período (s)...5`, sqrt(datos$`Masa (kg)...2`), data = datos, ylab = "Masa (kg)", xlab = "Período (s)")
+plot(datos$`Período (s)...13`, sqrt(datos$`Masa (kg)...10`), data = datos, ylab = "Masa (kg)", xlab = "Período (s)")
+plot(datos$`Período (s)...18`, sqrt(datos$`Masa (kg)...15`), data=datos, ylab = "Masa (kg)", xlab = "Período (s)")
 ```
 Donde se observa una clara dependencia lineal. Por tanto, teniendo la ecuación anterior, sabemos que ahora, la pendiente de esta recta viene dada por:
 $$
@@ -158,7 +160,7 @@ $$
 k = \frac{4\pi^2}{m^2}
 $$
 Lo que nos permitirá sacar las constantes elásticas en función de los datos obtenidos. Las rectas de regresión son, por tanto:
-```{r}
+```{r echo=FALSE}
 m1 = lm(datos$`Período (s)...5` ~ sqrt(datos$`Masa (kg)...2`), data = datos)
 m2 = lm(datos$`Período (s)...13` ~ sqrt(datos$`Masa (kg)...10`), data = datos)
 m3 = lm(datos$`Período (s)...18` ~ sqrt(datos$`Masa (kg)...15`), data=datos)
@@ -176,16 +178,23 @@ $$
 $$
 k_3 = \frac{4\pi^2}{m^2} =\frac{4\pi^2}{3.7342^2} = 2.831161~(\frac{N}{m}) 
 $$
+\pagebreak
+
 # Discusión
+
 Como se ha podido observar, la ley de Hooke predice correctamente las observaciones de los experimentos. Esto implica que:
-- La fuerza del muelle viene dada por $\vec{F} = -k\Delta x$.
-- El movimiento provocado por desplazar el peso una cantidad $A$ de la posición de equilibrio genera un movimiento armónico simple dado por la ecuación $y(t)=A\sin (\omega t + \delta_0)$.
-Debido a las condiciones del experimento, existen varios errores a consecuencia de los métodos de medición:
-- Precisión de los artilugios utilizados, como una regla, cronómetro, báscula.
-- Errores inevitables causados a causa de ser personas quienes comenzaban y detenían la cuenta del reloj, provocados por los reflejos de los medidores.
-- Posibles fallos o desgastes en los instrumentos.
-Pese a esto, se han podido sacar conclusiones exitosas sobre los experimentos.
+* La fuerza del muelle viene dada por $\vec{F} = -k\Delta x$.
+* El movimiento provocado por desplazar el peso una cantidad $A$ de la posición de equilibrio genera un movimiento armónico simple dado por la ecuación
+$$
+y(t)=A\sin (\omega t + \delta_0)
+$$
+
+Debido a las condiciones del experimento, existen varios errores a consecuencia de los métodos de medición:\break
+* Precisión de los artilugios utilizados, como una regla, cronómetro, báscula.\break
+* Errores inevitables causados a causa de ser personas quienes comenzaban y detenían la cuenta del reloj, provocados por los reflejos de los medidores.\break
+* Posibles fallos o desgastes en los instrumentos.\break
+Pese a esto, se han podido sacar conclusiones exitosas sobre los experimentos.\break
 
 # Conclusión
-Finalmente, podemos concluir que la ley de Hooke  se ha podido verificar experimentalmente, y que permite predecir el movimiento de sistemas afectados por muelles individuales o acoplados.
+Finalmente, podemos concluir que la ley de Hooke  se ha podido verificar experimentalmente, y que permite predecir el movimiento de sistemas afectados por muelles individuales o acoplados. Los movimientos armónicos son esenciales en numerosas áreas de la física, desde la clásica hasta la moderna (en el caso de la mecánica cuántica, muchas funciones de densidad de probabilidad se representan como movimientos armónicos).
 
