@@ -4,7 +4,7 @@
 
 \begin{document}
 
-\section{Nociones básicas}
+\section{Conjuntos}
 Cuando definimos algo, tiene que estar definido de forma que cualquier persona
 esté de acuerdo con dicha definición.
 \begin{defin}
@@ -28,8 +28,15 @@ esté de acuerdo con dicha definición.
 	Denotamos los conjuntos por letras mayúsculas, y sus elementos por letras
 	minúsculas.\\
 	Si $x$ es un elemento del conjunto $S$, decimos que $a \in S$, y si no
-	pertenece, $a \notin S$
+	pertenece, $a \notin S$. Es importante tener en cuenta que, a menos que se
+	especifique, el orden de los elementos de un conjunto es irrelevante, solo nos
+	interesan sus elementos. Para especificar orden, podemos utilizar $(a,b)$,
+	que se define como \textbf{par ordenado}, tal que
+	\[
+		(a,b) = (c,d) \iff a=c \wedge b = d
+	\]
 \end{defin}
+
 \begin{defin}
 	El \textbf{cardinal} de un conjunto es el número de elementos del conjunto,
 	denotado por $\#S$. 
@@ -108,6 +115,45 @@ Un ejemplo de conjuntos es el conjunto vacío:
 	\end{equation}
 	Siendo $E$ el conjunto total. 
 \end{defin}
+\begin{defin}
+	Definimos el producto cartesiano entre $A$ y $B$ como
+	\[
+		A \times B = \{ (a,b): a \in A \wedge b \in B \}
+	\]
+	Ejemplos:
+	\begin{itemize}
+		\item $\emptyset \times B = \emptyset$
+		\item $A \times B \neq B \times A$ (ya que son pares con órdenes diferentes)
+	\end{itemize}
+\end{defin}
+
+\begin{prop}
+	$A\cap (B\cup C) = (A\cap B)\cup (A\cap C)$ 
+\end{prop}
+\begin{proof}[Demostración]
+	Sea $x \in A\cap (B\cup C) \iff x \in A \wedge x \in B \cup C$
+	\begin{equation}
+		\begin{split}
+			&\iff x \in A \wedge (x \in B \vee x \in C)\\
+			&\iff (x\in A \wedge x \in B) \vee (x \in A \wedge x \in C)\\
+			&\iff x \in A\cap B \vee x \in A \cap C\\
+			&\iff x \in (A\cap B) \cup (A\cap C)
+		\end{split}
+	\end{equation}
+\end{proof}
+\begin{prop}
+	$(A\cup B)^{c} = A^{c} \cup B^{c}$ 
+\end{prop}
+\begin{proof}[Demostración]
+	\begin{equation}
+		\begin{split}
+			x \in A^{c} \cup B^{c} &\iff x \in A^{c} \vee x \in B^{c}\\
+								   &\iff x \notin A \vee x \notin B\\
+								   &\iff x \notin A\cap B\\
+								   &\iff x \in (A\cap B)^{c}
+		\end{split}
+	\end{equation}
+\end{proof}
 \section{Tablas de verdad}
 Una tabla de verdad nos permite analizar como se comportan dos proposiciones:
 \begin{table}[h]
@@ -147,7 +193,11 @@ Una tabla de verdad nos permite analizar como se comportan dos proposiciones:
 		
 	\end{tabular}
 \end{table}
-Se puede deducir que $p \implies q \iff \neg p \vee q$
+Se puede deducir que $p \implies q \iff \neg p \vee q$. Con esto, también podemos
+deducir que
+\[
+	(p \implies q) \iff (\neg q \implies \neg p)
+\]
 \begin{defin}
 	Sea $S\subset \R$, una función $f:S\to \R$ es continua en $a\subset S$ si:
 	\begin{equation}
