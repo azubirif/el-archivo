@@ -1,0 +1,179 @@
+\documentclass[12pt,reqno]{article}
+
+
+\usepackage[spanish,es-noquoting]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\setlist{topsep=1.5em, itemsep=1.5em}
+\usepackage[exercisename=Problema,solutionname=Solución]{exercises}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{wrapfig2}
+
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\dparcial}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\derivada}[2]{\frac{d#1}{d#2}}
+\newcommand{\evaluar}[2]{\left.#1\right|_{#2}}
+\newcommand{\exterior}{\text{ext }}
+\newcommand{\figref}[1]{\text{fig. }\ref{#1}}
+\newcommand{\frontera}{\partial}
+\newcommand{\grad}{\text{grad }}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\interior}{\text{int }}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\sgn}{\text{sgn}}
+\newcommand{\tr}{\text{Tr }}
+\newcommand{\union}{\cup}
+
+\title{Entrega 1}
+\author{Alejandro Zubiri Funes}
+\date{\today}
+
+\begin{document}
+	\maketitle
+	\section*{Problema 1 [3 puntos]}
+	Si $A=(a_{ij})$ y $S=(s_{ij})$ son matrices $n\times n$ tales que
+	\begin{align*}
+		a_{ji}&=-a_{ij}\\
+		s_{ji}&=s_{ij}
+	\end{align*}
+	demuestra que
+	\begin{equation*}
+		\sum_{i=1}^{n}\sum_{j=1}^{n} a_{ij}\,s_{ij}=0.
+	\end{equation*}
+	
+	\subsection*{Solución}
+Si empezamos analizando las consecuencias de ambas restricciones, obtenemos
+lo siguiente:
+\begin{itemize}
+	\item Para la primera matriz, si $a_{ij}=-a_{ji}$, tenemos que la matriz
+		es \textbf{antisimétrica}, es decir, los elementos por debajo de la
+		diagonal son los opuestos a los de por encima de la diagonal. Y respecto
+		a la diagonal, se tiene que $a_{ii}=-a_{ii}$, por lo que la única
+		posibilidad es una diagonal llena de ceros.
+	\item Las propiedades de la segunda matriz son análogas, excepto que es
+		\textbf{simétrica}, es decir, los elementos por debajo de la diagonal son
+		los mismos a los de por encima de la diagonal. Con esto, obtenemos
+		las siguientes matrices:
+\end{itemize}
+\[A=
+	\begin{pmatrix} 
+		0 & a_{12} & \dots & a_{1n}\\
+		-a_{12} & 0 & \dots & a_{2n}\\
+		\dots &\dots &\dots &\dots \\
+		-a_{1n}&-a_{2n} & \dots & 0
+	\end{pmatrix} 
+\]
+\[S=
+	\begin{pmatrix} 
+		0 & a_{12} & \dots & a_{1n}\\
+		a_{12} & 0 & \dots & a_{2n}\\
+		\dots &\dots &\dots &\dots \\
+		a_{1n}&a_{2n} & \dots & 0
+	\end{pmatrix} 
+\]
+Ahora podemos empezar a desarrollar el sumatorio. Para empezar, todo producto de
+la forma $a_{ii}\cdot s_{ij}$ o $a_{ij}\cdot s_{ii}$ será $0$ debido a las
+propiedades explicadas anteriormente. Respecto al resto de elementos, al ser
+una matrix $n \times n$, podemos reescribir los elementos del sumatorio como
+los siguientes pares:
+\[
+	a_{ij}\cdot s_{ij} + a_{ji}\cdot s_{ji}
+\]
+Si ahora sustutuimos las restricciones iniciales:
+\[
+	a_{ij}\cdot s_{ij}-a_{ij}\cdot s_{ij}=0
+\]
+Como podemos realizar esta sustitución para cada elemento del sumatorio, la suma total es $0$. 
+	\newpage
+	
+	\section*{Problema 2 [1'5 puntos + 1'5 puntos]}
+	En las siguientes expresiones el rango de definición de los índices es $\{1,2,\ldots,n\}$, además se usa el criterio de suma de Einstein. Llega, en cada caso, a una expresión algebraica más sencilla.
+	\begin{enumerate}[(a)]
+		\item $\delta_{ii}$.
+		\subsection*{Solución}
+		Haciendo esto y lo otro...
+		\item $\delta_{ij}\,\delta_{jk}$.
+		\subsection*{Solución}
+		Haciendo esto y lo otro...
+	\end{enumerate}
+	
+	\section*{Problema 3 [2 puntos]}
+	Expande el siguiente sumatorio
+	\begin{equation*}
+		\sum_{i=1}^{3}\sum_{j=1}^{3}\sum_{k=1}^{3}\epsilon_{ijk}\,a_{1i}\,a_{2j}\,a_{3k}
+	\end{equation*}
+	después da el valor correspondiente a cada $\epsilon$ y comprueba que obtienes el determinante de la matriz $(a_{ij})$.
+	\subsection*{Solución}
+	Haciendo esto y lo otro...
+	
+	\section*{Problema 4 [2 puntos]}
+	Calcula
+	\begin{equation*}
+		\sum_{i=1}^{3}\sum_{j=1}^{3}\sum_{k=1}^{3}\epsilon_{ijk}\,\epsilon_{ijk}
+	\end{equation*}
+	\subsection*{Solución}
+	Haciendo esto y lo otro...
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+\end{document}
