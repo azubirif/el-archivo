@@ -1,0 +1,8 @@
+1) 20
+2) Como a=5 es mayor a b==c que devuelve 0, esto devuelve 0
+3) a+b = 15, y como es igual a c=15, devuelve 0
+4) a es menor a b, y b es menor a c. Como es un OR, se cumple y devuelve 1
+5) Lo mismo que el 4
+6) Como a<b, !(a>b) devuelve 1. (a*b) es igual a 50, por lo que al ser un OR, es 1
+7) 15 > c=15. Esto no se cumple, por tanto 0. (a*b) < c No se cumple, por tanto 0.
+0 == 0, por tanto 0 != 0 devuelve 0.
