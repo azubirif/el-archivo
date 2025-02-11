@@ -81,17 +81,10 @@ lo siguiente:
 \]
 Ahora podemos empezar a desarrollar el sumatorio. Para empezar, todo producto de
 la forma $a_{ii}\cdot s_{ij}$ o $a_{ij}\cdot s_{ii}$ será $0$ debido a las
-propiedades explicadas anteriormente. Respecto al resto de elementos, al ser
-una matrix $n \times n$, podemos reescribir los elementos del sumatorio como
-los siguientes pares:
-\[
-	a_{ij}\cdot s_{ij} + a_{ji}\cdot s_{ji}
-\]
-Si ahora sustutuimos las restricciones iniciales:
-\[
-	a_{ij}\cdot s_{ij}-a_{ij}\cdot s_{ij}=0
-\]
-Como podemos realizar esta sustitución para cada elemento del sumatorio, la suma total es $0$. 
+propiedades explicadas anteriormente. Respecto al resto de elementos, sabemos
+que para cada producto $a_{ij}s_{ij}$ existe otro igual con signo negativo.
+Como los elementos de la diagonal son $0$ por sí solos, el resto de los
+productos se irán cancelando uno a uno hasta obtener que el resultado es $0$. 
 	\newpage
 	
 	\section*{Problema 2 [1'5 puntos + 1'5 puntos]}
@@ -99,10 +92,34 @@ Como podemos realizar esta sustitución para cada elemento del sumatorio, la sum
 	\begin{enumerate}[(a)]
 		\item $\delta_{ii}$.
 		\subsection*{Solución}
-		Haciendo esto y lo otro...
+		Al utilizar el criterio de suma de Einstein, sumamos los índices
+		repetidos hasta un valor $n$:
+		\[
+			\sum_{i=1}^{n} \delta_{ii}
+		\]
+		Como la delta de Kronecker vale $1$ cuando los índices son iguales,
+		todos los elementos del sumatorio van a ser $1$, y por tanto:
+		\[
+			= \sum_{i=1}^{n}1 = n
+		\]
 		\item $\delta_{ij}\,\delta_{jk}$.
 		\subsection*{Solución}
-		Haciendo esto y lo otro...
+		De nuevo, expresamos esto como un sumatorio:
+		\[
+			= \sum_{j=1}^{n}\delta_{ij}\delta_{jk}
+		\]
+		Ahora, para que ambos valores valgan $1$, se tiene que cumplir que
+		\[
+			i=j, \quad j=k \implies i=k
+		\]
+		Para que esto ocurra, hay dos posibilidades:
+		\begin{itemize}
+			\item Si $i = k \wedge i < n$, entonces hay algún valor $j$ 
+				donde $j=i$ y por tanto $j = k$, obteniendo así
+				$\delta_{jj}\delta_{jj}=1$.
+			\item Si $i\neq k$, entonces en ningún punto ambas delta valdrán
+				$1$, y por tanto el sumatorio total será $0$.  
+		\end{itemize}
 	\end{enumerate}
 	
 	\section*{Problema 3 [2 puntos]}
@@ -112,68 +129,81 @@ Como podemos realizar esta sustitución para cada elemento del sumatorio, la sum
 	\end{equation*}
 	después da el valor correspondiente a cada $\epsilon$ y comprueba que obtienes el determinante de la matriz $(a_{ij})$.
 	\subsection*{Solución}
-	Haciendo esto y lo otro...
-	
+	\begin{equation*}
+		\begin{split}
+		&\sum_{i=1}^{3}\sum_{j=1}^{3}\sum_{k=1}^{3}\epsilon_{ijk}\,a_{1i}\,a_{2j}\,a_{3k}\\
+		&= \sum_{i=1}^{3}\sum_{j=1}^{3} \varepsilon_{ij1}a_{1 i}a_{2j}a_{31}+\varepsilon_{ij 2}a_{1i}a_{2j}a_{32} + \varepsilon_{ij 3}a_{1i}a_{2j}a_{33}\\
+		&= \sum_{i=1}^{3} \varepsilon_{i 11}a_{1i}a_{21}a_{31}+\varepsilon_{i 12}a_{1i}a_{21}a_{32}+\varepsilon_{i 13}a_{1i}a_{21}a_{33}\\
+		&+ \varepsilon_{i 21}a_{1i}a_{22}a_{31}+\varepsilon_{i 22}a_{1i}a_{22}a_{32}+\varepsilon_{i 23}a_{1i}a_{22}a_{33}\\
+		&+ \varepsilon_{i 31}a_{1i}a_{23}a_{31}+\varepsilon_{i 32}a_{1i}a_{23}a_{32}+\varepsilon_{i 33}a_{1i}a_{23}a_{33}
+		\end{split}
+	\end{equation*}
+	Como todos los símbolos de Levi-Civita con símbolos repetidos son igual a $0$, podemos simplificar este sumatorio y continuar:
+	\begin{equation*}
+		\begin{split}
+			&= \sum_{i=1}^{3}\varepsilon_{i 12}a_{1i}a_{21}a_{32}+\varepsilon_{i 13}a_{1i}a_{21}a_{33}+\varepsilon_{i 21}a_{1i}a_{22}a_{31}\\
+			&+ \varepsilon_{i 23}a_{1i}a_{22}a_{33}+\varepsilon_{i 31}a_{1i}a_{23}a_{31}+\varepsilon_{i 32}a_{1i}a_{23}a_{32}
+		\end{split}
+	\end{equation*}
+	Con el objetivo de simplificar, para cada índica $i$, solo vamos a escribir aquellos términos cuyo símbolo de Levi-Civita no sea $0$, es decir, donde
+	los índices no se repitan. Por ejemplo, para $i=1$, el primer, segundo y tercer término son $0$,y así sucesivamente. Con esto obtenemos:
+	\begin{equation*}
+		\begin{split}
+			&= \varepsilon_{123}a_{11}a_{22}a_{33}+\varepsilon_{132}a_{11}a_{23}a_{32}\\
+			&+ \varepsilon_{213}a_{12}a_{21}a_{33}+\varepsilon_{231}a_{12}a_{23}a_{31}\\
+			&+ \varepsilon_{312}a_{13}a_{21}a_{32}+\varepsilon_{321}a_{13}a_{22}a_{31}
+		\end{split}
+	\end{equation*}
+	Ahora podemos pasar a evaluar cada símbolo, obteniendo:
+	\begin{equation*}
+		\begin{split}
+			&\varepsilon_{123}=1\quad \varepsilon_{231}=1\\
+			&\varepsilon_{132}=-1\quad \varepsilon_{312}=1\\
+			&\varepsilon_{213}=-1\quad\varepsilon_{321}=-1
+		\end{split}
+	\end{equation*}
+	Y ahora sustituyendo:
+	\begin{equation*}
+		\begin{split}
+			&=a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\\
+			&-(a_{11}a_{23}a_{32}+a_{12}a_{21}a_{33}+a_{13}a_{22}a_{31})
+		\end{split}
+	\end{equation*}
+	Si ahora comparamos con el determinante de una $3 \times 3$:
+	\begin{equation*}
+		\begin{split}
+			\det(3 \times 3)&=a_{11}a_{22}a_{33}+a_{12}a_{23}a_{31}+a_{13}a_{21}a_{32}\\
+							&-(a_{13}a_{22}a_{31}+a_{12}a_{21}a_{33}+a_{11}a_{23}a_{32})
+		\end{split}
+	\end{equation*}
+	Vemos que hemos obtenido el mismo resultado.
 	\section*{Problema 4 [2 puntos]}
 	Calcula
 	\begin{equation*}
 		\sum_{i=1}^{3}\sum_{j=1}^{3}\sum_{k=1}^{3}\epsilon_{ijk}\,\epsilon_{ijk}
 	\end{equation*}
 	\subsection*{Solución}
-	Haciendo esto y lo otro...
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	Como $\varepsilon_{ijk}=1$ o $\varepsilon_{ijk}=-1$, $\varepsilon_{ijk}^{2}=1$:
+	\begin{equation*}
+		\begin{split}
+			&= \sum_{i=1}^{3}\sum_{j=1}^{3}\varepsilon_{ij 1}^{2}+\varepsilon_{ij 2}^{2}+\varepsilon_{ij 3}^{2}\\
+			&= \sum_{i=1}^{3}\varepsilon_{i 11}^{2}+\varepsilon_{i 12}^{2}+\varepsilon_{i 13}^{2}\\
+			&+ \varepsilon_{i 21}^{2}+\varepsilon_{i 22}^{2}+\varepsilon_{i 23}^{2}\\
+			&+ \varepsilon_{i 31}^{2}+\varepsilon_{i 32}^{2}+\varepsilon_{i 33}^{2}\\
+			&= \sum_{i=1}^{3} \varepsilon_{i 12}^{2}+\varepsilon_{i 13}^{2}+\varepsilon_{i 21}^{2}\\
+			&+ \varepsilon_{i 23}^{2}+\varepsilon_{i 31}^{2}+\varepsilon_{i 32}^{2}
+		\end{split}
+	\end{equation*}
+	De nuevo, vamos a eliminar directamente aquellos elementos que vayan a ser $0$ una vez realidad la sustitución, obteniendo así:
+	\begin{equation*}
+		\begin{split}
+			&= \varepsilon_{123}^{2}+\varepsilon_{132}^{2}\\
+			&+ \varepsilon_{213}^{2}+\varepsilon_{231}^{2}\\
+			&+ \varepsilon_{312}^{2}+\varepsilon_{321}^{2}
+		\end{split}
+	\end{equation*}
+	Como estos elementos van a ser siempre $1 ^{2}$ o $(-1) ^{2}$, obtenemos
+	\[
+		= 6
+	\]
 \end{document}
