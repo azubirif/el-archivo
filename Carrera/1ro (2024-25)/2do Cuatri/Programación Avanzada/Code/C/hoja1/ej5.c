@@ -8,6 +8,7 @@ int main(int argc, char *argv[])
 
 	scanf("%f %f", &a, &b);
 
+	printf("%f, %f, %f\n", a+b, a-b, a*b);
 	printf("%.3f / %.3f = %.3f", a,b, a / b);
 
 	return 0;
