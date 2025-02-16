@@ -14,7 +14,6 @@ int main(int argc, char const *argv[])
         int try;
         printf("Adivina: ");
         scanf("%d", &try);
-
         if (try == n)
         {
              printf("¡Lo adivinaste!\n");
