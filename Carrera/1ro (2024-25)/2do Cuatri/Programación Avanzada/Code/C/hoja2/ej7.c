@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<string.h>
 
 int main(int argc, char const *argv[])
 {
@@ -9,13 +10,9 @@ int main(int argc, char const *argv[])
 
     int i = 0;
 
-    while (1)
+    for (i = 0; i < strlen(s); i++)
     {
-        char c = s[i];
-        if (c != '\0') printf("%c\n", s[i]);
-        else break;
-
-        i++;
+        printf("%c\n", s[i]);
     }
 
     return 0;
