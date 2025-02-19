@@ -1,5 +1,4 @@
 #include<stdio.h>
-#include<ctype.h>
 
 int main(int argc, char const *argv[])
 {
@@ -9,7 +8,8 @@ int main(int argc, char const *argv[])
     scanf("%c", &c);
 
     if (c >= 65 && c <= 90) printf("Es mayúscula\n");
-    else printf("Es minúscula\n");
+    else if (c >= 97 && c <= 122) printf("Es minúscula\n");
+    else printf("No es una letra\n");
     
     return 0;
 }
