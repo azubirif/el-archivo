@@ -1,0 +1,17 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile & Run C File",
+            "type": "shell",
+            "command": "gcc '${file}' -o '${fileDirname}/${fileBasenameNoExtension}' && valgrind --leak-check=full --verbose --track-origins=yes '${fileDirname}/${fileBasenameNoExtension}'",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
