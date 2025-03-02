@@ -6,7 +6,7 @@
         {
             "label": "(Valgrind) Compile & Run C File",
             "type": "shell",
-            "command": "gcc '${file}' -o '${fileDirname}/${fileBasenameNoExtension}' && valgrind --leak-check=full --verbose --track-origins=yes '${fileDirname}/${fileBasenameNoExtension}'",
+            "command": "gcc '${file}' -o '${fileDirname}/${fileBasenameNoExtension}' && valgrind --leak-check=full --track-origins=yes '${fileDirname}/${fileBasenameNoExtension}'",
             "problemMatcher": [],
             "group": {
                 "kind": "build",
@@ -16,7 +16,7 @@
         {
             "label": "Compile & Run C File",
             "type": "shell",
-            "command": "gcc '${file}' -o '${fileDirname}/${fileBasenameNoExtension}' &&'${fileDirname}/${fileBasenameNoExtension}'",
+            "command": "gcc '${file}' -lm -o '${fileDirname}/${fileBasenameNoExtension}' &&'${fileDirname}/${fileBasenameNoExtension}'",
             "problemMatcher": [],
             "group": {
                 "kind": "build",

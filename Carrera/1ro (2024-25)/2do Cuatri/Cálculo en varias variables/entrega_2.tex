@@ -1,0 +1,225 @@
+\documentclass[12pt,reqno]{article}
+
+\usepackage{amsmath}
+\usepackage{amssymb, physics}
+\usepackage{bm}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\setlist{topsep=1.5em, itemsep=1.5em}
+\usepackage[exercisename=Problema,solutionname=Solución]{exercises}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{wrapfig2}
+
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\dparcial}[2]{\frac{\partial#1}{\partial#2}}
+\newcommand{\derivada}[2]{\frac{d#1}{d#2}}
+\newcommand{\evaluar}[2]{\left.#1\right|_{#2}}
+\newcommand{\exterior}{\text{ext }}
+\newcommand{\figref}[1]{\text{fig. }\ref{#1}}
+\newcommand{\frontera}{\partial}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\interior}{\text{int }}
+\newcommand{\sgn}{\text{sgn}}
+\newcommand{\union}{\cup}
+
+\title{Entrega 2}
+%\date{\today}
+
+\author{Alejandro Zubiri Funes}
+%Si sois varias personas entonces quitad el símbolo % de las siguientes lineas y ponédselo a la anterior
+%\author{Nombre1 Apellidos1\\
+	%	Nombre2 Apellidos2\\
+	%	Nombre3 Apellidos3\\
+	%	Nombre4 Apellidos4}
+
+\begin{document}
+	\maketitle
+	\section*{Problema 1}
+	Sea
+	\begin{equation*}
+		f(x,y)=
+		\left\{
+		\begin{aligned}
+			y\sin\frac{1}{x^2+y^2} &\qquad\text{si }(x,y)\in\bbR^2-\{(0,0)\}\\
+			0 &\qquad\text{si }(x,y)=(0,0)
+		\end{aligned}
+		\right.
+	\end{equation*}
+	\begin{enumerate}[(a)]
+		\item Halla los puntos en los que $f$ es continua.  [1 punto]
+		\subsection*{Solución}
+		La función no presenta problemas ni discontinuidades en ningún otro punto excepto $\textbf{x}=(0,0)$, donde podría llegar a ser discontinua. Para ello, vamos a tomar el límite de $(x,y)$ tendiendo a $(0,0)$:
+		\[
+			\lim_{(x,y) \to (0,0)} y \sin(\frac{1}{x^{2}+y^{2}}) 
+		\]
+		Como la función $sin$ está acotada entre $[-1,1]$, no tenemos que preocuparnos por el hecho de evaluar $\sin(\infty)$. Por tanto, estamos en una situación donde tenemos una constante por un valor que se acerca a $0$, y por tanto, el límite es $0$.\\
+		Por tanto, como el límite y el valor de la función coinciden, es continua en ese punto, y por tanto lo es en todo $\mathbb{R}^{2}$. 
+		\item Halla los puntos en los que existen las primeras derivadas parciales de $f$. [1 punto]
+		\subsection*{Solución}
+		Primer determinamos las respectivas derivadas parciales de la función:
+		\begin{equation*}
+			\pdv{f}{x}=\left\{\begin{aligned}
+				\frac{-2xy}{(x^{2}+y^{2})^{2}}\cos \frac{1}{x^{2}+y^{2}}
+				~si~(x,y)\neq(0,0)\\
+				0~si~(x,y)=(0,0)
+			\end{aligned}\right
+		\end{equation*}
+		\begin{equation*}
+			\pdv{f}{y}= \left\{\begin{aligned}
+			\sin(\frac{1}{x ^{2}+y ^{2}})- \frac{2y ^{2}}{(x ^{2}+y ^{2})^{2}}\cos(\frac{1}{x ^{2}+y ^{2}})~si~(x,y)\neq(0,0)\\
+			0~si~(x,y)=(0,0)
+		\end{aligned}\right	
+		\end{equation*}
+		Ahora se puede observar que ambas funciones están definidas para todo $\mathbb{R} ^{2}$. El único problema sería en $(x,y)=(0,0)$, pero hemos definido la función para que sea igual a $0$, por lo que existe en todos los puntos.   
+		\newpage
+		
+		\item Halla los puntos en los que $f$ es diferenciable. [1 punto]
+		\subsection*{Solución}
+		Para que $f$ sea diferenciable en un punto $\textbf{x}$, las derivaras parciales de $f$ deben existir y ser continuas en una cierta bola $B_{r}(\textbf{x})$. Como sabemos que estas derivadas existen en todo $\mathbb{R} ^{2}$, falta ver si estas son continuas en $(0,0)$:
+		\[
+			\lim_{(x,y) \to (0,0)} \frac{-2xy}{(x ^{2}+y ^{2})^{2}}\cos(\frac{1}{x ^{2}+y ^{2}})
+		\]
+	Como $\cos$ está acotado, solo es necesario fijarse en el término de la izquierda. Para ello, vamos a comprobar el límite cuando se sigue el camino $y=mx:m \in \mathbb{R}$:
+	\[
+		=  \lim_{x \to 0} \frac{-2mx ^{2}}{x^{4}(1+m ^{2})^{2}}=
+		\lim_{x \to 0} -\frac{2m}{x ^{2}(1+m ^{2})^{2}}=\infty 
+	\]
+	Como no coincide con el valor de la derivada en ese punto, no es continua, y por tanto $f$ es diferenciable en $\mathbb{R} ^{2}-\{ (0,0) \}$.   
+	\item Halla, si existe, la derivada de $f$ respecto del vector $\bm v=\left(\frac{3}{5},\frac{4}{5}\right)$ en el punto $\bm a=(1,0)$. [1 punto]
+		\subsection*{Solución}
+		Nos interesa obtener lo siguiente:
+		\[
+			f'(\mathbf{a}, \mathbf{v})=\nabla f(\mathbf{a})\cdot \mathbf{v}
+		\]
+	Como hemos obtenido ambas derivadas parciales, podemos rápidamente evaluar ambas en el punto $\mathbf{a}=(1,0)$ para obtener que:
+		\[
+			\nabla f(1,0) = (0, \sin(1))
+		\]
+		Y ahora para obtener la derivada direccional correspondiente, simplemente calculamos el producto escalar de este vector con el vector $\textbf{v}$:
+		\[
+			f'(\mathbf{a}, \mathbf{v})=(0, \sin(1))\cdot (\frac{3}{5}, \frac{4}{5})=\frac{4}{5}\sin(1)
+		\]
+	\end{enumerate}
+	\newpage
+	
+	\section*{Problema 2}
+	Sea $f$ la función definida en todo $\bbR^2$ de la siguiente manera
+	\begin{equation*}
+		f(x,y)=
+		\left\{
+		\begin{aligned}
+			\frac{x^3}{y-1} &\qquad\text{si $y\neq 1$}\\
+			0 &\qquad\text{si }y=1
+		\end{aligned}
+		\right.
+	\end{equation*}
+	\begin{enumerate}[(a)]
+		\item Estudia si $f$ es continua y diferenciable en $(0,1)$. [1 punto]
+		\subsection*{Solución}
+		Haciendo esto y lo otro...
+		\item Halla el vector unitario en cuya dirección es mínima la correspondiente derivada direccional de $f$ en el punto $(1,0)$. [1 punto]
+		\subsection*{Solución}
+		Haciendo esto y lo otro...
+		\item Halla la ecuación del plano tangente a la gráfica de $f$ en el punto $(1,0)$. [1 punto]
+		\subsection*{Solución}
+		Haciendo esto y lo otro...
+	\end{enumerate}
+	
+	\newpage
+	
+	\section*{Problema 3}
+	Halla los planos tangentes a las siguientes superficies en los puntos indicados
+	\begin{enumerate}[(a)]
+		\item $z=x^2+y^2$ en $(3,1,10)$. [1 punto]
+		\subsection*{Solución}
+		Haciendo esto y lo otro...
+		\item $x^2+(y-2)^2+2z^2=4$ en $(1,3,-1)$. [1 punto]
+		\subsection*{Solución}
+		Haciendo esto y lo otro...
+		\item $yz=\ln(x+z)$ en $(0,0,1)$. [1 punto]
+		\subsection*{Solución}
+		Haciendo esto y lo otro...
+	\end{enumerate}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+\end{document}
