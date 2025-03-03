@@ -121,13 +121,59 @@
 	\begin{enumerate}[(a)]
 		\item Estudia si $f$ es continua y diferenciable en $(0,1)$. [1 punto]
 		\subsection*{Solución}
-		Haciendo esto y lo otro...
-		\item Halla el vector unitario en cuya dirección es mínima la correspondiente derivada direccional de $f$ en el punto $(1,0)$. [1 punto]
+		Si tomamos el límite cuando $(x,y) \to (0,0)$, y tomamos el camino $y=1+x^{4}$, vemos que:
+		\[
+			\lim_{(x,y) \to (0,0)} \frac{x^{3}}{y-1}=\lim_{x \to 0}
+			\frac{x^{3}}{1+x^{4}-1} = \lim_{x \to 0} \frac{1}{x} = \infty 
+		\]
+		Por tanto, la función no es continua en ese punto, y por tanto tampoco será diferenciable.
+	\item Halla el vector unitario en cuya dirección es mínima la correspondiente derivada direccional de $f$ en el punto $(1,0)$. [1 punto]
 		\subsection*{Solución}
-		Haciendo esto y lo otro...
-		\item Halla la ecuación del plano tangente a la gráfica de $f$ en el punto $(1,0)$. [1 punto]
+		Teniendo en cuenta que buscamos un vector unitario, lo que buscamos es
+		\[
+			f'((1,0), \mathbf{u}) = \nabla f(1,0)\cdot \mathbf{u}=|\nabla f(1,0)| \cos \theta
+		\]
+		Por tanto, solo nos interesa el ángulo que formará este vector con el gradiente en dicho punto. Como el gradiente apuntará hacia donde más crece la función, el vector donde esta derivada direccional será mínima será cuando $\theta = \pi$, es decir, cuando el vector va en dirección contraria. Por tanto, este vector será
+		\[
+			\frac{1}{|\nabla f(1,0)|} \nabla f(1,0)
+		\]
+		Ahora calculamos las correspondientes derivadas parciales:
+		\[
+			\pdv{f}{x} =\left\{ \begin{matrix}
+				\frac{3x^{2}}{y-1}~si~y\neq 1\\
+				0~si~y=1
+			\end{matrix}\right
+		\]
+		\[
+			\pdv{f}{y} = \left\{ \begin{matrix}
+				\frac{-x^{3}}{(y-1)^{2}}~si~y=1\\
+				0~si~y=1
+			\end{matrix}\right
+		\]
+		Ahora evaluamos en el punto para obtener
+		\[
+			\nabla f(1,0)=(-3,-1)
+		\]
+		y por tanto, el vector será este, dividido entre su módulo, y en dirección contraria:
+		\[
+			\boxed{
+				\mathbf{u} = \frac{\sqrt{10}}{10}(3,1)
+			}
+		\]
+\item Halla la ecuación del plano tangente a la gráfica de $f$ en el punto $(1,0)$. [1 punto]
 		\subsection*{Solución}
-		Haciendo esto y lo otro...
+		Si sustituimos en la función, obtenemos que el punto es $(1,0,-1)$. Ahora bien, como esta función permite obtener $z$ de forma explícita (es decir, podemos tener $z$ únicamente en un lado, y luego $x,y$ en el otro lado), podemos definir la función $g(x,y,z)=f(x,y)-z$, y ahora tomamos el gradiente y sustutimos, obteniendo:
+		\[
+			\nabla g(1,0,-1)=(-3,-1,-1)
+		\]
+		y por tanto el plano será de la forma
+		\[
+			-3x-y-z+c=0
+		\]
+		sustutimos el el punto y despejamos $c$, para obtener que
+		\[
+			\pi \equiv 3x+y+z-2=0
+		\]
 	\end{enumerate}
 	
 	\newpage
@@ -137,14 +183,36 @@
 	\begin{enumerate}[(a)]
 		\item $z=x^2+y^2$ en $(3,1,10)$. [1 punto]
 		\subsection*{Solución}
-		Haciendo esto y lo otro...
+		Para proceder con estos problemas, despejaremos todos los elementos a un lado de la ecuación y tomaremos el gradiente. Para la primera superfície, obtenemos que el gradiente de nuestra función $f(x,y,z)=x^{2}+y^{2}-z$ es
+		\[
+			\nabla f=(2x,2y,-1)
+		\]
+		Sustutuimos el punto para obtener que el gradiente en ese punto es $(6,2,-1)$. Ahora planteamos el plano y sustutimos el valor del punto para despejar la constante, para obtener que el plano es
+		\[
+			6x+2y-z-10=0
+		\]
 		\item $x^2+(y-2)^2+2z^2=4$ en $(1,3,-1)$. [1 punto]
 		\subsection*{Solución}
-		Haciendo esto y lo otro...
-		\item $yz=\ln(x+z)$ en $(0,0,1)$. [1 punto]
+		De nuevo, pasamos los elementos a un lado y tomamos el gradiente, obteniendo así
+		\[
+			(2x,2y-4, 4z)
+		\]
+		Suistuimos para obtener $(2,2,-4)$. Ahora sustituimos el punto, obtenemos $c=-12$, y obtenemos
+		\[
+			x+y+2-6=0
+		\]
+	\item $yz=\ln(x+z)$ en $(0,0,1)$. [1 punto]
 		\subsection*{Solución}
-		Haciendo esto y lo otro...
-	\end{enumerate}
+		Despejando los elementos, la función queda definida como $h(x,y,z)=\ln(x+z)-yz$. Tomamos el gradiente para obtener
+		\[
+			\nabla h(x,y,z)=(\frac{1}{x+z}, -z, \frac{1}{x+z}-y)
+		\]
+		Sustituimos para obtener que el gradiente en ese punto es $(1,-1,1)$. Ahora para obtener $c$, sustituimos el punto, y obtenemos que el plano es
+		\[
+			x-y+z-1=0
+		\]
+\end{enumerate}
+
 	
 	
 	
